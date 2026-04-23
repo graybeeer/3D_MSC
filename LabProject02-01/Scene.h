@@ -18,6 +18,8 @@ private:
 
 	CPlayer*					m_pPlayer = NULL;
 
+	
+
 #ifdef _WITH_DRAW_AXIS
 	CGameObject*				m_pWorldAxis = NULL;
 #endif

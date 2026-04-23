@@ -12,8 +12,6 @@ HINSTANCE hInst;								// 현재 인스턴스입니다.
 TCHAR szTitle[MAX_LOADSTRING];					// 제목 표시줄 텍스트입니다.
 TCHAR szWindowClass[MAX_LOADSTRING];			// 기본 창 클래스 이름입니다.
 
-CGameFramework		gGameFramework;
-
 // 이 코드 모듈에 들어 있는 함수의 정방향 선언입니다.
 ATOM				MyRegisterClass(HINSTANCE hInstance);
 BOOL				InitInstance(HINSTANCE, int);
@@ -59,10 +57,10 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 		}
 		else
 		{
-			gGameFramework.FrameAdvance();
+			CGameFramework::GetInstance().FrameAdvance();
 		}
 	}
-	gGameFramework.OnDestroy();
+	CGameFramework::GetInstance().OnDestroy();
 
 	return (int)msg.wParam;
 }
@@ -123,7 +121,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	HWND hMainWnd = CreateWindow(szWindowClass, szTitle, dwStyle, CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, hInstance, NULL);
 	if (!hMainWnd) return(FALSE);
 
-	gGameFramework.OnCreate(hInstance, hMainWnd);
+	CGameFramework::GetInstance().OnCreate(hInstance, hMainWnd);
 
 	ShowWindow(hMainWnd, nCmdShow);
 	UpdateWindow(hMainWnd);
@@ -157,7 +155,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_MOUSEMOVE:
 	case WM_KEYDOWN:
 	case WM_KEYUP:
-		gGameFramework.OnProcessingWindowMessage(hWnd, message, wParam, lParam);
+		CGameFramework::GetInstance().OnProcessingWindowMessage(hWnd, message, wParam, lParam);
 		break;
 	case WM_COMMAND:
 		wmId = LOWORD(wParam);

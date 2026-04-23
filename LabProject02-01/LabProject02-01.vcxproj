@@ -156,6 +156,11 @@
     <ClInclude Include="GraphicsPipeline.h" />
     <ClInclude Include="LabProject02-01.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="msc_Camera.h" />
+    <ClInclude Include="msc_Component.h" />
+    <ClInclude Include="msc_GameObject.h" />
+    <ClInclude Include="msc_Mesh.h" />
+    <ClInclude Include="msc_Transform.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />

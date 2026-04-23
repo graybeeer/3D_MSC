@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="헤더 파일\msc">
+      <UniqueIdentifier>{10614d40-fcf8-400f-a306-bdc56fd318a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\msc">
+      <UniqueIdentifier>{c4b64482-a525-4f12-9105-c4f6ec51c436}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\msc\component">
+      <UniqueIdentifier>{d7194ffa-044f-4b1b-8a79-14e6778e769a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -50,6 +59,21 @@
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="msc_Component.h">
+      <Filter>헤더 파일\msc</Filter>
+    </ClInclude>
+    <ClInclude Include="msc_GameObject.h">
+      <Filter>헤더 파일\msc</Filter>
+    </ClInclude>
+    <ClInclude Include="msc_Transform.h">
+      <Filter>헤더 파일\msc\component</Filter>
+    </ClInclude>
+    <ClInclude Include="msc_Camera.h">
+      <Filter>헤더 파일\msc\component</Filter>
+    </ClInclude>
+    <ClInclude Include="msc_Mesh.h">
+      <Filter>헤더 파일\msc\component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

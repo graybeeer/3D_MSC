@@ -7,10 +7,19 @@
 class CGameFramework
 {
 public:
-	CGameFramework() { }
-	~CGameFramework() { }
+	static CGameFramework& GetInstance()
+	{
+		static CGameFramework instance;
+		return instance;
+	}
+
+	// 복사 방지
+	CGameFramework(const CGameFramework&) = delete;
+	CGameFramework& operator=(const CGameFramework&) = delete;
 
 private:
+	CGameFramework() { }
+
 	HINSTANCE					m_hInstance = NULL;
 	HWND						m_hWnd = NULL;
 
