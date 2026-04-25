@@ -3,12 +3,52 @@
   "WorkspaceRootPath": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_GameObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:msc_GameObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_RigidBody.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:msc_RigidBody.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Collider.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:msc_Collider.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:Mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Mesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:Mesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Mesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:msc_Mesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_GameObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:msc_GameObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:msc_Mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Transform.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:msc_Transform.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Component.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:msc_Component.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_GameObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:msc_GameObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_transform.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:msc_transform.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Component.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:msc_Component.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -17,26 +57,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\GameFramework.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:GameFramework.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_GameObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:msc_GameObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_transform.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:msc_transform.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Component.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:msc_Component.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Component.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:msc_Component.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:msc_Mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -57,14 +77,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:Mesh.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Mesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|solutionrelative:Mesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D0DE8074-915D-4349-A052-074A6061DCD9}|LabProject02-01.vcxproj|C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -90,76 +102,76 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "msc_RigidBody.h",
+              "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_RigidBody.h",
+              "RelativeDocumentMoniker": "msc_RigidBody.h",
+              "ToolTip": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_RigidBody.h",
+              "RelativeToolTip": "msc_RigidBody.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-04-25T04:48:27.463Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "msc_Collider.h",
+              "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Collider.h",
+              "RelativeDocumentMoniker": "msc_Collider.h",
+              "ToolTip": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Collider.h",
+              "RelativeToolTip": "msc_Collider.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-04-25T04:48:09.845Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "msc_Mesh.cpp",
+              "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Mesh.cpp",
+              "RelativeDocumentMoniker": "msc_Mesh.cpp",
+              "ToolTip": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Mesh.cpp",
+              "RelativeToolTip": "msc_Mesh.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-25T04:45:14.477Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "msc_GameObject.cpp",
               "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_GameObject.cpp",
               "RelativeDocumentMoniker": "msc_GameObject.cpp",
               "ToolTip": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_GameObject.cpp",
               "RelativeToolTip": "msc_GameObject.cpp",
-              "ViewState": "AgIAABAAAAAAAAAAAAAAACUAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAADwv2gAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-04-25T03:42:48.086Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "msc_Transform.cpp",
               "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Transform.cpp",
               "RelativeDocumentMoniker": "msc_Transform.cpp",
               "ToolTip": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Transform.cpp",
               "RelativeToolTip": "msc_Transform.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAADwvywAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-04-25T03:35:37.813Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GameFramework.h",
-              "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\GameFramework.h",
-              "RelativeDocumentMoniker": "GameFramework.h",
-              "ToolTip": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\GameFramework.h",
-              "RelativeToolTip": "GameFramework.h",
-              "ViewState": "AgIAAA8AAAAAAAAAAADwvxkAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-25T03:06:10.546Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "msc_Camera.h",
-              "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Camera.h",
-              "RelativeDocumentMoniker": "msc_Camera.h",
-              "ToolTip": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Camera.h",
-              "RelativeToolTip": "msc_Camera.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-23T05:21:29.093Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "msc_Transform.h",
-              "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Transform.h",
-              "RelativeDocumentMoniker": "msc_Transform.h",
-              "ToolTip": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Transform.h",
-              "RelativeToolTip": "msc_Transform.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-23T05:21:05.334Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "GameObject.h",
               "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\GameObject.h",
               "RelativeDocumentMoniker": "GameObject.h",
@@ -167,12 +179,11 @@
               "RelativeToolTip": "GameObject.h",
               "ViewState": "AgIAAGMAAAAAAAAAAAAAAFsAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-20T11:36:08.627Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-20T11:36:08.627Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "msc_Component.h",
               "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Component.h",
               "RelativeDocumentMoniker": "msc_Component.h",
@@ -185,33 +196,45 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
               "Title": "msc_GameObject.h",
               "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_GameObject.h",
               "RelativeDocumentMoniker": "msc_GameObject.h",
               "ToolTip": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_GameObject.h",
               "RelativeToolTip": "msc_GameObject.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAABFAAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAADwvwkAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-04-20T11:36:05.055Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
+              "Title": "GameFramework.h",
+              "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\GameFramework.h",
+              "RelativeDocumentMoniker": "GameFramework.h",
+              "ToolTip": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\GameFramework.h",
+              "RelativeToolTip": "GameFramework.h",
+              "ViewState": "AgIAAA8AAAAAAAAAAADwvxkAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-04-25T03:06:10.546Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "msc_Mesh.h",
               "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Mesh.h",
               "RelativeDocumentMoniker": "msc_Mesh.h",
               "ToolTip": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Mesh.h",
               "RelativeToolTip": "msc_Mesh.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwQAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwYAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-04-20T11:36:35.717Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 12,
               "Title": "Scene.h",
               "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Scene.h",
               "RelativeDocumentMoniker": "Scene.h",
@@ -219,12 +242,62 @@
               "RelativeToolTip": "Scene.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-23T05:30:56.899Z",
+              "WhenOpened": "2026-04-23T05:30:56.899Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Mesh.h",
+              "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Mesh.h",
+              "RelativeDocumentMoniker": "Mesh.h",
+              "ToolTip": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Mesh.h",
+              "RelativeToolTip": "Mesh.h",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAADYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-04-20T11:36:19.993Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
+              "Title": "Mesh.cpp",
+              "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Mesh.cpp",
+              "RelativeDocumentMoniker": "Mesh.cpp",
+              "ToolTip": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Mesh.cpp",
+              "RelativeToolTip": "Mesh.cpp",
+              "ViewState": "AgIAAIIAAAAAAAAAAADwv4EAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-04-25T02:26:20.684Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "msc_Transform.h",
+              "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Transform.h",
+              "RelativeDocumentMoniker": "msc_Transform.h",
+              "ToolTip": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Transform.h",
+              "RelativeToolTip": "msc_Transform.h",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAC0AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-04-23T05:21:05.334Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "msc_Camera.h",
+              "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Camera.h",
+              "RelativeDocumentMoniker": "msc_Camera.h",
+              "ToolTip": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Camera.h",
+              "RelativeToolTip": "msc_Camera.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-04-23T05:21:29.093Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "msc_Component.cpp",
               "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\msc_Component.cpp",
               "RelativeDocumentMoniker": "msc_Component.cpp",
@@ -237,7 +310,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 18,
               "Title": "Camera.h",
               "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Camera.h",
               "RelativeDocumentMoniker": "Camera.h",
@@ -249,7 +322,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "LabProject02-01.cpp",
               "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\LabProject02-01.cpp",
               "RelativeDocumentMoniker": "LabProject02-01.cpp",
@@ -261,7 +334,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 17,
               "Title": "GameFramework.cpp",
               "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\GameFramework.cpp",
               "RelativeDocumentMoniker": "GameFramework.cpp",
@@ -273,7 +346,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "stdafx.h",
               "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\stdafx.h",
               "RelativeDocumentMoniker": "stdafx.h",
@@ -281,36 +354,11 @@
               "RelativeToolTip": "stdafx.h",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABoAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-25T03:01:32.526Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-25T03:01:32.526Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Mesh.h",
-              "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Mesh.h",
-              "RelativeDocumentMoniker": "Mesh.h",
-              "ToolTip": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Mesh.h",
-              "RelativeToolTip": "Mesh.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-20T11:36:19.993Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Mesh.cpp",
-              "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Mesh.cpp",
-              "RelativeDocumentMoniker": "Mesh.cpp",
-              "ToolTip": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Mesh.cpp",
-              "RelativeToolTip": "Mesh.cpp",
-              "ViewState": "AgIAABgAAAAAAAAAAADwvzEAAABNAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-04-25T02:26:20.684Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "Player.h",
               "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Player.h",
               "RelativeDocumentMoniker": "Player.h",
@@ -322,7 +370,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "GraphicsPipeline.h",
               "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\GraphicsPipeline.h",
               "RelativeDocumentMoniker": "GraphicsPipeline.h",
@@ -334,7 +382,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "Camera.cpp",
               "DocumentMoniker": "C:\\Users\\82107\\source\\repos\\Direct3dGame\\MSC3D_PROGRAMMING\\3D_MSC\\LabProject02-01\\Camera.cpp",
               "RelativeDocumentMoniker": "Camera.cpp",

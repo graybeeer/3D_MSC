@@ -78,6 +78,12 @@
     <ClInclude Include="msc_Mesh.h">
       <Filter>헤더 파일\msc\component</Filter>
     </ClInclude>
+    <ClInclude Include="msc_Collider.h">
+      <Filter>헤더 파일\msc\component</Filter>
+    </ClInclude>
+    <ClInclude Include="msc_RigidBody.h">
+      <Filter>헤더 파일\msc\component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LabProject02-01.cpp">
@@ -117,6 +123,9 @@
       <Filter>소스 파일\msc</Filter>
     </ClCompile>
     <ClCompile Include="msc_Transform.cpp">
+      <Filter>소스 파일\msc\component</Filter>
+    </ClCompile>
+    <ClCompile Include="msc_Mesh.cpp">
       <Filter>소스 파일\msc\component</Filter>
     </ClCompile>
   </ItemGroup>

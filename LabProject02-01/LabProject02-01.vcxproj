@@ -157,9 +157,11 @@
     <ClInclude Include="LabProject02-01.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="msc_Camera.h" />
+    <ClInclude Include="msc_Collider.h" />
     <ClInclude Include="msc_Component.h" />
     <ClInclude Include="msc_GameObject.h" />
     <ClInclude Include="msc_Mesh.h" />
+    <ClInclude Include="msc_RigidBody.h" />
     <ClInclude Include="msc_Transform.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
@@ -177,6 +179,7 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="msc_Component.cpp" />
     <ClCompile Include="msc_GameObject.cpp" />
+    <ClCompile Include="msc_Mesh.cpp" />
     <ClCompile Include="msc_Transform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
