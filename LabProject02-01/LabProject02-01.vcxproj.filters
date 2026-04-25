@@ -28,8 +28,14 @@
     <Filter Include="헤더 파일\msc\Tool">
       <UniqueIdentifier>{13d44cf1-279e-4e21-84f9-572ca89d5a8b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="헤더 파일\msc\component\NewScript">
+    <Filter Include="소스 파일\msc\Tool">
+      <UniqueIdentifier>{60436276-423c-4f85-bb54-6e49cbe85b08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\msc\component\Ingame_script">
       <UniqueIdentifier>{5a5ccb90-ca01-43ee-98a5-a36f22f55601}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\msc\component\Ingame_script">
+      <UniqueIdentifier>{d3d25c6f-49c4-4972-b99b-8560c604c70d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -90,11 +96,14 @@
     <ClInclude Include="msc_RigidBody.h">
       <Filter>헤더 파일\msc\component</Filter>
     </ClInclude>
-    <ClInclude Include="Quaternion.h">
+    <ClInclude Include="tool_Quaternion.h">
       <Filter>헤더 파일\msc\Tool</Filter>
     </ClInclude>
     <ClInclude Include="msc_GameManager.h">
-      <Filter>헤더 파일\msc\component\NewScript</Filter>
+      <Filter>헤더 파일\msc\component\Ingame_script</Filter>
+    </ClInclude>
+    <ClInclude Include="tool_Quaternion.cpp">
+      <Filter>소스 파일\msc\Tool</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="msc_Camera.cpp">
       <Filter>소스 파일\msc\component</Filter>
+    </ClCompile>
+    <ClCompile Include="msc_GameManager.cpp">
+      <Filter>소스 파일\msc\component\Ingame_script</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

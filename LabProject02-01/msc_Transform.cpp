@@ -290,7 +290,30 @@ void msc_Transform::Translate(const XMFLOAT3& translation, bool relativeToWorld)
     }
     m_bDirty = true;
 }
+// 로컬 방향 → 월드 방향
+XMFLOAT3 msc_Transform::TransformDirection(const XMFLOAT3& localDirection) const
+{
+    XMVECTOR direction = XMLoadFloat3(&localDirection);
+    XMMATRIX world = XMLoadFloat4x4(&m_xmf4x4World);
+    XMVECTOR worldDirection = XMVector3TransformNormal(direction, world);
 
+    XMFLOAT3 result;
+    XMStoreFloat3(&result, worldDirection);
+    return result;
+}
+
+// 월드 방향 → 로컬 방향
+XMFLOAT3 msc_Transform::InverseTransformDirection(const XMFLOAT3& worldDirection) const
+{
+    XMVECTOR direction = XMLoadFloat3(&worldDirection);
+    XMMATRIX world = XMLoadFloat4x4(&m_xmf4x4World);
+    XMMATRIX inverseWorld = XMMatrixInverse(nullptr, world);
+    XMVECTOR localDirection = XMVector3TransformNormal(direction, inverseWorld);
+
+    XMFLOAT3 result;
+    XMStoreFloat3(&result, localDirection);
+    return result;
+}
 // 자식 찾기
 msc_Transform* msc_Transform::FindChild(const string& childName, bool recursive)
 {

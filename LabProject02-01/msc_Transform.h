@@ -132,14 +132,14 @@ public:
     }
 
     // ===== 자식 Find 메서드 =====
-    msc_Transform* Find(const string& childName);
+    //msc_Transform* Find(const string& childName);
     msc_Transform* FindChild(const string& childName, bool recursive = true);
 
 private:
     // ===== 로컬 변환 (Private) =====
     XMFLOAT3 m_xmf3LocalPosition = XMFLOAT3(0.0f, 0.0f, 0.0f);
     
-    // 쿼터니언 (x, y, z, w) - 외부 수정 불가
+    // 쿼터니언 (x, y, z, w) 
     XMFLOAT4 m_xmf4LocalRotation = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
     
     // Euler 각도는 계산 목적으로만 사용 (캐시)
