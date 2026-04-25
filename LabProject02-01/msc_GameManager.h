@@ -7,7 +7,7 @@ class msc_GameManager : public msc_Component
 {
 
 public:
-	static msc_GameManager* GetInstance(msc_GameObject* pParentObject) //½Ì±ÛÅæ ÆĞÅÏÀ» Àû¿ëÇÑ GetInstance ¸Ş¼­µå
+	static msc_GameManager* GetInstance(msc_GameObject* pParentObject) //½Ì±ÛÅæ 
 	{
 		static msc_GameManager instance(pParentObject);
 		return &instance;

@@ -2,11 +2,8 @@
 #include "msc_GameObject.h"
 #include "msc_Transform.h"
 
-msc_Transform::msc_Transform(msc_GameObject* pParentObject) 
-    : msc_Component(pParentObject)
+msc_Transform::msc_Transform(msc_GameObject* pParentObject) : msc_Component(pParentObject)
 {
-    // 초기 회전: 단위 쿼터니언
-    m_xmf4LocalRotation = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 msc_Transform::~msc_Transform()
@@ -21,7 +18,7 @@ void msc_Transform::Start()
 
 void msc_Transform::Update()
 {
-    if (m_bDirty)
+	if (m_bDirty) //더티 플래그가 설정된 경우에만 월드 변환 업데이트
     {
         UpdateWorldTransform();
         m_bDirty = false;
@@ -40,6 +37,28 @@ msc_Transform* msc_Transform::GetParentTransform() const
     if (!pParent) return nullptr;
     
     return pParent->GetTransform();
+}
+
+// 자식들에게 Dirty Flag 전파
+void msc_Transform::PropagateToChildren()
+{
+    if (!m_pParentObject) return;
+    
+    // 현재 게임 오브젝트의 모든 자식에게 전파
+    list<msc_GameObject*>& children = m_pParentObject->GetChildren();
+    
+    for (auto& child : children)
+    {
+        if (child)
+        {
+            msc_Transform* childTransform = child->GetTransform();
+            if (childTransform && !childTransform->m_bDirty)
+            {
+                childTransform->m_bDirty = true;
+                childTransform->PropagateToChildren();  // 재귀적으로 손자들에게도 전파
+            }
+        }
+    }
 }
 
 void msc_Transform::UpdateWorldTransform()

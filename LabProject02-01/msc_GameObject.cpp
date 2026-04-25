@@ -8,7 +8,9 @@ msc_GameObject::msc_GameObject(string& strName)
 	m_strName = strName;
 	m_pTransform = new msc_Transform(this);
 	AddComponent(m_pTransform);
+	Start();
 }
+
 msc_GameObject::~msc_GameObject()
 {
 	onDestroy(); 
@@ -20,39 +22,67 @@ msc_GameObject::~msc_GameObject()
 	}
 	m_Components.clear();
 
-	// 자식 오브젝트도 정리
 	for (auto& pChild : m_ChildGameObjects)
 	{
 		if (pChild) delete pChild;
 	}
 	m_ChildGameObjects.clear();
 }
+
 void msc_GameObject::Update()
 {
-	for (auto& pComponent : m_Components)
+	// Transform 먼저 업데이트
+	if (m_pTransform)
 	{
-		if (pComponent) pComponent->Update();
+		m_pTransform->Update();
 	}
 
-	// 자식 오브젝트 업데이트
+	// 나머지 컴포넌트 업데이트
+	for (auto& pComponent : m_Components)
+	{
+		if (pComponent && pComponent != m_pTransform)
+		{
+			pComponent->Update();
+		}
+	}
+
+	// 자식 게임 오브젝트 업데이트
 	for (auto& pChild : m_ChildGameObjects)
 	{
-		if (pChild) pChild->Update();
+		if (pChild)
+		{
+			pChild->Update();  // 자식의 Update는 다시 이 과정을 반복
+		}
 	}
 }
+
 void msc_GameObject::Start()
 {
-	for (auto& pComponent : m_Components)
+	// Transform 먼저 초기화
+	if (m_pTransform)
 	{
-		if (pComponent) pComponent->Start();
+		m_pTransform->Start();
 	}
 
-	// 자식 오브젝트 시작
+	// 나머지 컴포넌트
+	for (auto& pComponent : m_Components)
+	{
+		if (pComponent && pComponent != m_pTransform)
+		{
+			pComponent->Start();
+		}
+	}
+
+	// 자식 초기화
 	for (auto& pChild : m_ChildGameObjects)
 	{
-		if (pChild) pChild->Start();
+		if (pChild)
+		{
+			pChild->Start();
+		}
 	}
 }
+
 void msc_GameObject::onDestroy()
 {
 	for (auto& pComponent : m_Components)
@@ -60,19 +90,23 @@ void msc_GameObject::onDestroy()
 		if (pComponent) pComponent->onDestroy();
 	}
 
-	// 자식 오브젝트 제거
 	for (auto& pChild : m_ChildGameObjects)
 	{
 		if (pChild) pChild->onDestroy();
 	}
 }
+
 void msc_GameObject::AddComponent(msc_Component* pComponent)
 {
+	//사용x - 템플릿 AddComponent 사용 권장
 	if (pComponent)
 	{
 		m_Components.push_back(pComponent);
+		//pComponent->m_pTransform = m_pTransform;
 	}
 }
+
+
 void msc_GameObject::SetParent(msc_GameObject* pParent)
 {
 	if (m_pParentGameObject == pParent) return;
@@ -81,8 +115,8 @@ void msc_GameObject::SetParent(msc_GameObject* pParent)
 	if (m_pParentGameObject)
 	{
 		auto it = find(m_pParentGameObject->m_ChildGameObjects.begin(),
-					   m_pParentGameObject->m_ChildGameObjects.end(),
-					   this);
+		               m_pParentGameObject->m_ChildGameObjects.end(),
+		               this);
 		if (it != m_pParentGameObject->m_ChildGameObjects.end())
 		{
 			m_pParentGameObject->m_ChildGameObjects.erase(it);
@@ -95,13 +129,14 @@ void msc_GameObject::SetParent(msc_GameObject* pParent)
 	if (m_pParentGameObject)
 	{
 		m_pParentGameObject->AddChild(this);
-		// Transform 업데이트
+		// Transform dirty flag 설정하여 다음 업데이트에서 월드 변환 재계산
 		if (m_pTransform)
 		{
 			m_pTransform->m_bDirty = true;
 		}
 	}
 }
+
 void msc_GameObject::AddChild(msc_GameObject* pChild)
 {
 	if (pChild && find(m_ChildGameObjects.begin(), m_ChildGameObjects.end(), pChild) == m_ChildGameObjects.end())
@@ -109,6 +144,7 @@ void msc_GameObject::AddChild(msc_GameObject* pChild)
 		m_ChildGameObjects.push_back(pChild);
 	}
 }
+
 msc_Component* msc_GameObject::GetComponent(string& strComponentType)
 {
 	for (auto& pComponent : m_Components)
