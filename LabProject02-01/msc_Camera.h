@@ -1,7 +1,21 @@
 #pragma once
 #include "msc_Component.h"
 
-class msc_Viewport;
+
+class msc_Viewport
+{
+public:
+	msc_Viewport() {}
+	virtual ~msc_Viewport() {}
+
+	int	m_nLeft = 0;
+	int m_nTop = 0;
+	int	m_nWidth = 0;
+	int	m_nHeight = 0;
+
+	void SetViewport(int nLeft, int nTop, int nWidth, int nHeight);
+};
+
 class msc_Camera : public msc_Component
 {
 public:
@@ -22,18 +36,4 @@ private:
 	BoundingFrustum				m_xmFrustumWorld = BoundingFrustum();
 	XMFLOAT4X4					m_xmf4x4InverseView = Matrix4x4::Identity();
 
-};
-
-class msc_Viewport
-{
-public:
-	msc_Viewport() {}
-	virtual ~msc_Viewport() {}
-
-	int	m_nLeft = 0;
-	int m_nTop = 0;
-	int	m_nWidth = 0;
-	int	m_nHeight = 0;
-
-	void SetViewport(int nLeft, int nTop, int nWidth, int nHeight);
 };

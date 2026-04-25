@@ -27,7 +27,7 @@ public:
     msc_Component* GetComponent(string& strComponentType);
     
     // 템플릿으로 타입별 컴포넌트 조회 (NEW)
-    template<typename T>
+    template<derived_from<msc_Component> T>
     T* GetComponent()
     {
         // 컴포넌트 리스트 순회
@@ -36,8 +36,8 @@ public:
             // typeid로 런타임 타입 정보 비교
             if (typeid(*pComponent) == typeid(T))
             {
-                return dynamic_cast<T*>(pComponent);
-            }
+                return static_cast<T*>(pComponent);
+			}
         }
         return nullptr;
     }
@@ -49,7 +49,9 @@ private:
 
 public:
     // 템플릿으로 새 컴포넌트 생성 후 추가 (유니티처럼)
-    template<typename T>
+    // 템플릿은 component의 하위 클래스만 가능 
+	// c++20 이상에서 derived_from 제약 조건 사용    
+    template <derived_from<msc_Component> T>
     T* AddComponent()
     {
         // 중복 추가 방지: 같은 타입의 컴포넌트가 이미 있으면 반환
@@ -76,11 +78,12 @@ public:
 
     // ===== RemoveComponent 메서드 =====
 
-    template<typename T>
+    template<derived_from<msc_Component> T>
     bool RemoveComponent()
     {
         for (auto it = m_Components.begin(); it != m_Components.end(); ++it)
         {
+			if (typeid(**it) == typeid(msc_Transform)) continue; // Transform 컴포넌트는 제거 불가   
             if (typeid(**it) == typeid(T))
             {
                 (*it)->onDestroy();

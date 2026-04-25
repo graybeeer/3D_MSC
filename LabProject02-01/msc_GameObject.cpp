@@ -6,8 +6,11 @@
 msc_GameObject::msc_GameObject(string& strName)
 {
 	m_strName = strName;
+
 	m_pTransform = new msc_Transform(this);
 	AddComponent(m_pTransform);
+	//AddComponent<msc_Transform>(); // 템플릿 버전(일단은 여기선 사용 안함)
+
 	Start();
 }
 
@@ -98,11 +101,12 @@ void msc_GameObject::onDestroy()
 
 void msc_GameObject::AddComponent(msc_Component* pComponent)
 {
-	//사용x - 템플릿 AddComponent 사용 권장
+	//새로운 컴포넌트 추가 시 - 템플릿 AddComponent 사용 권장
 	if (pComponent)
 	{
 		m_Components.push_back(pComponent);
-		//pComponent->m_pTransform = m_pTransform;
+		pComponent->m_pTransform = m_pTransform;
+		pComponent->Start(); // Start 호출
 	}
 }
 
