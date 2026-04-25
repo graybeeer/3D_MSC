@@ -26,6 +26,7 @@
 
 #include <list>
 #include <string>
+#include <typeinfo>
 using namespace std;
 
 using namespace DirectX;

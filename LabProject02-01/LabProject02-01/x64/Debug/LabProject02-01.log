@@ -1,2 +1,18 @@
-﻿  msc_Transform.cpp
-  LabProject02-01.vcxproj -> C:\Users\82107\source\repos\Direct3dGame\MSC3D_PROGRAMMING\3D_MSC\LabProject02-01\x64\Debug\LabProject02-01.exe
+﻿  stdafx.cpp
+  Camera.cpp
+  GameFramework.cpp
+  GameObject.cpp
+  GraphicsPipeline.cpp
+  LabProject02-01.cpp
+  Mesh.cpp
+  msc_Camera.cpp
+  msc_Component.cpp
+  msc_GameObject.cpp
+  msc_Mesh.cpp
+  msc_Transform.cpp
+  Player.cpp
+  Scene.cpp
+  Timer.cpp
+  코드를 생성하고 있습니다...
+msc_Transform.obj : error LNK2019: "public: struct DirectX::XMFLOAT3 __cdecl msc_Transform::TransformDirection(struct DirectX::XMFLOAT3 const &)const " (?TransformDirection@msc_Transform@@QEBA?AUXMFLOAT3@DirectX@@AEBU23@@Z)"public: void __cdecl msc_Transform::Translate(struct DirectX::XMFLOAT3 const &,bool)" (?Translate@msc_Transform@@QEAAXAEBUXMFLOAT3@DirectX@@_N@Z) 함수에서 참조되는 확인할 수 없는 외부 기호
+C:\Users\82107\source\repos\Direct3dGame\MSC3D_PROGRAMMING\3D_MSC\LabProject02-01\x64\Debug\LabProject02-01.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.

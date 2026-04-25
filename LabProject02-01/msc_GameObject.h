@@ -13,6 +13,8 @@ public:
     void Update();
     void Start();
     void onDestroy();
+	void fixedUpdate();
+	void lateUpdate();
 
     string m_strName;
 

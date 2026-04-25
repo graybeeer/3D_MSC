@@ -159,11 +159,13 @@
     <ClInclude Include="msc_Camera.h" />
     <ClInclude Include="msc_Collider.h" />
     <ClInclude Include="msc_Component.h" />
+    <ClInclude Include="msc_GameManager.h" />
     <ClInclude Include="msc_GameObject.h" />
     <ClInclude Include="msc_Mesh.h" />
     <ClInclude Include="msc_RigidBody.h" />
     <ClInclude Include="msc_Transform.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Quaternion.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="stdafx.h" />
@@ -177,6 +179,7 @@
     <ClCompile Include="GraphicsPipeline.cpp" />
     <ClCompile Include="LabProject02-01.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="msc_Camera.cpp" />
     <ClCompile Include="msc_Component.cpp" />
     <ClCompile Include="msc_GameObject.cpp" />
     <ClCompile Include="msc_Mesh.cpp" />

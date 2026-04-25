@@ -25,6 +25,12 @@
     <Filter Include="소스 파일\msc\component">
       <UniqueIdentifier>{02c60e4f-a402-4993-abba-fb3c8f9a79b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\msc\Tool">
+      <UniqueIdentifier>{13d44cf1-279e-4e21-84f9-572ca89d5a8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\msc\component\NewScript">
+      <UniqueIdentifier>{5a5ccb90-ca01-43ee-98a5-a36f22f55601}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -84,6 +90,12 @@
     <ClInclude Include="msc_RigidBody.h">
       <Filter>헤더 파일\msc\component</Filter>
     </ClInclude>
+    <ClInclude Include="Quaternion.h">
+      <Filter>헤더 파일\msc\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="msc_GameManager.h">
+      <Filter>헤더 파일\msc\component\NewScript</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LabProject02-01.cpp">
@@ -126,6 +138,9 @@
       <Filter>소스 파일\msc\component</Filter>
     </ClCompile>
     <ClCompile Include="msc_Mesh.cpp">
+      <Filter>소스 파일\msc\component</Filter>
+    </ClCompile>
+    <ClCompile Include="msc_Camera.cpp">
       <Filter>소스 파일\msc\component</Filter>
     </ClCompile>
   </ItemGroup>

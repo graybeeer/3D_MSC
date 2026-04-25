@@ -109,3 +109,14 @@ void msc_GameObject::AddChild(msc_GameObject* pChild)
 		m_ChildGameObjects.push_back(pChild);
 	}
 }
+msc_Component* msc_GameObject::GetComponent(string& strComponentType)
+{
+	for (auto& pComponent : m_Components)
+	{
+		if (typeid(*pComponent).name() == strComponentType)
+		{
+			return pComponent;
+		}
+	}
+	return nullptr;
+}
