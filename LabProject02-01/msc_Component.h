@@ -2,9 +2,13 @@
 #include "msc_GameObject.h"
 class msc_GameObject;
 class msc_Component {
-	public:
-	msc_Component();
+public:
+	msc_Component(msc_GameObject* pParentObject);
 	virtual ~msc_Component();
+	virtual void Start() = 0;
 	virtual void Update() = 0;
-	msc_Component* m_pParent = nullptr;
+	virtual void onDestroy() = 0;
+
+	msc_GameObject* m_pParentObject = nullptr; // 부모 게임 오브젝트에 대한 포인터
+	msc_Transform* m_pTransform = nullptr; // Transform 컴포넌트에 대한 포인터
 };

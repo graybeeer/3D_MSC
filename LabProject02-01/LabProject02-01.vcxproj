@@ -175,6 +175,9 @@
     <ClCompile Include="GraphicsPipeline.cpp" />
     <ClCompile Include="LabProject02-01.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="msc_Component.cpp" />
+    <ClCompile Include="msc_GameObject.cpp" />
+    <ClCompile Include="msc_Transform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="stdafx.cpp">

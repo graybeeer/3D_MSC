@@ -217,7 +217,7 @@ void CGameFramework::AnimateObjects()
 	if (m_pScene) m_pScene->Animate(fTimeElapsed);
 }
 
-void CGameFramework::FrameAdvance()
+void CGameFramework::FrameAdvance() //1프레임 진행
 {    
 	m_GameTimer.Tick(60.0f);
 

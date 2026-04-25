@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "Camera.h"
 #include "Player.h"
+#include "msc_GameObject.h"
 
 class CScene
 {
@@ -18,7 +19,9 @@ private:
 
 	CPlayer*					m_pPlayer = NULL;
 
-	
+	//추가- msc클래스들
+	//추가된 msc 클래스들은 유니티처럼 게임프레임워크-씬-게임오브젝트-컴포넌트 계층구조로 설계되어 있습니다.
+	list<msc_GameObject*>		m_mscGameObjects; // 게임 오브젝트 리스트
 
 #ifdef _WITH_DRAW_AXIS
 	CGameObject*				m_pWorldAxis = NULL;

@@ -1,5 +1,8 @@
 ﻿  GameFramework.cpp
   LabProject02-01.cpp
   Scene.cpp
+  msc_Component.cpp
+  msc_GameObject.cpp
+  msc_Transform.cpp
   코드를 생성하고 있습니다...
   LabProject02-01.vcxproj -> C:\Users\82107\source\repos\Direct3dGame\MSC3D_PROGRAMMING\3D_MSC\LabProject02-01\x64\Debug\LabProject02-01.exe

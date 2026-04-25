@@ -22,6 +22,9 @@
     <Filter Include="헤더 파일\msc\component">
       <UniqueIdentifier>{d7194ffa-044f-4b1b-8a79-14e6778e769a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\msc\component">
+      <UniqueIdentifier>{02c60e4f-a402-4993-abba-fb3c8f9a79b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -106,6 +109,15 @@
     </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="msc_GameObject.cpp">
+      <Filter>소스 파일\msc</Filter>
+    </ClCompile>
+    <ClCompile Include="msc_Component.cpp">
+      <Filter>소스 파일\msc</Filter>
+    </ClCompile>
+    <ClCompile Include="msc_Transform.cpp">
+      <Filter>소스 파일\msc\component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
