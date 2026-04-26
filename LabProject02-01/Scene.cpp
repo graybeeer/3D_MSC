@@ -152,8 +152,11 @@ void CScene::ReleaseObjects() //씬에 등장하는 게임 오브젝트들을 해제하는 함수입�
 }
 void CScene::msc_BuildObjects() //추가- msc 게임 오브젝트들을 생성하는 함수입니다.
 {
-	GameManagerObject = new msc_GameObject(string("GameManager")); // 게임 매니저 역할을 하는 게임 오브젝트를 생성합니다.
-	//GameManagerObject->AddComponent<msc_GameManager>();  // 게임 매니저 컴포넌트를 추가합니다.
+	msc_GameManagerObject = new msc_GameObject(string("GameManager")); // 게임 매니저 역할을 하는 게임 오브젝트를 생성
+	msc_GameManagerObject->AddComponent<msc_GameManager>();  // 게임 매니저 컴포넌트를 추가
+
+	msc_MainCameraObject = new msc_GameObject(string("MainCamera")); // 메인 카메라 역할을 하는 게임 오브젝트를 생성
+	msc_MainCamera = msc_MainCameraObject->AddComponent<msc_Camera>(); // 메인 카메라 컴포넌트를 추가
 }
 void CScene::msc_ReleaseObjects() //추가- msc 게임 오브젝트들을 해제하는 함수입니다.
 {

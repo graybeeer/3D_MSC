@@ -22,6 +22,7 @@ msc_Camera::~msc_Camera()
 
 void msc_Camera::Start()
 {
+	cout << "Camera Start" << endl;
 	// 기본 뷰포트 설정
 	m_Viewport.SetViewport(0, 0, FRAMEBUFFER_WIDTH, FRAMEBUFFER_HEIGHT);
 	m_fAspectRatio = float(FRAMEBUFFER_WIDTH) / float(FRAMEBUFFER_HEIGHT);

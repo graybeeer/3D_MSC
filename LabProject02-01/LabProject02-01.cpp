@@ -5,6 +5,21 @@
 #include "LabProject02-01.h"
 #include "GameFramework.h"
 
+#ifdef _DEBUG
+void InitConsole() {
+	AllocConsole();
+	FILE* fp;
+	freopen_s(&fp, "CONOUT$", "w", stdout); // 표준 출력을 콘솔로 연결
+	freopen_s(&fp, "CONIN$", "r", stdin);  // 표준 입력을 콘솔로 연결
+	/*
+	setvbuf(stdout, NULL, _IONBF, 0);
+	setvbuf(stderr, NULL, _IONBF, 0); 
+	*/
+	std::ios::sync_with_stdio(false);
+	
+}
+#endif
+
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
@@ -25,6 +40,10 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 {
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
+	
+#ifdef _DEBUG
+	InitConsole();
+#endif
 
 	// TODO: 여기에 코드를 입력합니다.
 	MSG msg;

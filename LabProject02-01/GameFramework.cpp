@@ -234,8 +234,10 @@ void CGameFramework::FrameAdvance() //1프레임 진행
 
 	//msc 클래스
 	if (m_pScene) m_pScene->msc_Update();
+	
 
 	PresentFrameBuffer();
+	
 
 	m_GameTimer.GetFrameRate(m_pszFrameRate + 12, 37);
 	::SetWindowText(m_hWnd, m_pszFrameRate);

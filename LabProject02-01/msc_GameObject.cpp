@@ -20,15 +20,7 @@ msc_GameObject::msc_GameObject(string& strName)
 msc_GameObject::~msc_GameObject()
 {
 	onDestroy();
-	
-	// m_pTransform을 리스트에서 제거
-	auto it = find(m_Components.begin(), m_Components.end(), m_pTransform);
-	if (it != m_Components.end())
-	{
-		m_Components.erase(it);
-	}
-	
-	if (m_pTransform) delete m_pTransform;
+
 	for (auto& pComponent : m_Components)
 	{
 		if (pComponent) delete pComponent;
@@ -76,7 +68,6 @@ void msc_GameObject::Start()
 	{
 		m_pTransform->Start();
 	}
-
 	// 나머지 컴포넌트
 	for (auto& pComponent : m_Components)
 	{

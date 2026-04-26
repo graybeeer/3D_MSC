@@ -27,6 +27,7 @@
 #include <list>
 #include <string>
 #include <typeinfo>
+#include <iostream>
 using namespace std;
 
 using namespace DirectX;
@@ -49,6 +50,7 @@ using namespace DirectX::PackedVector;
 #define DegreeToRadian(x)		float((x)*3.141592654f/180.0f)
 
 #define EPSILON					1.0e-6f
+
 
 inline bool IsZero(float fValue) { return((fabsf(fValue) < EPSILON)); }
 inline bool IsEqual(float fA, float fB) { return(::IsZero(fA - fB)); }
