@@ -97,7 +97,7 @@ public:
 private:
     // ===== Local Transform =====
     XMFLOAT3 m_xmf3LocalPosition = XMFLOAT3(0.0f, 0.0f, 0.0f);
-    XMFLOAT4 m_xmf4LocalRotation = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f);
+    XMFLOAT4 m_xmf4LocalRotation = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f); //쿼터니언으로 초기화(회전x)
     XMFLOAT3 m_xmf3LocalScale = XMFLOAT3(1.0f, 1.0f, 1.0f);
 
     // ===== World Transform Matrix =====
@@ -108,6 +108,6 @@ private:
     msc_Transform* GetParentTransform() const;
     XMFLOAT3 QuaternionToEuler(const XMFLOAT4& quaternion) const;
     
-    // (NEW) 자식들에게 Dirty Flag 전파
+    // 자식들에게 Dirty Flag 전파
     void PropagateToChildren();
 };
