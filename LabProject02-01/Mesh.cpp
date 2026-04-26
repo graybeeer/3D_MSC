@@ -53,11 +53,71 @@ void Draw2DLine(HDC hDCFrameBuffer, XMFLOAT3& f3PreviousProject, XMFLOAT3& f3Cur
 	::LineTo(hDCFrameBuffer, (long)f3Current.x, (long)f3Current.y);
 }
 
+void FillPolygon2D(HDC hDCFrameBuffer, XMFLOAT3* pProjectedVertices, int nVertices, DWORD dwColor) 
+{
+	if (nVertices < 3) return;
+
+	// 회색 브러시와 펜 생성
+	HBRUSH hBrush = CreateSolidBrush(dwColor);
+	HPEN hPen = CreatePen(PS_SOLID, 1, dwColor);
+	
+	HBRUSH hOldBrush = (HBRUSH)SelectObject(hDCFrameBuffer, hBrush);
+	HPEN hOldPen = (HPEN)SelectObject(hDCFrameBuffer, hPen);
+
+	// 2D 화면 좌표로 변환된 점들 배열
+	POINT* pPoints = new POINT[nVertices];
+	for (int i = 0; i < nVertices; i++)
+	{
+		XMFLOAT3 f3Screen = CGraphicsPipeline::ScreenTransform(pProjectedVertices[i]);
+		pPoints[i].x = (long)f3Screen.x;
+		pPoints[i].y = (long)f3Screen.y;
+	}
+
+	// 다각형 채우기
+	::Polygon(hDCFrameBuffer, pPoints, nVertices);
+
+	// 원래 브러시, 펜으로 복원
+	SelectObject(hDCFrameBuffer, hOldBrush);
+	SelectObject(hDCFrameBuffer, hOldPen);
+
+	// 리소스 해제
+	DeleteObject(hBrush);
+	DeleteObject(hPen);
+	delete[] pPoints;
+}
+
 void CMesh::Render(HDC hDCFrameBuffer)
 {
 	XMFLOAT3 f3InitialProject, f3PreviousProject;
-	bool bPreviousInside = false, bInitialInside = false, bCurrentInside = false, bIntersectInside = false;
+	bool bPreviousInside = false, bInitialInside = false, bCurrentInside = false;
 
+	// ===== 1단계: 모든 면을 회색으로 채우기 =====
+	for (int j = 0; j < m_nPolygons; j++)
+	{
+		int nVertices = m_ppPolygons[j]->m_nVertices;
+		CVertex* pVertices = m_ppPolygons[j]->m_pVertices;
+
+		// 모든 정점을 투영 좌표로 변환
+		XMFLOAT3* pProjectedVertices = new XMFLOAT3[nVertices];
+		bool bAllInFrustum = true;
+
+		for (int i = 0; i < nVertices; i++)
+		{
+			pProjectedVertices[i] = CGraphicsPipeline::Project(pVertices[i].m_xmf3Position);
+			if ((pProjectedVertices[i].z < 0.0f) || (pProjectedVertices[i].z > 1.0f))
+				bAllInFrustum = false;
+		}
+
+		// 프러스텀 안에 있는 면만 채우기
+		if (bAllInFrustum)
+		{
+			FillPolygon2D(hDCFrameBuffer, pProjectedVertices, nVertices, RGB(192, 192, 192)); // 회색
+		}
+
+		delete[] pProjectedVertices;
+	}
+
+	// ===== 2단계: 외곽선 그리기 =====
 	for (int j = 0; j < m_nPolygons; j++)
 	{
 		int nVertices = m_ppPolygons[j]->m_nVertices;
@@ -65,15 +125,18 @@ void CMesh::Render(HDC hDCFrameBuffer)
 
 		f3PreviousProject = f3InitialProject = CGraphicsPipeline::Project(pVertices[0].m_xmf3Position);
 		bPreviousInside = bInitialInside = (-1.0f <= f3InitialProject.x) && (f3InitialProject.x <= 1.0f) && (-1.0f <= f3InitialProject.y) && (f3InitialProject.y <= 1.0f);
+		
 		for (int i = 1; i < nVertices; i++)
 		{
 			XMFLOAT3 f3CurrentProject = CGraphicsPipeline::Project(pVertices[i].m_xmf3Position);
 			bCurrentInside = (-1.0f <= f3CurrentProject.x) && (f3CurrentProject.x <= 1.0f) && (-1.0f <= f3CurrentProject.y) && (f3CurrentProject.y <= 1.0f);
-			if (((0.0f <= f3CurrentProject.z) && (f3CurrentProject.z <= 1.0f)) && ((bCurrentInside || bPreviousInside))) ::Draw2DLine(hDCFrameBuffer, f3PreviousProject, f3CurrentProject);
+			if (((0.0f <= f3CurrentProject.z) && (f3CurrentProject.z <= 1.0f)) && ((bCurrentInside || bPreviousInside))) 
+				::Draw2DLine(hDCFrameBuffer, f3PreviousProject, f3CurrentProject);
 			f3PreviousProject = f3CurrentProject;
 			bPreviousInside = bCurrentInside;
 		}
-		if (((0.0f <= f3InitialProject.z) && (f3InitialProject.z <= 1.0f)) && ((bInitialInside || bPreviousInside))) ::Draw2DLine(hDCFrameBuffer, f3PreviousProject, f3InitialProject);
+		if (((0.0f <= f3InitialProject.z) && (f3InitialProject.z <= 1.0f)) && ((bInitialInside || bPreviousInside))) 
+			::Draw2DLine(hDCFrameBuffer, f3PreviousProject, f3InitialProject);
 	}
 }
 

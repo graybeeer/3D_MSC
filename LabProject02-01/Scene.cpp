@@ -11,7 +11,7 @@ CScene::~CScene()
 {
 }
 
-void CScene::BuildObjects()
+void CScene::BuildObjects()//씬에 등장하는 게임 오브젝트들을 생성하는 함수입니다.
 {
 	CExplosiveObject::PrepareExplosion();
 
@@ -132,7 +132,7 @@ void CScene::BuildObjects()
 #endif
 }
 
-void CScene::ReleaseObjects()
+void CScene::ReleaseObjects() //씬에 등장하는 게임 오브젝트들을 해제하는 함수입니다.
 {
 	if (CExplosiveObject::m_pExplosionMesh) CExplosiveObject::m_pExplosionMesh->Release();
 
