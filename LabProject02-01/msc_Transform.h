@@ -12,6 +12,8 @@ public:
     void Update() override;
     void Start() override;
     void onDestroy() override;
+    void fixedUpdate() override;
+    void lateUpdate() override;
 
     // ===== Position =====
     XMFLOAT3 GetLocalPosition() const { return m_xmf3LocalPosition; }

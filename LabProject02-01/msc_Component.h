@@ -3,6 +3,7 @@
 
 class msc_GameObject;
 class msc_Transform;
+class msc_Collider;
 
 class msc_Component
 {
@@ -13,6 +14,12 @@ public:
 	virtual void Start() = 0;
 	virtual void Update() = 0;
 	virtual void onDestroy() = 0;
+	virtual void fixedUpdate() {} // 물리 업데이트용, 필요에 따라 오버라이드
+	virtual void lateUpdate() {} // 업데이트 후 처리용, 필요에 따라 오버라이드
+	virtual void OnCollisionEnter(msc_Collider* pOther) {} // 충돌 시작 시 호출, 필요에 따라 오버라이드
+	virtual void OnCollisionStay(msc_Collider* pOther) {} // 충돌 지속 시 호출, 필요에 따라 오버라이드
+	virtual void OnCollisionExit(msc_Collider* pOther) {} // 충돌 종료 시 호출, 필요에 따라 오버라이드
+
 	virtual msc_Transform* GetTransform() { return m_pTransform; }
 
 	// 부모 오브젝트 접근

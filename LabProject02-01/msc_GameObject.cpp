@@ -2,6 +2,7 @@
 #include "msc_GameObject.h"
 #include "msc_Transform.h"
 #include "msc_Component.h"
+#include "GameFramework.h"
 
 msc_GameObject::msc_GameObject(string& strName)
 {
@@ -11,13 +12,22 @@ msc_GameObject::msc_GameObject(string& strName)
 	AddComponent(m_pTransform);
 	//AddComponent<msc_Transform>(); // 템플릿 버전(일단은 여기선 사용 안함)
 
+	CGameFramework::GetInstance().m_pScene->m_mscGameObjects.push_back(this); //씬의 게임 오브젝트 리스트에 자신 추가
+
 	Start();
 }
 
 msc_GameObject::~msc_GameObject()
 {
-	onDestroy(); 
-
+	onDestroy();
+	
+	// m_pTransform을 리스트에서 제거
+	auto it = find(m_Components.begin(), m_Components.end(), m_pTransform);
+	if (it != m_Components.end())
+	{
+		m_Components.erase(it);
+	}
+	
 	if (m_pTransform) delete m_pTransform;
 	for (auto& pComponent : m_Components)
 	{

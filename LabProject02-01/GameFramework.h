@@ -32,7 +32,9 @@ private:
     HBITMAP						m_hBitmapSelect = NULL;
 
 	CPlayer*					m_pPlayer = NULL;
+public:
 	CScene*						m_pScene = NULL;
+private:
 	CGameObject*				m_pLockedObject = NULL;
 
 	CGameTimer					m_GameTimer;

@@ -2,6 +2,10 @@
 #include "Scene.h"
 #include "GraphicsPipeline.h"
 
+#include "msc_GameObject.h"
+#include "msc_Component.h"
+#include "msc_GameManager.h"
+
 CScene::CScene(CPlayer* pPlayer)
 {
 	m_pPlayer = pPlayer;
@@ -141,11 +145,20 @@ void CScene::ReleaseObjects() //씬에 등장하는 게임 오브젝트들을 해제하는 함수입�
 
 	if (m_pWallsObject) delete m_pWallsObject;
 
+	
 #ifdef _WITH_DRAW_AXIS
 	if (m_pWorldAxis) delete m_pWorldAxis;
 #endif
 }
-
+void CScene::msc_BuildObjects() //추가- msc 게임 오브젝트들을 생성하는 함수입니다.
+{
+	GameManagerObject = new msc_GameObject(string("GameManager")); // 게임 매니저 역할을 하는 게임 오브젝트를 생성합니다.
+	//GameManagerObject->AddComponent<msc_GameManager>();  // 게임 매니저 컴포넌트를 추가합니다.
+}
+void CScene::msc_ReleaseObjects() //추가- msc 게임 오브젝트들을 해제하는 함수입니다.
+{
+	for (auto& mscGameObject : m_mscGameObjects) delete mscGameObject;
+}
 void CScene::OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam)
 {
 }
@@ -353,4 +366,8 @@ void CScene::Render(HDC hDCFrameBuffer, CCamera* pCamera)
 	m_pWorldAxis->SetRotationTransform(&m_pPlayer->m_xmf4x4World);
 	m_pWorldAxis->Render(hDCFrameBuffer, pCamera);
 #endif
+}
+void CScene::msc_Update()
+{
+	for (auto& mscGameObject : m_mscGameObjects) mscGameObject->Update();
 }

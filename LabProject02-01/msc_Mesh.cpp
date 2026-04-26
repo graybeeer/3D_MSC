@@ -53,6 +53,12 @@ void msc_Mesh::onDestroy()
 {
 }
 
+void msc_Mesh::fixedUpdate()
+{
+}
+void msc_Mesh::lateUpdate()
+{
+}
 void msc_Mesh::SetPolygon_simple(int nIndex, msc_Polygon_simple* pPolygon)
 {
 	if ((0 <= nIndex) && (nIndex < m_nPolygons_simple)) 

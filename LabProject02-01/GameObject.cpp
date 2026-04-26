@@ -220,7 +220,7 @@ CExplosiveObject::~CExplosiveObject()
 {
 }
 
-void CExplosiveObject::PrepareExplosion()
+void CExplosiveObject::PrepareExplosion() 
 {
 	for (int i = 0; i < EXPLOSION_DEBRISES; i++) XMStoreFloat3(&m_pxmf3SphereVectors[i], ::RandomUnitVectorOnSphere());
 

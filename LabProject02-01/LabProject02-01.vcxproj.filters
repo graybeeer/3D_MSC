@@ -108,6 +108,9 @@
     <ClInclude Include="msc_InputSystem.h">
       <Filter>헤더 파일\msc</Filter>
     </ClInclude>
+    <ClInclude Include="msc_Player.h">
+      <Filter>헤더 파일\msc\component\Ingame_script</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LabProject02-01.cpp">
@@ -157,6 +160,12 @@
     </ClCompile>
     <ClCompile Include="msc_GameManager.cpp">
       <Filter>소스 파일\msc\component\Ingame_script</Filter>
+    </ClCompile>
+    <ClCompile Include="msc_Player.cpp">
+      <Filter>소스 파일\msc\component\Ingame_script</Filter>
+    </ClCompile>
+    <ClCompile Include="msc_Collider.cpp">
+      <Filter>소스 파일\msc\component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -81,6 +81,7 @@ void CGameFramework::BuildObjects()
 
 	m_pScene = new CScene(m_pPlayer);
 	m_pScene->BuildObjects();
+	m_pScene->msc_BuildObjects(); //추가- msc 클래스들의 BuildObjects() 함수도 호출,테스트
 }
 
 void CGameFramework::ReleaseObjects()
@@ -88,6 +89,7 @@ void CGameFramework::ReleaseObjects()
 	if (m_pScene)
 	{
 		m_pScene->ReleaseObjects();
+		m_pScene->msc_ReleaseObjects(); //추가- msc 클래스들의 ReleaseObjects() 함수도 호출,테스트
 		delete m_pScene;
 	}
 
@@ -229,6 +231,9 @@ void CGameFramework::FrameAdvance() //1프레임 진행
 
 	CCamera* pCamera = m_pPlayer->GetCamera();
 	if (m_pScene) m_pScene->Render(m_hDCFrameBuffer, pCamera);
+
+	//msc 클래스
+	if (m_pScene) m_pScene->msc_Update();
 
 	PresentFrameBuffer();
 

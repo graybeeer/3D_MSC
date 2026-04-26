@@ -34,6 +34,8 @@ public:
 	void Start() override;
 	void Update() override;
 	void onDestroy() override;
+	void fixedUpdate() override;
+	void lateUpdate() override;
 
 	virtual void Render(HDC hDCFrameBuffer);
 	

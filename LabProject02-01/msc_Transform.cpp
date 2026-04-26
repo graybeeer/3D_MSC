@@ -24,6 +24,12 @@ void msc_Transform::Update()
         m_bDirty = false;
     }
 }
+void msc_Transform::fixedUpdate()
+{
+}
+void msc_Transform::lateUpdate()
+{
+}
 
 void msc_Transform::onDestroy()
 {
