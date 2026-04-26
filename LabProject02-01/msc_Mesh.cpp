@@ -220,8 +220,12 @@ int msc_Mesh::CheckRayIntersection(XMVECTOR& xmvPickRayOrigin, XMVECTOR& xmvPick
 msc_CubeMesh_simple::msc_CubeMesh_simple(msc_GameObject* pParentObject, float fWidth, float fHeight, float fDepth) 
 	: msc_Mesh(pParentObject)
 {
+	MakeMesh(pParentObject, fWidth, fHeight, fDepth);
+}
+void msc_CubeMesh_simple::MakeMesh(msc_GameObject* pParentObject, float fWidth, float fHeight, float fDepth)
+{
 	m_nPolygons_simple = 6;
-	m_ppPolygons_simple = new msc_Polygon_simple*[6];
+	m_ppPolygons_simple = new msc_Polygon_simple * [6];
 
 	float fHalfWidth = fWidth * 0.5f;
 	float fHalfHeight = fHeight * 0.5f;
@@ -277,10 +281,21 @@ msc_CubeMesh_simple::msc_CubeMesh_simple(msc_GameObject* pParentObject, float fW
 
 	// Bounding Box 설정
 	m_xmOOBB_simple = BoundingOrientedBox(
-		XMFLOAT3(0.0f, 0.0f, 0.0f), 
-		XMFLOAT3(fHalfWidth, fHalfHeight, fHalfDepth), 
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(fHalfWidth, fHalfHeight, fHalfDepth),
 		XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f)
 	);
+}
+void msc_CubeMesh_simple::SetSize(float fWidth, float fHeight, float fDepth)
+{
+	// 기존 폴리곤 삭제
+	for (int i = 0; i < m_nPolygons_simple; i++) 
+		if (m_ppPolygons_simple[i]) delete m_ppPolygons_simple[i];
+	delete[] m_ppPolygons_simple;
+	// 새로운 폴리곤 생성
+	MakeMesh(GetGameObject(), fWidth, fHeight, fDepth);
+	// Bounding Box 업데이트
+	m_xmOOBB_simple.Extents = XMFLOAT3(fWidth * 0.5f, fHeight * 0.5f, fDepth * 0.5f);
 }
 
 // ===== msc_AirplaneMesh_simple =====

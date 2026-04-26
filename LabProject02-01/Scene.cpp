@@ -5,6 +5,7 @@
 #include "msc_GameObject.h"
 #include "msc_Component.h"
 #include "msc_GameManager.h"
+#include "msc_Transform.h"
 
 CScene::CScene(CPlayer* pPlayer)
 {
@@ -17,6 +18,8 @@ CScene::~CScene()
 
 void CScene::BuildObjects()//씬에 등장하는 게임 오브젝트들을 생성하는 함수입니다.
 {
+	// ===== 기존 코드 주석 처리 (임시 비활성화) =====
+	/*
 	CExplosiveObject::PrepareExplosion();
 
 	float fHalfWidth = 45.0f, fHalfHeight = 45.0f, fHalfDepth = 200.0f;
@@ -134,10 +137,12 @@ void CScene::BuildObjects()//씬에 등장하는 게임 오브젝트들을 생성하는 함수입니다
 	CAxisMesh* pAxisMesh = new CAxisMesh(0.5f, 0.5f, 0.5f);
 	m_pWorldAxis->SetMesh(pAxisMesh);
 #endif
+*/
 }
 
 void CScene::ReleaseObjects() //씬에 등장하는 게임 오브젝트들을 해제하는 함수입니다.
 {
+	/*
 	if (CExplosiveObject::m_pExplosionMesh) CExplosiveObject::m_pExplosionMesh->Release();
 
 	for (int i = 0; i < m_nObjects; i++) if (m_ppObjects[i]) delete m_ppObjects[i];
@@ -149,6 +154,7 @@ void CScene::ReleaseObjects() //씬에 등장하는 게임 오브젝트들을 해제하는 함수입�
 #ifdef _WITH_DRAW_AXIS
 	if (m_pWorldAxis) delete m_pWorldAxis;
 #endif
+*/
 }
 void CScene::msc_BuildObjects() //추가- msc 게임 오브젝트들을 생성하는 함수입니다.
 {
@@ -157,6 +163,14 @@ void CScene::msc_BuildObjects() //추가- msc 게임 오브젝트들을 생성하는 함수입니�
 
 	msc_MainCameraObject = new msc_GameObject(string("MainCamera")); // 메인 카메라 역할을 하는 게임 오브젝트를 생성
 	msc_MainCamera = msc_MainCameraObject->AddComponent<msc_Camera>(); // 메인 카메라 컴포넌트를 추가
+	
+	msc_MainCameraObject->GetTransform()->SetLocalPosition(XMFLOAT3(0.0f, 5.0f, -15.0f));
+	msc_MainCamera->SetViewport(0, 0, FRAMEBUFFER_WIDTH, FRAMEBUFFER_HEIGHT);
+	msc_MainCamera->InitializePerspectiveProjection(0.1f, 1000.0f);
+	msc_MainCamera->SetFOVAngle(60.0f);
+
+
+	
 }
 void CScene::msc_ReleaseObjects() //추가- msc 게임 오브젝트들을 해제하는 함수입니다.
 {
@@ -168,6 +182,7 @@ void CScene::OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam,
 
 void CScene::OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam)
 {
+	/*
 	switch (nMessageID)
 	{
 	case WM_KEYDOWN:
@@ -201,10 +216,12 @@ void CScene::OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPARAM wPar
 	default:
 		break;
 	}
+	*/
 }
 
 CGameObject* CScene::PickObjectPointedByCursor(int xClient, int yClient, CCamera* pCamera)
 {
+	/*
 	XMFLOAT3 xmf3PickPosition;
 	xmf3PickPosition.x = (((2.0f * xClient) / (float)pCamera->m_Viewport.m_nWidth) - 1) / pCamera->m_xmf4x4PerspectiveProject._11;
 	xmf3PickPosition.y = -(((2.0f * yClient) / (float)pCamera->m_Viewport.m_nHeight) - 1) / pCamera->m_xmf4x4PerspectiveProject._22;
@@ -227,10 +244,13 @@ CGameObject* CScene::PickObjectPointedByCursor(int xClient, int yClient, CCamera
 		}
 	}
 	return(pNearestObject);
+	*/
+	return nullptr; //임시 반환값
 }
 
 void CScene::CheckObjectByObjectCollisions()
 {
+	/*
 	for (int i = 0; i < m_nObjects; i++) m_ppObjects[i]->m_pObjectCollided = NULL;
 	for (int i = 0; i < m_nObjects; i++)
 	{
@@ -257,10 +277,12 @@ void CScene::CheckObjectByObjectCollisions()
 			m_ppObjects[i]->m_pObjectCollided = NULL;
 		}
 	}
+	*/
 }
 
 void CScene::CheckObjectByWallCollisions()
 {
+	/*
 	for (int i = 0; i < m_nObjects; i++)
 	{
 		ContainmentType containType = m_pWallsObject->m_xmOOBB.Contains(m_ppObjects[i]->m_xmOOBB);
@@ -310,19 +332,23 @@ void CScene::CheckObjectByWallCollisions()
 			break;
 		}
 	}
+	*/
 }
 
 void CScene::CheckPlayerByWallCollision()
 {
+	/*
 	BoundingOrientedBox xmOOBBPlayerMoveCheck;
 	m_pWallsObject->m_xmOOBBPlayerMoveCheck.Transform(xmOOBBPlayerMoveCheck, XMLoadFloat4x4(&m_pWallsObject->m_xmf4x4World));
 	XMStoreFloat4(&xmOOBBPlayerMoveCheck.Orientation, XMQuaternionNormalize(XMLoadFloat4(&xmOOBBPlayerMoveCheck.Orientation)));
 
 	if (!xmOOBBPlayerMoveCheck.Intersects(m_pPlayer->m_xmOOBB)) m_pWallsObject->SetPosition(m_pPlayer->m_xmf3Position);
+	*/
 }
 
 void CScene::CheckObjectByBulletCollisions()
 {
+	/*
 	CBulletObject** ppBullets = ((CAirplanePlayer*)m_pPlayer)->m_ppBullets;
 	for (int i = 0; i < m_nObjects; i++)
 	{
@@ -336,10 +362,12 @@ void CScene::CheckObjectByBulletCollisions()
 			}
 		}
 	}
+	*/
 }
 
 void CScene::Animate(float fElapsedTime)
 {
+	/*
 	m_pWallsObject->Animate(fElapsedTime);
 
 	for (int i = 0; i < m_nObjects; i++) m_ppObjects[i]->Animate(fElapsedTime);
@@ -351,10 +379,12 @@ void CScene::Animate(float fElapsedTime)
 	CheckObjectByObjectCollisions();
 
 	CheckObjectByBulletCollisions();
+	*/
 }
 
 void CScene::Render(HDC hDCFrameBuffer, CCamera* pCamera)
 {
+	/*
 	CGraphicsPipeline::SetViewport(&pCamera->m_Viewport);
 
 	CGraphicsPipeline::SetViewPerspectiveProjectTransform(&pCamera->m_xmf4x4ViewPerspectiveProject);
@@ -362,6 +392,7 @@ void CScene::Render(HDC hDCFrameBuffer, CCamera* pCamera)
 	for (int i = 0; i < m_nObjects; i++) m_ppObjects[i]->Render(hDCFrameBuffer, pCamera);
 
 	if (m_pPlayer) m_pPlayer->Render(hDCFrameBuffer, pCamera);
+	
 
 //UI
 #ifdef _WITH_DRAW_AXIS
@@ -369,6 +400,7 @@ void CScene::Render(HDC hDCFrameBuffer, CCamera* pCamera)
 	m_pWorldAxis->SetRotationTransform(&m_pPlayer->m_xmf4x4World);
 	m_pWorldAxis->Render(hDCFrameBuffer, pCamera);
 #endif
+*/
 }
 void CScene::msc_Update()
 {

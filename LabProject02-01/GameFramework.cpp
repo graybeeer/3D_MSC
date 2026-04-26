@@ -4,6 +4,10 @@
 
 #include "stdafx.h"
 #include "GameFramework.h"
+#include "Scene.h"
+#include "GraphicsPipeline.h"
+#include "msc_GameObject.h"
+#include "msc_Mesh.h"
 
 void CGameFramework::OnCreate(HINSTANCE hInstance, HWND hMainWnd)
 {
@@ -216,7 +220,8 @@ void CGameFramework::AnimateObjects()
 {
 	float fTimeElapsed = m_GameTimer.GetTimeElapsed();
 	if (m_pPlayer) m_pPlayer->Animate(fTimeElapsed);
-	if (m_pScene) m_pScene->Animate(fTimeElapsed);
+	// 기존 씬 애니메이션 주석 처리
+	// if (m_pScene) m_pScene->Animate(fTimeElapsed);
 }
 
 void CGameFramework::FrameAdvance() //1프레임 진행
@@ -229,15 +234,34 @@ void CGameFramework::FrameAdvance() //1프레임 진행
 
     ClearFrameBuffer(RGB(255, 255, 255));
 
-	CCamera* pCamera = m_pPlayer->GetCamera();
-	if (m_pScene) m_pScene->Render(m_hDCFrameBuffer, pCamera);
+	// 기존 카메라 렌더링 주석 처리
+	// CCamera* pCamera = m_pPlayer->GetCamera();
+	// if (m_pScene) m_pScene->Render(m_hDCFrameBuffer, pCamera);
 
-	//msc 클래스
-	if (m_pScene) m_pScene->msc_Update();
-	
+	// ===== msc 시스템 업데이트 및 렌더링 =====
+	if (m_pScene)
+	{
+		m_pScene->msc_Update();
+		
+		// msc 카메라를 통한 렌더링
+		if (m_pScene->msc_MainCamera)
+		{
+			CGraphicsPipeline::SetViewport(&m_pScene->msc_MainCamera->GetViewport());
+			CGraphicsPipeline::SetViewPerspectiveProjectTransform(&m_pScene->msc_MainCamera->GetViewPerspectiveProjectionMatrix());
+			
+			// msc GameObject들 렌더링
+			for (auto& mscGameObject : m_pScene->m_mscGameObjects)
+			{
+				msc_Mesh* pMesh = mscGameObject->GetComponent<msc_Mesh>();
+				if (pMesh)
+				{
+					pMesh->Render(m_hDCFrameBuffer);
+				}
+			}
+		}
+	}
 
 	PresentFrameBuffer();
-	
 
 	m_GameTimer.GetFrameRate(m_pszFrameRate + 12, 37);
 	::SetWindowText(m_hWnd, m_pszFrameRate);

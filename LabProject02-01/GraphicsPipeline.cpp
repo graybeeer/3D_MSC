@@ -3,7 +3,11 @@
 
 XMFLOAT4X4* CGraphicsPipeline::m_pxmf4x4World = NULL;
 XMFLOAT4X4* CGraphicsPipeline::m_pxmf4x4ViewProject = NULL;
-CViewport* CGraphicsPipeline::m_pViewport = NULL;
+
+// CViewport* CGraphicsPipeline::m_pViewport = NULL;
+
+// msc 뷰포트
+msc_Viewport* CGraphicsPipeline::m_mscViewport = NULL;
 
 void CGraphicsPipeline::SetViewPerspectiveProjectTransform(XMFLOAT4X4* pxmf4x4ViewPerspectiveProject)
 { 
@@ -35,10 +39,25 @@ XMFLOAT3 CGraphicsPipeline::ScreenTransform(XMFLOAT3& xmf3Project)
 {
 	XMFLOAT3 f3Screen = xmf3Project;
 
-	float fHalfWidth = m_pViewport->m_nWidth * 0.5f;
-	float fHalfHeight = m_pViewport->m_nHeight * 0.5f;
-	f3Screen.x = m_pViewport->m_nLeft + (xmf3Project.x * fHalfWidth) + fHalfWidth;
-	f3Screen.y = m_pViewport->m_nTop + (-xmf3Project.y * fHalfHeight) + fHalfHeight;
+	//msc_Viewport
+	if (m_mscViewport)
+	{
+		float fHalfWidth = m_mscViewport->m_nWidth * 0.5f;
+		float fHalfHeight = m_mscViewport->m_nHeight * 0.5f;
+		f3Screen.x = m_mscViewport->m_nLeft + (xmf3Project.x * fHalfWidth) + fHalfWidth;
+		f3Screen.y = m_mscViewport->m_nTop + (-xmf3Project.y * fHalfHeight) + fHalfHeight;
+	}
+
+	//기존 CViewport 코드는 주석 처리
+	/*
+	else if (m_pViewport)
+	{
+		float fHalfWidth = m_pViewport->m_nWidth * 0.5f;
+		float fHalfHeight = m_pViewport->m_nHeight * 0.5f;
+		f3Screen.x = m_pViewport->m_nLeft + (xmf3Project.x * fHalfWidth) + fHalfWidth;
+		f3Screen.y = m_pViewport->m_nTop + (-xmf3Project.y * fHalfHeight) + fHalfHeight;
+	}
+	*/
 
 	return(f3Screen);
 }

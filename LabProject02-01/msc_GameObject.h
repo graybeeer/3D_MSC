@@ -103,6 +103,7 @@ public:
 
 private:
     msc_Transform* m_pTransform = nullptr;
+
     list<msc_Component*> m_Components;
 
     list<msc_GameObject*> m_ChildGameObjects;
