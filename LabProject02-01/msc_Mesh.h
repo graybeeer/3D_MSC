@@ -39,25 +39,21 @@ public:
 
 	virtual void Render(HDC hDCFrameBuffer);
 	
-	// ===== Simple Polygon Mesh Methods =====
 	int CheckRayIntersection(XMVECTOR& xmvPickRayOrigin, XMVECTOR& xmvPickRayDirection, float* pfNearHitDistance);
 	
 	BoundingOrientedBox GetBoundingBox() const { return m_xmOOBB_simple; }
 	void SetBoundingBox(const BoundingOrientedBox& box) { m_xmOOBB_simple = box; }
 
 protected:
-	// ===== Simple Polygon Structure =====
 	int m_nPolygons_simple = 0;
 	msc_Polygon_simple** m_ppPolygons_simple = NULL;
-	
+
 	BoundingOrientedBox m_xmOOBB_simple = BoundingOrientedBox();
 
-	// ===== Helper Methods =====
 	void SetPolygon_simple(int nIndex, msc_Polygon_simple* pPolygon);
 	BOOL RayIntersectionByTriangle(XMVECTOR& xmRayOrigin, XMVECTOR& xmRayDirection, XMVECTOR v0, XMVECTOR v1, XMVECTOR v2, float* pfNearHitDistance);
 };
 
-// ===== Simple Mesh Implementations =====
 class msc_CubeMesh_simple : public msc_Mesh
 {
 public:

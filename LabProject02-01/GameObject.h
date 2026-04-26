@@ -19,6 +19,7 @@ public:
 
 	CGameObject*				m_pObjectCollided = NULL;
 	DWORD						m_dwColor = RGB(255, 0, 0);
+	DWORD						m_dwColorFill = RGB(192, 192, 192); //Ä¥ÇÏ´Â »ö»ó
 
 	XMFLOAT3					m_xmf3MovingDirection = XMFLOAT3(0.0f, 0.0f, 1.0f);
 	float						m_fMovingSpeed = 0.0f;

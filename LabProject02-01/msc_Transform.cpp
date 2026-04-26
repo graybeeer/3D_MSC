@@ -218,7 +218,6 @@ void msc_Transform::RotateAroundAxis(const XMFLOAT3& axis, float angleDegrees)
     XMStoreFloat4(&m_xmf4LocalRotation, quatResult);
     m_bDirty = true;
 }
-
 void msc_Transform::LookAt(const msc_Transform* target, const XMFLOAT3& upDirection)
 {
     if (!target) return;

@@ -91,13 +91,13 @@ void CMesh::Render(HDC hDCFrameBuffer)
 	XMFLOAT3 f3InitialProject, f3PreviousProject;
 	bool bPreviousInside = false, bInitialInside = false, bCurrentInside = false;
 
-	// ===== 1단계: 모든 면을 회색으로 채우기 =====
+	// 추가- 칠하기
 	for (int j = 0; j < m_nPolygons; j++)
 	{
 		int nVertices = m_ppPolygons[j]->m_nVertices;
 		CVertex* pVertices = m_ppPolygons[j]->m_pVertices;
 
-		// 모든 정점을 투영 좌표로 변환
+		
 		XMFLOAT3* pProjectedVertices = new XMFLOAT3[nVertices];
 		bool bAllInFrustum = true;
 
@@ -108,16 +108,16 @@ void CMesh::Render(HDC hDCFrameBuffer)
 				bAllInFrustum = false;
 		}
 
-		// 프러스텀 안에 있는 면만 채우기
+		// 프러스텀 안에 있는 면만 채우기, 피킹컬링
 		if (bAllInFrustum)
 		{
-			FillPolygon2D(hDCFrameBuffer, pProjectedVertices, nVertices, RGB(192, 192, 192)); // 회색
+			FillPolygon2D(hDCFrameBuffer, pProjectedVertices, nVertices, m_dwColorFill); // 정해진 색으로 칠하기
 		}
-
 		delete[] pProjectedVertices;
+		
 	}
 
-	// ===== 2단계: 외곽선 그리기 =====
+	// 외곽선 그리기
 	for (int j = 0; j < m_nPolygons; j++)
 	{
 		int nVertices = m_ppPolygons[j]->m_nVertices;
@@ -137,6 +137,8 @@ void CMesh::Render(HDC hDCFrameBuffer)
 		}
 		if (((0.0f <= f3InitialProject.z) && (f3InitialProject.z <= 1.0f)) && ((bInitialInside || bPreviousInside))) 
 			::Draw2DLine(hDCFrameBuffer, f3PreviousProject, f3InitialProject);
+
+
 	}
 }
 
@@ -192,6 +194,8 @@ int CMesh::CheckRayIntersection(XMVECTOR& xmvPickRayOrigin, XMVECTOR& xmvPickRay
 //
 CCubeMesh::CCubeMesh(float fWidth, float fHeight, float fDepth) : CMesh(6)
 {
+	m_dwColorFill = RGB(100, 50, 50); //색 정하기
+
 	float fHalfWidth = fWidth * 0.5f;
 	float fHalfHeight = fHeight * 0.5f;
 	float fHalfDepth = fDepth * 0.5f;
@@ -330,6 +334,7 @@ CWallMesh::CWallMesh(float fWidth, float fHeight, float fDepth, int nSubRects) :
 //
 CAirplaneMesh::CAirplaneMesh(float fWidth, float fHeight, float fDepth) : CMesh(24)
 {
+	m_dwColorFill = RGB(200, 200, 50); //색 정하기
 	float fx = fWidth*0.5f, fy = fHeight*0.5f, fz = fDepth*0.5f;
 
 	float x1 = fx * 0.2f, y1 = fy * 0.2f, x2 = fx * 0.1f, y3 = fy * 0.3f, y2 = ((y1 - (fy - y3)) / x1)*x2 + (fy - y3);

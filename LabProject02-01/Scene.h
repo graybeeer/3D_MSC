@@ -47,6 +47,7 @@ public:
 	virtual void msc_BuildObjects();
 	virtual void msc_ReleaseObjects();
 	virtual void msc_Update();
+	virtual void msc_Render(HDC hDCFrameBuffer, msc_Camera* pCamera);
 
 	virtual void OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam);
 	virtual void OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam);

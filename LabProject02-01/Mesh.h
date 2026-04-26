@@ -49,6 +49,7 @@ public:
 	BoundingOrientedBox			m_xmOOBB = BoundingOrientedBox();
 
 public:
+	DWORD m_dwColorFill = RGB(192, 192, 192); //Ä¥ÇÏ´Â »ö»ó
 	void SetPolygon(int nIndex, CPolygon *pPolygon);
 
 	virtual void Render(HDC hDCFrameBuffer);

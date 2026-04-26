@@ -4,7 +4,6 @@
 #include "msc_Component.h"
 #include "msc_Mesh.h"
 
-// ===== msc_Vertex & msc_Polygon_simple =====
 
 msc_Polygon_simple::msc_Polygon_simple(int nVertices)
 {
@@ -25,7 +24,6 @@ void msc_Polygon_simple::SetVertex(int nIndex, msc_Vertex& vertex)
 	}
 }
 
-// ===== msc_Mesh =====
 
 msc_Mesh::msc_Mesh(msc_GameObject* pParentObject) : msc_Component(pParentObject)
 {
@@ -56,9 +54,11 @@ void msc_Mesh::onDestroy()
 void msc_Mesh::fixedUpdate()
 {
 }
+
 void msc_Mesh::lateUpdate()
 {
 }
+
 void msc_Mesh::SetPolygon_simple(int nIndex, msc_Polygon_simple* pPolygon)
 {
 	if ((0 <= nIndex) && (nIndex < m_nPolygons_simple)) 
@@ -77,14 +77,12 @@ void FillPolygon2D_msc(HDC hDCFrameBuffer, XMFLOAT3* pProjectedVertices, int nVe
 {
 	if (nVertices < 3) return;
 
-	// 회색 브러시와 펜 생성
 	HBRUSH hBrush = CreateSolidBrush(dwColor);
 	HPEN hPen = CreatePen(PS_SOLID, 1, dwColor);
 	
 	HBRUSH hOldBrush = (HBRUSH)SelectObject(hDCFrameBuffer, hBrush);
 	HPEN hOldPen = (HPEN)SelectObject(hDCFrameBuffer, hPen);
 
-	// 2D 화면 좌표로 변환된 점들 배열
 	POINT* pPoints = new POINT[nVertices];
 	for (int i = 0; i < nVertices; i++)
 	{
@@ -93,14 +91,11 @@ void FillPolygon2D_msc(HDC hDCFrameBuffer, XMFLOAT3* pProjectedVertices, int nVe
 		pPoints[i].y = (long)f3Screen.y;
 	}
 
-	// 다각형 채우기
 	::Polygon(hDCFrameBuffer, pPoints, nVertices);
 
-	// 원래 브러시, 펜으로 복원
 	SelectObject(hDCFrameBuffer, hOldBrush);
 	SelectObject(hDCFrameBuffer, hOldPen);
 
-	// 리소스 해제
 	DeleteObject(hBrush);
 	DeleteObject(hPen);
 	delete[] pPoints;
@@ -108,18 +103,23 @@ void FillPolygon2D_msc(HDC hDCFrameBuffer, XMFLOAT3* pProjectedVertices, int nVe
 
 void msc_Mesh::Render(HDC hDCFrameBuffer)
 {
-	if (!m_ppPolygons_simple) return;
+	if (!m_ppPolygons_simple || !m_pTransform) return;
+
+	//Transform의 월드 매트릭스 얻기
+	XMFLOAT4X4 xmf4x4World = m_pTransform->GetWorldMatrix();
+	
+	// GraphicsPipeline에 이 메시의 월드 변환 설정
+	CGraphicsPipeline::SetWorldTransform(&xmf4x4World);
 
 	XMFLOAT3 f3InitialProject, f3PreviousProject;
 	bool bPreviousInside = false, bInitialInside = false, bCurrentInside = false;
 
-	// ===== 1단계: 모든 면을 회색으로 채우기 =====
 	for (int j = 0; j < m_nPolygons_simple; j++)
 	{
 		int nVertices = m_ppPolygons_simple[j]->m_nVertices;
 		msc_Vertex* pVertices = m_ppPolygons_simple[j]->m_pVertices;
 
-		// 모든 정점을 투영 좌표로 변환
+		// 모든 정점을 투영 좌표로 변환 (Transform 적용됨)
 		XMFLOAT3* pProjectedVertices = new XMFLOAT3[nVertices];
 		bool bAllInFrustum = true;
 
@@ -133,13 +133,12 @@ void msc_Mesh::Render(HDC hDCFrameBuffer)
 		// 프러스텀 안에 있는 면만 채우기
 		if (bAllInFrustum)
 		{
-			FillPolygon2D_msc(hDCFrameBuffer, pProjectedVertices, nVertices, RGB(192, 192, 192)); // 회색
+			FillPolygon2D_msc(hDCFrameBuffer, pProjectedVertices, nVertices, RGB(192, 192, 192));
 		}
 
 		delete[] pProjectedVertices;
 	}
 
-	// ===== 2단계: 외곽선 그리기 =====
 	for (int j = 0; j < m_nPolygons_simple; j++)
 	{
 		int nVertices = m_ppPolygons_simple[j]->m_nVertices;
@@ -215,13 +214,18 @@ int msc_Mesh::CheckRayIntersection(XMVECTOR& xmvPickRayOrigin, XMVECTOR& xmvPick
 	return(nIntersections);
 }
 
-// ===== msc_CubeMesh_simple =====
 
 msc_CubeMesh_simple::msc_CubeMesh_simple(msc_GameObject* pParentObject, float fWidth, float fHeight, float fDepth) 
 	: msc_Mesh(pParentObject)
 {
 	MakeMesh(pParentObject, fWidth, fHeight, fDepth);
 }
+
+void msc_CubeMesh_simple::SetSize(float fWidth, float fHeight, float fDepth)
+{
+	MakeMesh(m_pParentObject, fWidth, fHeight, fDepth);
+}
+
 void msc_CubeMesh_simple::MakeMesh(msc_GameObject* pParentObject, float fWidth, float fHeight, float fDepth)
 {
 	m_nPolygons_simple = 6;
@@ -281,24 +285,12 @@ void msc_CubeMesh_simple::MakeMesh(msc_GameObject* pParentObject, float fWidth, 
 
 	// Bounding Box 설정
 	m_xmOOBB_simple = BoundingOrientedBox(
-		XMFLOAT3(0.0f, 0.0f, 0.0f),
-		XMFLOAT3(fHalfWidth, fHalfHeight, fHalfDepth),
+		XMFLOAT3(0.0f, 0.0f, 0.0f), 
+		XMFLOAT3(fHalfWidth, fHalfHeight, fHalfDepth), 
 		XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f)
 	);
 }
-void msc_CubeMesh_simple::SetSize(float fWidth, float fHeight, float fDepth)
-{
-	// 기존 폴리곤 삭제
-	for (int i = 0; i < m_nPolygons_simple; i++) 
-		if (m_ppPolygons_simple[i]) delete m_ppPolygons_simple[i];
-	delete[] m_ppPolygons_simple;
-	// 새로운 폴리곤 생성
-	MakeMesh(GetGameObject(), fWidth, fHeight, fDepth);
-	// Bounding Box 업데이트
-	m_xmOOBB_simple.Extents = XMFLOAT3(fWidth * 0.5f, fHeight * 0.5f, fDepth * 0.5f);
-}
 
-// ===== msc_AirplaneMesh_simple =====
 
 msc_AirplaneMesh_simple::msc_AirplaneMesh_simple(msc_GameObject* pParentObject, float fWidth, float fHeight, float fDepth)
 	: msc_Mesh(pParentObject)

@@ -22,11 +22,11 @@ public:
 
     msc_Transform* GetTransform() { return m_pTransform; }
     
-    // ===== GetComponent 메서드 =====
-    // 이름으로 컴포넌트 조회 (기존)
+    // GetComponent 
+    // 이름으로 컴포넌트 조회
     msc_Component* GetComponent(string& strComponentType);
     
-    // 템플릿으로 타입별 컴포넌트 조회 (NEW)
+    // 템플릿으로 타입별 컴포넌트 조회
     template<derived_from<msc_Component> T>
     T* GetComponent()
     {
@@ -42,7 +42,7 @@ public:
         return nullptr;
     }
 
-    // ===== AddComponent 메서드 =====
+    //AddComponent 
     // 포인터로 직접 추가 
 private:
     void AddComponent(msc_Component* pComponent);
@@ -76,7 +76,7 @@ public:
         return newComponent;
     }
 
-    // ===== RemoveComponent 메서드 =====
+    //RemoveComponent 
 
     template<derived_from<msc_Component> T>
     bool RemoveComponent()
@@ -95,7 +95,7 @@ public:
         return false;
     }
 
-    // ===== 부모-자식 관계 메서드 =====
+    //부모-자식 관계
     void SetParent(msc_GameObject* pParent);
     msc_GameObject* GetParent() const { return m_pParentGameObject; }
     void AddChild(msc_GameObject* pChild);

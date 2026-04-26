@@ -14,4 +14,5 @@ public:
 	void Start() override;
 	void Update() override;
 	void onDestroy() override;
+	msc_GameObject* pCubeObject;
 };
