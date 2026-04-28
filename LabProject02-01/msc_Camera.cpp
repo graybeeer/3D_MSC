@@ -3,7 +3,7 @@
 #include "msc_Transform.h"
 #include "msc_Component.h"
 #include "msc_Camera.h"
-
+#include "GameFramework.h"
 void msc_Viewport::SetViewport(int nLeft, int nTop, int nWidth, int nHeight)
 {
 	m_nLeft = nLeft;
@@ -23,12 +23,20 @@ msc_Camera::~msc_Camera()
 void msc_Camera::Start()
 {
 	cout << "Camera Start" << endl;
+	if(CGameFramework::GetInstance().m_pScene->msc_MainCamera == nullptr)
+	{
+		CGameFramework::GetInstance().m_pScene->msc_MainCamera = this;
+		CGameFramework::GetInstance().m_pScene->msc_MainCameraObject = GetGameObject();
+	}
+
 	// 기본 뷰포트 설정
 	m_Viewport.SetViewport(0, 0, FRAMEBUFFER_WIDTH, FRAMEBUFFER_HEIGHT);
 	m_fAspectRatio = float(FRAMEBUFFER_WIDTH) / float(FRAMEBUFFER_HEIGHT);
 	
 	// 기본 원근 투영 초기화
 	InitializePerspectiveProjection(0.1f, 1000.0f);
+
+	
 }
 
 void msc_Camera::Update()

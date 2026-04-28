@@ -30,7 +30,7 @@
 #include <iostream>
 using namespace std;
 
-#define LegacyMode true // LegacyMode가 true이면 기존 방식, false이면 새로 추가한 것들로 구동
+#define LegacyMode false // LegacyMode가 true이면 기존 방식, false이면 새로 추가한 것들로 구동
 
 using namespace DirectX;
 using namespace DirectX::PackedVector;
