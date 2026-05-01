@@ -339,7 +339,7 @@ XMFLOAT3 msc_Transform::InverseTransformDirection(const XMFLOAT3& worldDirection
     return result;
 }
 // 자식 찾기
-msc_Transform* msc_Transform::FindChild(const string& childName, bool recursive)
+msc_Transform* msc_Transform::FindChild(const std::string& childName, bool recursive)
 {
     if (!m_pParentObject) return nullptr;
 

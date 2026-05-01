@@ -26,7 +26,7 @@ public:
 	msc_GameObject* GetGameObject() const { return m_pParentObject; }
 	
 	// 템플릿으로 다른 컴포넌트 접근 
-	template<derived_from<msc_Component> T>
+	template<std::derived_from<msc_Component> T>
 	T* GetComponent()
 	{
 		if (!m_pParentObject) return nullptr;

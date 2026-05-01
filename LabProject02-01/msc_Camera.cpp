@@ -22,7 +22,7 @@ msc_Camera::~msc_Camera()
 
 void msc_Camera::Start()
 {
-	cout << "Camera Start" << endl;
+	std::cout << "Camera Start" << std::endl;
 	if(CGameFramework::GetInstance().m_pScene->msc_MainCamera == nullptr)
 	{
 		CGameFramework::GetInstance().m_pScene->msc_MainCamera = this;

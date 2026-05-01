@@ -31,11 +31,11 @@
 
 #define LegacyMode false // LegacyMode가 true이면 기존 방식, false이면 새로 추가한 것들로 구동
 
-using namespace std; //나중에 네임스페이스 std는 제거할 예정입니다. std::list, std::string 등으로 명시적으로 사용할 것입니다.
+//using namespace std; //나중에 네임스페이스 std는 제거할 예정입니다. std::list, std::string 등으로 명시적으로 사용할 것입니다.
 using namespace DirectX;
 using namespace DirectX::PackedVector;
 
-/*
+
 #pragma comment(lib, "d3d12.lib")
 #pragma comment(lib, "dxgi.lib")
 #pragma comment(lib, "d3dcompiler.lib")
@@ -45,7 +45,7 @@ using namespace DirectX::PackedVector;
 #include <dxgi1_6.h>
 #include <D3Dcompiler.h>
 #include <DXGIDebug.h>
-*/
+
 
 #define FRAMEBUFFER_WIDTH		640
 #define FRAMEBUFFER_HEIGHT		480
