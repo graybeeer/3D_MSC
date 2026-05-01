@@ -28,12 +28,23 @@
 #include <string>
 #include <typeinfo>
 #include <iostream>
-using namespace std;
 
 #define LegacyMode false // LegacyMode가 true이면 기존 방식, false이면 새로 추가한 것들로 구동
-
+using namespace std;
 using namespace DirectX;
 using namespace DirectX::PackedVector;
+
+/*
+#pragma comment(lib, "d3d12.lib")
+#pragma comment(lib, "dxgi.lib")
+#pragma comment(lib, "d3dcompiler.lib")
+#pragma comment(lib, "dxguid.lib")
+
+#include <d3d12.h>
+#include <dxgi1_6.h>
+#include <D3Dcompiler.h>
+#include <DXGIDebug.h>
+*/
 
 #define FRAMEBUFFER_WIDTH		640
 #define FRAMEBUFFER_HEIGHT		480

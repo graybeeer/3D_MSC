@@ -29,16 +29,15 @@ void msc_Camera::Start()
 	}
 	//기본 설정
 	GetTransform()->SetLocalPosition(XMFLOAT3(0.0f, 5.0f, -15.0f));
-	SetViewport(0, 0, FRAMEBUFFER_WIDTH, FRAMEBUFFER_HEIGHT);
-	InitializePerspectiveProjection(0.1f, 1000.0f);
+
 	SetFOVAngle(60.0f);
+	InitializePerspectiveProjection(m_fNearPlaneDistance, m_fFarPlaneDistance);
+	SetViewport(0, 0, FRAMEBUFFER_WIDTH, FRAMEBUFFER_HEIGHT);
 
 	// 기본 뷰포트 설정
 	m_Viewport.SetViewport(0, 0, FRAMEBUFFER_WIDTH, FRAMEBUFFER_HEIGHT);
 	m_fAspectRatio = float(FRAMEBUFFER_WIDTH) / float(FRAMEBUFFER_HEIGHT);
 	
-	// 기본 원근 투영 초기화
-	InitializePerspectiveProjection(0.1f, 1000.0f);
 
 	
 }
@@ -59,7 +58,7 @@ void msc_Camera::SetViewport(int nLeft, int nTop, int nWidth, int nHeight)
 	m_fAspectRatio = float(m_Viewport.m_nWidth) / float(m_Viewport.m_nHeight);
 	
 	// 애스펙트 비율 변경 시 프로젝션 재설정
-	GeneratePerspectiveProjectionMatrix(0.1f, 1000.0f);
+	GeneratePerspectiveProjectionMatrix(m_fNearPlaneDistance, m_fFarPlaneDistance);
 }
 
 void msc_Camera::SetFOVAngle(float fFOVAngle)

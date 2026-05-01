@@ -66,10 +66,12 @@ private:
 	XMFLOAT4X4					m_xmf4x4InverseView = Matrix4x4::Identity();
 
 	msc_Viewport				m_Viewport;
-	float						m_fFOVAngle = 90.0f;
-	float						m_fProjectRectDistance = 1.0f;
-	float						m_fAspectRatio = float(FRAMEBUFFER_WIDTH) / float(FRAMEBUFFER_HEIGHT);
-	bool						m_bOrthographic = false;
+	float						m_fFOVAngle = 90.0f; 
+	float						m_fProjectRectDistance = 1.0f; // 카메라에서 투영 평면까지의 거리로, FOV에 따라 계산됩니다.
+	float 						m_fNearPlaneDistance = 0.1f; // 근평면과 원평면의 거리는 투영 매트릭스 생성 시 사용됩니다.
+	float						m_fFarPlaneDistance = 1000.0f; // 원평면 거리
+	float						m_fAspectRatio = float(FRAMEBUFFER_WIDTH) / float(FRAMEBUFFER_HEIGHT); // 애스펙트 비율은 뷰포트의 너비와 높이의 비율로, 투영 매트릭스 생성 시 사용됩니다.
+	bool						m_bOrthographic = false; // 직교 투영 여부
 
 	void GenerateViewMatrix();
 	void GeneratePerspectiveProjectionMatrix(float fNearPlaneDistance, float fFarPlaneDistance);

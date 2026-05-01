@@ -3,6 +3,7 @@
 // 게임의 시작, 종료, 레벨 관리, 점수 관리 등을 담당할 수 있습니다.
 #include "stdafx.h"
 #include "msc_Component.h"
+using namespace std;
 
 class msc_GameManager : public msc_Component
 {
