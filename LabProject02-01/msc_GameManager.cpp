@@ -15,6 +15,8 @@ void msc_GameManager::Start()
 {
 	//테스트용 로그
 	cout << "게임 매니저 시작" << endl;
+	msc_GameObject* pCameraObject = new msc_GameObject(string("TestCamera"));
+	pCameraObject->AddComponent<msc_Camera>();
 
 	pCubeObject = new msc_GameObject(string("TestCube"));
 	cout << "큐브 객체 생성됨" << endl;

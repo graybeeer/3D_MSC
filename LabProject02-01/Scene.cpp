@@ -160,13 +160,6 @@ void CScene::msc_BuildObjects() //추가- msc 게임 오브젝트들을 생성하는 함수입니�
 	msc_GameManagerObject = new msc_GameObject(string("GameManager")); // 게임 매니저 역할을 하는 게임 오브젝트를 생성
 	msc_GameManagerObject->AddComponent<msc_GameManager>();  // 게임 매니저 컴포넌트를 추가
 
-	msc_MainCameraObject = new msc_GameObject(string("MainCamera")); // 메인 카메라 역할을 하는 게임 오브젝트를 생성
-	msc_MainCamera = msc_MainCameraObject->AddComponent<msc_Camera>(); // 메인 카메라 컴포넌트를 추가
-	
-	msc_MainCameraObject->GetTransform()->SetLocalPosition(XMFLOAT3(0.0f, 5.0f, -15.0f));
-	msc_MainCamera->SetViewport(0, 0, FRAMEBUFFER_WIDTH, FRAMEBUFFER_HEIGHT);
-	msc_MainCamera->InitializePerspectiveProjection(0.1f, 1000.0f);
-	msc_MainCamera->SetFOVAngle(60.0f);
 
 
 	

@@ -25,7 +25,6 @@ private:
 public:
 	list<msc_GameObject*>	m_mscGameObjects; // 게임 오브젝트 리스트
 	msc_Camera* msc_MainCamera = nullptr; //추가예정- 씬의 메인 카메라 역할을 하는 컴포넌트
-	msc_GameObject* msc_MainCameraObject = nullptr;
 	msc_GameObject* msc_GameManagerObject = nullptr; //추가예정- 게임 매니저 역할을 하는 게임 오브젝트
 
 #ifdef _WITH_DRAW_AXIS

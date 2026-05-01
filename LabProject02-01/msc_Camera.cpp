@@ -26,8 +26,12 @@ void msc_Camera::Start()
 	if(CGameFramework::GetInstance().m_pScene->msc_MainCamera == nullptr)
 	{
 		CGameFramework::GetInstance().m_pScene->msc_MainCamera = this;
-		CGameFramework::GetInstance().m_pScene->msc_MainCameraObject = GetGameObject();
 	}
+	//기본 설정
+	GetTransform()->SetLocalPosition(XMFLOAT3(0.0f, 5.0f, -15.0f));
+	SetViewport(0, 0, FRAMEBUFFER_WIDTH, FRAMEBUFFER_HEIGHT);
+	InitializePerspectiveProjection(0.1f, 1000.0f);
+	SetFOVAngle(60.0f);
 
 	// 기본 뷰포트 설정
 	m_Viewport.SetViewport(0, 0, FRAMEBUFFER_WIDTH, FRAMEBUFFER_HEIGHT);
