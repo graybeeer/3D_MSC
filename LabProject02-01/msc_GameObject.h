@@ -33,11 +33,20 @@ public:
         // 컴포넌트 리스트 순회
         for (auto& pComponent : m_Components)
         {
+            /*
             // typeid로 런타임 타입 정보 비교
             if (typeid(*pComponent) == typeid(T))
             {
                 return static_cast<T*>(pComponent);
 			}
+            */
+            // dynamic_cast는 상속 관계를 확인하여 캐스팅 가능 여부를 판단합니다.
+            T* pDerived = dynamic_cast<T*>(pComponent);
+
+            if (pDerived != nullptr)
+            {
+                return pDerived;
+            }
         }
         return nullptr;
     }

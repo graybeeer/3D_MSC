@@ -164,9 +164,11 @@
     <ClInclude Include="msc_GameManager.h" />
     <ClInclude Include="msc_GameObject.h" />
     <ClInclude Include="msc_InputSystem.h" />
+    <ClInclude Include="msc_Material.h" />
     <ClInclude Include="msc_Mesh.h" />
     <ClInclude Include="msc_Player.h" />
     <ClInclude Include="msc_RigidBody.h" />
+    <ClInclude Include="msc_Shader.h" />
     <ClInclude Include="msc_Transform.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="tool_Quaternion.h" />

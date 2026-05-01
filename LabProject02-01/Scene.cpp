@@ -159,9 +159,6 @@ void CScene::msc_BuildObjects() //추가- msc 게임 오브젝트들을 생성하는 함수입니�
 {
 	msc_GameManagerObject = new msc_GameObject(string("GameManager")); // 게임 매니저 역할을 하는 게임 오브젝트를 생성
 	msc_GameManagerObject->AddComponent<msc_GameManager>();  // 게임 매니저 컴포넌트를 추가
-
-
-
 	
 }
 void CScene::msc_ReleaseObjects() //추가- msc 게임 오브젝트들을 해제하는 함수입니다.
@@ -395,12 +392,18 @@ void CScene::Render(HDC hDCFrameBuffer, CCamera* pCamera)
 }
 void CScene::msc_Render(HDC hDCFrameBuffer, msc_Camera* pCamera) //추가- msc 게임 오브젝트들을 렌더링하는 함수입니다.
 {
+	if (!pCamera) return;
 	CGraphicsPipeline::SetViewport(&pCamera->GetViewport());
+	//cout << "Viewport Set: " << pCamera->GetViewport().m_nWidth << "x" << pCamera->GetViewport().m_nHeight << endl;
 
 	CGraphicsPipeline::SetViewPerspectiveProjectTransform(&pCamera->GetViewPerspectiveProjectionMatrix());
+
 	for (auto& mscGameObject : m_mscGameObjects) {
-		if(mscGameObject->GetComponent<msc_Mesh>())
+		if (mscGameObject->GetComponent<msc_Mesh>()) {
 			mscGameObject->GetComponent<msc_Mesh>()->Render(hDCFrameBuffer);
+			//bool bInViewport = pCamera->IsTransformInViewport(mscGameObject->GetTransform());
+			//cout << "Rendering " << mscGameObject->m_strName << " - In Viewport: " << (bInViewport ? "Yes" : "No") << endl;
+		}
 	}
 	
 }

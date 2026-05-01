@@ -43,6 +43,16 @@ public:
 	void InitializePerspectiveProjection(float fNearPlaneDistance, float fFarPlaneDistance);
 	void InitializeOrthographicProjection(float fNearPlaneDistance, float fFarPlaneDistance, float fWidth, float fHeight);
 
+public:
+	// 뷰포트 안에 Transform이 있는지 확인하는 함수
+	bool IsTransformInViewport(const msc_Transform* pTransform) const;
+	
+	// 투영 좌표가 뷰포트 범위 안에 있는지 확인
+	bool IsProjectedCoordInViewport(const XMFLOAT3& projectedCoord) const;
+	
+	// 월드 좌표가 카메라 프러스텀 안에 있는지 확인
+	bool IsWorldPositionInFrustum(const XMFLOAT3& worldPosition) const;
+
 private:
 	XMFLOAT4X4					m_xmf4x4View = Matrix4x4::Identity();
 	XMFLOAT4X4					m_xmf4x4PerspectiveProject = Matrix4x4::Identity();

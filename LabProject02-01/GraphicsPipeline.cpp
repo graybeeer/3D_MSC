@@ -55,6 +55,10 @@ XMFLOAT3 CGraphicsPipeline::ScreenTransform(XMFLOAT3& xmf3Project)
 		f3Screen.x = m_mscViewport->m_nLeft + (xmf3Project.x * fHalfWidth) + fHalfWidth;
 		f3Screen.y = m_mscViewport->m_nTop + (-xmf3Project.y * fHalfHeight) + fHalfHeight;
 	}
+	else 
+	{
+		cout << "m_mscViewport is null" << endl;
+	}
 #endif
 
 	return(f3Screen);

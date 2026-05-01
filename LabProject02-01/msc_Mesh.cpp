@@ -76,7 +76,6 @@ void Draw2DLine_msc(HDC hDCFrameBuffer, XMFLOAT3& f3PreviousProject, XMFLOAT3& f
 void FillPolygon2D_msc(HDC hDCFrameBuffer, XMFLOAT3* pProjectedVertices, int nVertices, DWORD dwColor)
 {
 	if (nVertices < 3) return;
-
 	HBRUSH hBrush = CreateSolidBrush(dwColor);
 	HPEN hPen = CreatePen(PS_SOLID, 1, dwColor);
 	
@@ -104,6 +103,7 @@ void FillPolygon2D_msc(HDC hDCFrameBuffer, XMFLOAT3* pProjectedVertices, int nVe
 void msc_Mesh::Render(HDC hDCFrameBuffer)
 {
 	if (!m_ppPolygons_simple || !m_pTransform) return;
+
 
 	//Transform의 월드 매트릭스 얻기
 	XMFLOAT4X4 xmf4x4World = m_pTransform->GetWorldMatrix();

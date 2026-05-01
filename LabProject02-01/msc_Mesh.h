@@ -38,6 +38,7 @@ public:
 	void lateUpdate() override;
 
 	virtual void Render(HDC hDCFrameBuffer);
+	virtual void Render(HDC hDCFrameBuffer, msc_Camera* pCamera);
 	
 	int CheckRayIntersection(XMVECTOR& xmvPickRayOrigin, XMVECTOR& xmvPickRayDirection, float* pfNearHitDistance);
 	

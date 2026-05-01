@@ -140,3 +140,91 @@ bool msc_Camera::IsInFrustum(BoundingOrientedBox& xmBoundingBox) const
 {
 	return m_xmFrustumWorld.Intersects(xmBoundingBox);
 }
+
+#include "msc_Transform.h"
+
+// 뷰포트 안에 Transform이 있는지 확인
+bool msc_Camera::IsTransformInViewport(const msc_Transform* pTransform) const
+{
+	if (!pTransform) return false;
+
+	// Transform의 월드 위치 가져오기
+	XMFLOAT3 worldPosition = pTransform->GetWorldPosition();
+
+	// 월드 좌표를 뷰 좌표로 변환
+	XMVECTOR vWorldPos = XMLoadFloat3(&worldPosition);
+	XMMATRIX mtxView = XMLoadFloat4x4(&m_xmf4x4View);
+	XMVECTOR vViewPos = XMVector3TransformCoord(vWorldPos, mtxView);
+
+	XMFLOAT3 viewPosition;
+	XMStoreFloat3(&viewPosition, vViewPos);
+
+	// 뷰 좌표의 z값이 near/far plane 범위 안에 있는지 확인
+	if (viewPosition.z < 0.1f || viewPosition.z > 1000.0f) return false;
+
+	// 투영 변환 적용
+	XMMATRIX mtxProj = XMLoadFloat4x4(&m_xmf4x4PerspectiveProject);
+	XMVECTOR vProjPos = XMVector3TransformCoord(vViewPos, mtxProj);
+
+	XMFLOAT3 projPosition;
+	XMStoreFloat3(&projPosition, vProjPos);
+
+	// 투영 좌표가 [-1, 1] 범위 안에 있는지 확인
+	if (projPosition.x < -1.0f || projPosition.x > 1.0f) return false;
+	if (projPosition.y < -1.0f || projPosition.y > 1.0f) return false;
+	if (projPosition.z < 0.0f || projPosition.z > 1.0f) return false;
+
+	return true;
+}
+
+// 투영 좌표가 뷰포트 범위 안에 있는지 확인
+bool msc_Camera::IsProjectedCoordInViewport(const XMFLOAT3& projectedCoord) const
+{
+	// 투영 좌표 [-1, 1] 범위 확인
+	if (projectedCoord.x < -1.0f || projectedCoord.x > 1.0f) return false;
+	if (projectedCoord.y < -1.0f || projectedCoord.y > 1.0f) return false;
+	if (projectedCoord.z < 0.0f || projectedCoord.z > 1.0f) return false;
+
+	// 뷰포트가 설정되었는지 확인
+	if (m_Viewport.m_nWidth <= 0 || m_Viewport.m_nHeight <= 0) return false;
+
+	// 스크린 좌표로 변환
+	float fHalfWidth = m_Viewport.m_nWidth * 0.5f;
+	float fHalfHeight = m_Viewport.m_nHeight * 0.5f;
+	
+	float screenX = m_Viewport.m_nLeft + (projectedCoord.x * fHalfWidth) + fHalfWidth;
+	float screenY = m_Viewport.m_nTop + (-projectedCoord.y * fHalfHeight) + fHalfHeight;
+
+	// 스크린 좌표가 뷰포트 범위 안에 있는지 확인
+	if (screenX < m_Viewport.m_nLeft || screenX > m_Viewport.m_nLeft + m_Viewport.m_nWidth) return false;
+	if (screenY < m_Viewport.m_nTop || screenY > m_Viewport.m_nTop + m_Viewport.m_nHeight) return false;
+
+	return true;
+}
+
+// 월드 좌표가 카메라 프러스텀 안에 있는지 확인
+bool msc_Camera::IsWorldPositionInFrustum(const XMFLOAT3& worldPosition) const
+{
+	// 월드 좌표를 뷰 좌표로 변환
+	XMVECTOR vWorldPos = XMLoadFloat3(&worldPosition);
+	XMMATRIX mtxView = XMLoadFloat4x4(&m_xmf4x4View);
+	XMVECTOR vViewPos = XMVector3TransformCoord(vWorldPos, mtxView);
+
+	XMFLOAT3 viewPosition;
+	XMStoreFloat3(&viewPosition, vViewPos);
+
+	// near/far plane 범위 확인
+	if (viewPosition.z < 0.1f || viewPosition.z > 1000.0f) return false;
+
+	// 투영 변환 적용
+	XMMATRIX mtxProj = XMLoadFloat4x4(&m_xmf4x4PerspectiveProject);
+	XMVECTOR vProjPos = XMVector3TransformCoord(vViewPos, mtxProj);
+
+	XMFLOAT3 projPosition;
+	XMStoreFloat3(&projPosition, vProjPos);
+
+	// 투영 좌표가 [-1, 1] 범위 안에 있는지 확인
+	return (projPosition.x >= -1.0f && projPosition.x <= 1.0f &&
+			projPosition.y >= -1.0f && projPosition.y <= 1.0f &&
+			projPosition.z >= 0.0f && projPosition.z <= 1.0f);
+}
