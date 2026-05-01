@@ -51,7 +51,7 @@ void msc_Transform::PropagateToChildren()
     if (!m_pParentObject) return;
     
     // 현재 게임 오브젝트의 모든 자식에게 전파
-    list<msc_GameObject*>& children = m_pParentObject->GetChildren();
+    std::list<msc_GameObject*>& children = m_pParentObject->GetChildren();
     
     for (auto& child : children)
     {
@@ -343,7 +343,7 @@ msc_Transform* msc_Transform::FindChild(const string& childName, bool recursive)
 {
     if (!m_pParentObject) return nullptr;
 
-    list<msc_GameObject*>& children = m_pParentObject->GetChildren();
+    std::list<msc_GameObject*>& children = m_pParentObject->GetChildren();
 
     for (auto& child : children)
     {

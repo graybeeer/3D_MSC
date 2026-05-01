@@ -4,7 +4,7 @@
 #include "msc_Component.h"
 #include "GameFramework.h"
 
-msc_GameObject::msc_GameObject(string& strName)
+msc_GameObject::msc_GameObject(std::string& strName)
 {
 	m_strName = strName;
 
@@ -150,7 +150,7 @@ void msc_GameObject::AddChild(msc_GameObject* pChild)
 	}
 }
 
-msc_Component* msc_GameObject::GetComponent(string& strComponentType)
+msc_Component* msc_GameObject::GetComponent(std::string& strComponentType)
 {
 	for (auto& pComponent : m_Components)
 	{

@@ -9,7 +9,7 @@ class msc_Component;
 class msc_GameObject
 {
 public:
-    msc_GameObject(string& strName);
+    msc_GameObject(std::string& strName);
     ~msc_GameObject();
 
     void Update();
@@ -18,16 +18,16 @@ public:
     void fixedUpdate();
     void lateUpdate();
 
-    string m_strName;
+    std::string m_strName;
 
     msc_Transform* GetTransform() { return m_pTransform; }
     
     // GetComponent 
     // 이름으로 컴포넌트 조회
-    msc_Component* GetComponent(string& strComponentType);
+    msc_Component* GetComponent(std::string& strComponentType);
     
     // 템플릿으로 타입별 컴포넌트 조회
-    template<derived_from<msc_Component> T>
+    template<std::derived_from<msc_Component> T>
     T* GetComponent()
     {
         // 컴포넌트 리스트 순회
@@ -60,7 +60,7 @@ public:
     // 템플릿으로 새 컴포넌트 생성 후 추가 (유니티처럼)
     // 템플릿은 component의 하위 클래스만 가능 
 	// c++20 이상에서 derived_from 제약 조건 사용    
-    template <derived_from<msc_Component> T>
+    template <std::derived_from<msc_Component> T>
     T* AddComponent()
     {
         // 중복 추가 방지: 같은 타입의 컴포넌트가 이미 있으면 반환
@@ -87,7 +87,7 @@ public:
 
     //RemoveComponent 
 
-    template<derived_from<msc_Component> T>
+    template<std::derived_from<msc_Component> T>
     bool RemoveComponent()
     {
         for (auto it = m_Components.begin(); it != m_Components.end(); ++it)
@@ -108,13 +108,13 @@ public:
     void SetParent(msc_GameObject* pParent);
     msc_GameObject* GetParent() const { return m_pParentGameObject; }
     void AddChild(msc_GameObject* pChild);
-    list<msc_GameObject*>& GetChildren() { return m_ChildGameObjects; }
+    std::list<msc_GameObject*>& GetChildren() { return m_ChildGameObjects; }
 
 private:
     msc_Transform* m_pTransform = nullptr;
 
-    list<msc_Component*> m_Components;
+    std::list<msc_Component*> m_Components;
 
-    list<msc_GameObject*> m_ChildGameObjects;
+    std::list<msc_GameObject*> m_ChildGameObjects;
     msc_GameObject* m_pParentGameObject = nullptr;
 };

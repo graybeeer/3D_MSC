@@ -79,8 +79,8 @@ public:
     XMFLOAT3 InverseTransformDirection(const XMFLOAT3& worldDirection) const;
     void Translate(const XMFLOAT3& translation, bool relativeToWorld = false);
 
-    msc_Transform* Find(const string& childName);
-    msc_Transform* FindChild(const string& childName, bool recursive = true);
+    msc_Transform* Find(const std::string& childName);
+    msc_Transform* FindChild(const std::string& childName, bool recursive = true);
 
     //더티 플래그
     void UpdateWorldTransform();

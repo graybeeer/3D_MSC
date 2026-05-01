@@ -30,7 +30,8 @@
 #include <iostream>
 
 #define LegacyMode false // LegacyMode가 true이면 기존 방식, false이면 새로 추가한 것들로 구동
-using namespace std;
+
+using namespace std; //나중에 네임스페이스 std는 제거할 예정입니다. std::list, std::string 등으로 명시적으로 사용할 것입니다.
 using namespace DirectX;
 using namespace DirectX::PackedVector;
 
@@ -70,16 +71,16 @@ inline bool IsEqual(float fA, float fB) { return(::IsZero(fA - fB)); }
 
 namespace Vector3
 {
-	inline XMFLOAT3 XMVectorToFloat3(XMVECTOR& xmvVector)
+	inline DirectX::XMFLOAT3 XMVectorToFloat3(XMVECTOR& xmvVector)
 	{
-		XMFLOAT3 xmf3Result;
+		DirectX::XMFLOAT3 xmf3Result;
 		XMStoreFloat3(&xmf3Result, xmvVector);
 		return(xmf3Result);
 	}
 
-	inline XMFLOAT3 ScalarProduct(XMFLOAT3& xmf3Vector, float fScalar, bool bNormalize = true)
+	inline DirectX::XMFLOAT3 ScalarProduct(DirectX::XMFLOAT3& xmf3Vector, float fScalar, bool bNormalize = true)
 	{
-		XMFLOAT3 xmf3Result;
+		DirectX::XMFLOAT3 xmf3Result;
 		if (bNormalize)
 			XMStoreFloat3(&xmf3Result, XMVector3Normalize(XMLoadFloat3(&xmf3Vector)) * fScalar);
 		else
@@ -87,37 +88,37 @@ namespace Vector3
 		return(xmf3Result);
 	}
 
-	inline XMFLOAT3 Add(const XMFLOAT3& xmf3Vector1, const XMFLOAT3& xmf3Vector2)
+	inline DirectX::XMFLOAT3 Add(const DirectX::XMFLOAT3& xmf3Vector1, const DirectX::XMFLOAT3& xmf3Vector2)
 	{
-		XMFLOAT3 xmf3Result;
+		DirectX::XMFLOAT3 xmf3Result;
 		XMStoreFloat3(&xmf3Result, XMLoadFloat3(&xmf3Vector1) + XMLoadFloat3(&xmf3Vector2));
 		return(xmf3Result);
 	}
 
-	inline XMFLOAT3 Add(XMFLOAT3& xmf3Vector1, XMFLOAT3& xmf3Vector2, float fScalar)
+	inline DirectX::XMFLOAT3 Add(DirectX::XMFLOAT3& xmf3Vector1, DirectX::XMFLOAT3& xmf3Vector2, float fScalar)
 	{
-		XMFLOAT3 xmf3Result;
+		DirectX::XMFLOAT3 xmf3Result;
 		XMStoreFloat3(&xmf3Result, XMLoadFloat3(&xmf3Vector1) + (XMLoadFloat3(&xmf3Vector2) * fScalar));
 		return(xmf3Result);
 	}
 
-	inline XMFLOAT3 Subtract(XMFLOAT3& xmf3Vector1, XMFLOAT3& xmf3Vector2)
+	inline DirectX::XMFLOAT3 Subtract(DirectX::XMFLOAT3& xmf3Vector1, DirectX::XMFLOAT3& xmf3Vector2)
 	{
-		XMFLOAT3 xmf3Result;
+		DirectX::XMFLOAT3 xmf3Result;
 		XMStoreFloat3(&xmf3Result, XMLoadFloat3(&xmf3Vector1) - XMLoadFloat3(&xmf3Vector2));
 		return(xmf3Result);
 	}
 
-	inline float DotProduct(XMFLOAT3& xmf3Vector1, XMFLOAT3& xmf3Vector2)
+	inline float DotProduct(DirectX::XMFLOAT3& xmf3Vector1, DirectX::XMFLOAT3& xmf3Vector2)
 	{
-		XMFLOAT3 xmf3Result;
+		DirectX::XMFLOAT3 xmf3Result;
 		XMStoreFloat3(&xmf3Result, XMVector3Dot(XMLoadFloat3(&xmf3Vector1), XMLoadFloat3(&xmf3Vector2)));
 		return(xmf3Result.x);
 	}
 
-	inline XMFLOAT3 CrossProduct(XMFLOAT3& xmf3Vector1, XMFLOAT3& xmf3Vector2, bool bNormalize = true)
+	inline DirectX::XMFLOAT3 CrossProduct(DirectX::XMFLOAT3& xmf3Vector1, DirectX::XMFLOAT3& xmf3Vector2, bool bNormalize = true)
 	{
-		XMFLOAT3 xmf3Result;
+		DirectX::XMFLOAT3 xmf3Result;
 		if (bNormalize)
 			XMStoreFloat3(&xmf3Result, XMVector3Normalize(XMVector3Cross(XMVector3Normalize(XMLoadFloat3(&xmf3Vector1)), XMVector3Normalize(XMLoadFloat3(&xmf3Vector2)))));
 		else
@@ -125,181 +126,181 @@ namespace Vector3
 		return(xmf3Result);
 	}
 
-	inline XMFLOAT3 Normalize(XMFLOAT3& xmf3Vector)
+	inline DirectX::XMFLOAT3 Normalize(DirectX::XMFLOAT3& xmf3Vector)
 	{
-		XMFLOAT3 m_xmf3Normal;
+		DirectX::XMFLOAT3 m_xmf3Normal;
 		XMStoreFloat3(&m_xmf3Normal, XMVector3Normalize(XMLoadFloat3(&xmf3Vector)));
 		return(m_xmf3Normal);
 	}
 
-	inline float Length(XMFLOAT3& xmf3Vector)
+	inline float Length(DirectX::XMFLOAT3& xmf3Vector)
 	{
-		XMFLOAT3 xmf3Result;
+		DirectX::XMFLOAT3 xmf3Result;
 		XMStoreFloat3(&xmf3Result, XMVector3Length(XMLoadFloat3(&xmf3Vector)));
 		return(xmf3Result.x);
 	}
 
-	inline float Distance(XMFLOAT3& xmf3Vector1, XMFLOAT3& xmf3Vector2)
+	inline float Distance(DirectX::XMFLOAT3& xmf3Vector1, DirectX::XMFLOAT3& xmf3Vector2)
 	{
-		XMFLOAT3 xmf3Result;
+		DirectX::XMFLOAT3 xmf3Result;
 		XMStoreFloat3(&xmf3Result, XMVector3Length(XMVectorSubtract(XMLoadFloat3(&xmf3Vector1), XMLoadFloat3(&xmf3Vector2))));
 		return(xmf3Result.x);
 	}
 
-	inline float Angle(XMVECTOR& xmvVector1, XMVECTOR& xmvVector2)
+	inline float Angle(DirectX::XMVECTOR& xmvVector1, DirectX::XMVECTOR& xmvVector2)
 	{
-		XMVECTOR xmvAngle = XMVector3AngleBetweenNormals(xmvVector1, xmvVector2);
-		return(XMVectorGetX(XMVectorACos(xmvAngle)));
+		DirectX::XMVECTOR xmvAngle = DirectX::XMVector3AngleBetweenNormals(xmvVector1, xmvVector2);
+		return(DirectX::XMVectorGetX(DirectX::XMVectorACos(xmvAngle)));
 	}
 
-	inline float Angle(XMFLOAT3& xmf3Vector1, XMFLOAT3& xmf3Vector2)
+	inline float Angle(DirectX::XMFLOAT3& xmf3Vector1, DirectX::XMFLOAT3& xmf3Vector2)
 	{
-		return(Angle(XMVector3Normalize(XMLoadFloat3(&xmf3Vector1)), XMVector3Normalize(XMLoadFloat3(&xmf3Vector2))));
+		return(Angle(DirectX::XMVector3Normalize(DirectX::XMLoadFloat3(&xmf3Vector1)), DirectX::XMVector3Normalize(DirectX::XMLoadFloat3(&xmf3Vector2))));
 	}
 
-	inline XMFLOAT3 TransformNormal(XMFLOAT3& xmf3Vector, XMMATRIX& xmxm4x4Transform)
+	inline DirectX::XMFLOAT3 TransformNormal(DirectX::XMFLOAT3& xmf3Vector, DirectX::XMMATRIX& xmxm4x4Transform)
 	{
-		XMFLOAT3 xmf3Result;
-		XMStoreFloat3(&xmf3Result, XMVector3TransformNormal(XMLoadFloat3(&xmf3Vector), xmxm4x4Transform));
+		DirectX::XMFLOAT3 xmf3Result;
+		DirectX::XMStoreFloat3(&xmf3Result, DirectX::XMVector3TransformNormal(DirectX::XMLoadFloat3(&xmf3Vector), xmxm4x4Transform));
 		return(xmf3Result);
 	}
 
-	inline XMFLOAT3 TransformNormal(XMFLOAT3& xmf3Vector, XMFLOAT4X4& xmmtx4x4Matrix)
+	inline DirectX::XMFLOAT3 TransformNormal(DirectX::XMFLOAT3& xmf3Vector, DirectX::XMFLOAT4X4& xmmtx4x4Matrix)
 	{
-		return(TransformNormal(xmf3Vector, XMLoadFloat4x4(&xmmtx4x4Matrix)));
+		return(TransformNormal(xmf3Vector, DirectX::XMLoadFloat4x4(&xmmtx4x4Matrix)));
 	}
 
-	inline XMFLOAT3 TransformCoord(XMFLOAT3& xmf3Vector, XMMATRIX& xmxm4x4Transform)
+	inline DirectX::XMFLOAT3 TransformCoord(DirectX::XMFLOAT3& xmf3Vector, DirectX::XMMATRIX& xmxm4x4Transform)
 	{
-		XMFLOAT3 xmf3Result;
-		XMStoreFloat3(&xmf3Result, XMVector3TransformCoord(XMLoadFloat3(&xmf3Vector), xmxm4x4Transform));
+		DirectX::XMFLOAT3 xmf3Result;
+		DirectX::XMStoreFloat3(&xmf3Result, DirectX::XMVector3TransformCoord(DirectX::XMLoadFloat3(&xmf3Vector), xmxm4x4Transform));
 		return(xmf3Result);
 	}
 
-	inline XMFLOAT3 TransformCoord(XMFLOAT3& xmf3Vector, XMFLOAT4X4& xmmtx4x4Matrix)
+	inline DirectX::XMFLOAT3 TransformCoord(DirectX::XMFLOAT3& xmf3Vector, DirectX::XMFLOAT4X4& xmmtx4x4Matrix)
 	{
-		return(TransformCoord(xmf3Vector, XMLoadFloat4x4(&xmmtx4x4Matrix)));
+		return(TransformCoord(xmf3Vector, DirectX::XMLoadFloat4x4(&xmmtx4x4Matrix)));
 	}
 }
 
 namespace Vector4
 {
-	inline XMFLOAT4 Add(XMFLOAT4& xmf4Vector1, XMFLOAT4& xmf4Vector2)
+	inline DirectX::XMFLOAT4 Add(DirectX::XMFLOAT4& xmf4Vector1, DirectX::XMFLOAT4& xmf4Vector2)
 	{
-		XMFLOAT4 xmf4Result;
-		XMStoreFloat4(&xmf4Result, XMLoadFloat4(&xmf4Vector1) + XMLoadFloat4(&xmf4Vector2));
+		DirectX::XMFLOAT4 xmf4Result;
+		DirectX::XMStoreFloat4(&xmf4Result, DirectX::XMLoadFloat4(&xmf4Vector1) + DirectX::XMLoadFloat4(&xmf4Vector2));
 		return(xmf4Result);
 	}
 }
 
 namespace Matrix4x4
 {
-	inline XMFLOAT4X4 Identity()
+	inline DirectX::XMFLOAT4X4 Identity()
 	{
-		XMFLOAT4X4 xmmtx4x4Result;
-		XMStoreFloat4x4(&xmmtx4x4Result, XMMatrixIdentity());
+		DirectX::XMFLOAT4X4 xmmtx4x4Result;
+		DirectX::XMStoreFloat4x4(&xmmtx4x4Result, DirectX::XMMatrixIdentity());
 		return(xmmtx4x4Result);
 	}
 
-	inline XMFLOAT4X4 Translate(float x, float y, float z)
+	inline DirectX::XMFLOAT4X4 Translate(float x, float y, float z)
 	{
-		XMFLOAT4X4 xmmtx4x4Result;
-		XMStoreFloat4x4(&xmmtx4x4Result, XMMatrixTranslation(x, y, z));
+		DirectX::XMFLOAT4X4 xmmtx4x4Result;
+		DirectX::XMStoreFloat4x4(&xmmtx4x4Result, DirectX::XMMatrixTranslation(x, y, z));
 		return(xmmtx4x4Result);
 	}
 
-	inline XMFLOAT4X4 Multiply(XMFLOAT4X4& xmmtx4x4Matrix1, XMFLOAT4X4& xmmtx4x4Matrix2)
+	inline DirectX::XMFLOAT4X4 Multiply(DirectX::XMFLOAT4X4& xmmtx4x4Matrix1, DirectX::XMFLOAT4X4& xmmtx4x4Matrix2)
 	{
-		XMFLOAT4X4 xmmtx4x4Result;
-		XMStoreFloat4x4(&xmmtx4x4Result, XMLoadFloat4x4(&xmmtx4x4Matrix1) * XMLoadFloat4x4(&xmmtx4x4Matrix2));
+		DirectX::XMFLOAT4X4 xmmtx4x4Result;
+		DirectX::XMStoreFloat4x4(&xmmtx4x4Result, DirectX::XMLoadFloat4x4(&xmmtx4x4Matrix1) * DirectX::XMLoadFloat4x4(&xmmtx4x4Matrix2));
 		return(xmmtx4x4Result);
 	}
 
-	inline XMFLOAT4X4 Multiply(XMFLOAT4X4& xmmtx4x4Matrix1, XMMATRIX& xmmtxMatrix2)
+	inline DirectX::XMFLOAT4X4 Multiply(DirectX::XMFLOAT4X4& xmmtx4x4Matrix1, DirectX::XMMATRIX& xmmtxMatrix2)
 	{
-		XMFLOAT4X4 xmmtx4x4Result;
-		XMStoreFloat4x4(&xmmtx4x4Result, XMLoadFloat4x4(&xmmtx4x4Matrix1) * xmmtxMatrix2);
+		DirectX::XMFLOAT4X4 xmmtx4x4Result;
+		DirectX::XMStoreFloat4x4(&xmmtx4x4Result, DirectX::XMLoadFloat4x4(&xmmtx4x4Matrix1) * xmmtxMatrix2);
 		return(xmmtx4x4Result);
 	}
 
-	inline XMFLOAT4X4 Multiply(XMMATRIX& xmmtxMatrix1, XMFLOAT4X4& xmmtx4x4Matrix2)
+	inline DirectX::XMFLOAT4X4 Multiply(DirectX::XMMATRIX& xmmtxMatrix1, DirectX::XMFLOAT4X4& xmmtx4x4Matrix2)
 	{
-		XMFLOAT4X4 xmmtx4x4Result;
-		XMStoreFloat4x4(&xmmtx4x4Result, xmmtxMatrix1 * XMLoadFloat4x4(&xmmtx4x4Matrix2));
+		DirectX::XMFLOAT4X4 xmmtx4x4Result;
+		DirectX::XMStoreFloat4x4(&xmmtx4x4Result, xmmtxMatrix1 * DirectX::XMLoadFloat4x4(&xmmtx4x4Matrix2));
 		return(xmmtx4x4Result);
 	}
 
-	inline XMFLOAT4X4 Multiply(XMMATRIX& xmmtxMatrix1, XMMATRIX& xmmtx4x4Matrix2)
+	inline DirectX::XMFLOAT4X4 Multiply(DirectX::XMMATRIX& xmmtxMatrix1, DirectX::XMMATRIX& xmmtxMatrix2)
 	{
-		XMFLOAT4X4 xmmtx4x4Result;
-		XMStoreFloat4x4(&xmmtx4x4Result, xmmtxMatrix1 * xmmtx4x4Matrix2);
+		DirectX::XMFLOAT4X4 xmmtx4x4Result;
+		DirectX::XMStoreFloat4x4(&xmmtx4x4Result, xmmtxMatrix1 * xmmtxMatrix2);
 		return(xmmtx4x4Result);
 	}
 
-	inline XMFLOAT4X4 RotationYawPitchRoll(float fPitch, float fYaw, float fRoll)
+	inline DirectX::XMFLOAT4X4 RotationYawPitchRoll(float fPitch, float fYaw, float fRoll)
 	{
-		XMFLOAT4X4 xmmtx4x4Result;
-		XMStoreFloat4x4(&xmmtx4x4Result, XMMatrixRotationRollPitchYaw(XMConvertToRadians(fPitch), XMConvertToRadians(fYaw), XMConvertToRadians(fRoll)));
+		DirectX::XMFLOAT4X4 xmmtx4x4Result;
+		DirectX::XMStoreFloat4x4(&xmmtx4x4Result, DirectX::XMMatrixRotationRollPitchYaw(DirectX::XMConvertToRadians(fPitch), DirectX::XMConvertToRadians(fYaw), DirectX::XMConvertToRadians(fRoll)));
 		return(xmmtx4x4Result);
 	}
 
-	inline XMFLOAT4X4 RotationAxis(XMFLOAT3& xmf3Axis, float fAngle)
+	inline DirectX::XMFLOAT4X4 RotationAxis(DirectX::XMFLOAT3& xmf3Axis, float fAngle)
 	{
-		XMFLOAT4X4 xmmtx4x4Result;
-		XMStoreFloat4x4(&xmmtx4x4Result, XMMatrixRotationAxis(XMLoadFloat3(&xmf3Axis), XMConvertToRadians(fAngle)));
+		DirectX::XMFLOAT4X4 xmmtx4x4Result;
+		DirectX::XMStoreFloat4x4(&xmmtx4x4Result, DirectX::XMMatrixRotationAxis(DirectX::XMLoadFloat3(&xmf3Axis), DirectX::XMConvertToRadians(fAngle)));
 		return(xmmtx4x4Result);
 	}
 
-	inline XMFLOAT4X4 Inverse(XMFLOAT4X4& xmmtx4x4Matrix)
+	inline DirectX::XMFLOAT4X4 Inverse(DirectX::XMFLOAT4X4& xmmtx4x4Matrix)
 	{
-		XMFLOAT4X4 xmmtx4x4Result;
-		XMStoreFloat4x4(&xmmtx4x4Result, XMMatrixInverse(NULL, XMLoadFloat4x4(&xmmtx4x4Matrix)));
+		DirectX::XMFLOAT4X4 xmmtx4x4Result;
+		DirectX::XMStoreFloat4x4(&xmmtx4x4Result, DirectX::XMMatrixInverse(NULL, DirectX::XMLoadFloat4x4(&xmmtx4x4Matrix)));
 		return(xmmtx4x4Result);
 	}
 
-	inline XMFLOAT4X4 Transpose(XMFLOAT4X4& xmmtx4x4Matrix)
+	inline DirectX::XMFLOAT4X4 Transpose(DirectX::XMFLOAT4X4& xmmtx4x4Matrix)
 	{
-		XMFLOAT4X4 xmmtx4x4Result;
-		XMStoreFloat4x4(&xmmtx4x4Result, XMMatrixTranspose(XMLoadFloat4x4(&xmmtx4x4Matrix)));
+		DirectX::XMFLOAT4X4 xmmtx4x4Result;
+		DirectX::XMStoreFloat4x4(&xmmtx4x4Result, DirectX::XMMatrixTranspose(DirectX::XMLoadFloat4x4(&xmmtx4x4Matrix)));
 		return(xmmtx4x4Result);
 	}
 
-	inline XMFLOAT4X4 PerspectiveFovLH(float fFovAngleY, float fAspectRatio, float fNearZ, float fFarZ)
+	inline DirectX::XMFLOAT4X4 PerspectiveFovLH(float fFovAngleY, float fAspectRatio, float fNearZ, float fFarZ)
 	{
-		XMFLOAT4X4 xmmtx4x4Result;
-		XMStoreFloat4x4(&xmmtx4x4Result, XMMatrixPerspectiveFovLH(XMConvertToRadians(fFovAngleY), fAspectRatio, fNearZ, fFarZ));
+		DirectX::XMFLOAT4X4 xmmtx4x4Result;
+		DirectX::XMStoreFloat4x4(&xmmtx4x4Result, DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(fFovAngleY), fAspectRatio, fNearZ, fFarZ));
 		return(xmmtx4x4Result);
 	}
 
-	inline XMFLOAT4X4 LookAtLH(XMFLOAT3& xmf3EyePosition, XMFLOAT3& xmf3LookAtPosition, XMFLOAT3& xmf3UpDirection)
+	inline DirectX::XMFLOAT4X4 LookAtLH(DirectX::XMFLOAT3& xmf3EyePosition, DirectX::XMFLOAT3& xmf3LookAtPosition, DirectX::XMFLOAT3& xmf3UpDirection)
 	{
-		XMFLOAT4X4 xmmtx4x4Result;
-		XMStoreFloat4x4(&xmmtx4x4Result, XMMatrixLookAtLH(XMLoadFloat3(&xmf3EyePosition), XMLoadFloat3(&xmf3LookAtPosition), XMLoadFloat3(&xmf3UpDirection)));
+		DirectX::XMFLOAT4X4 xmmtx4x4Result;
+		DirectX::XMStoreFloat4x4(&xmmtx4x4Result, DirectX::XMMatrixLookAtLH(DirectX::XMLoadFloat3(&xmf3EyePosition), DirectX::XMLoadFloat3(&xmf3LookAtPosition), DirectX::XMLoadFloat3(&xmf3UpDirection)));
 		return(xmmtx4x4Result);
 	}
 
-	inline XMFLOAT4X4 LookToLH(XMFLOAT3& xmf3EyePosition, XMFLOAT3& xmf3LookTo, XMFLOAT3& xmf3UpDirection)
+	inline DirectX::XMFLOAT4X4 LookToLH(DirectX::XMFLOAT3& xmf3EyePosition, DirectX::XMFLOAT3& xmf3LookTo, DirectX::XMFLOAT3& xmf3UpDirection)
 	{
-		XMFLOAT4X4 xmmtx4x4Result;
-		XMStoreFloat4x4(&xmmtx4x4Result, XMMatrixLookToLH(XMLoadFloat3(&xmf3EyePosition), XMLoadFloat3(&xmf3LookTo), XMLoadFloat3(&xmf3UpDirection)));
+		DirectX::XMFLOAT4X4 xmmtx4x4Result;
+		DirectX::XMStoreFloat4x4(&xmmtx4x4Result, DirectX::XMMatrixLookToLH(DirectX::XMLoadFloat3(&xmf3EyePosition), DirectX::XMLoadFloat3(&xmf3LookTo), DirectX::XMLoadFloat3(&xmf3UpDirection)));
 		return(xmmtx4x4Result);
 	}
 }
 
 namespace Triangle
 {
-	inline bool Intersect(XMFLOAT3& xmf3RayPosition, XMFLOAT3& xmf3RayDirection, XMFLOAT3& v0, XMFLOAT3& v1, XMFLOAT3& v2, float& fHitDistance)
+	inline bool Intersect(DirectX::XMFLOAT3& xmf3RayPosition, DirectX::XMFLOAT3& xmf3RayDirection, DirectX::XMFLOAT3& v0, DirectX::XMFLOAT3& v1, DirectX::XMFLOAT3& v2, float& fHitDistance)
 	{
-		return(TriangleTests::Intersects(XMLoadFloat3(&xmf3RayPosition), XMLoadFloat3(&xmf3RayDirection), XMLoadFloat3(&v0), XMLoadFloat3(&v1), XMLoadFloat3(&v2), fHitDistance));
+		return(TriangleTests::Intersects(DirectX::XMLoadFloat3(&xmf3RayPosition), DirectX::XMLoadFloat3(&xmf3RayDirection), DirectX::XMLoadFloat3(&v0), DirectX::XMLoadFloat3(&v1), DirectX::XMLoadFloat3(&v2), fHitDistance));
 	}
 }
 
 namespace Plane
 {
-	inline XMFLOAT4 Normalize(XMFLOAT4& xmf4Plane)
+	inline DirectX::XMFLOAT4 Normalize(DirectX::XMFLOAT4& xmf4Plane)
 	{
-		XMFLOAT4 xmf4Result;
-		XMStoreFloat4(&xmf4Result, XMPlaneNormalize(XMLoadFloat4(&xmf4Plane)));
+		DirectX::XMFLOAT4 xmf4Result;
+		DirectX::XMStoreFloat4(&xmf4Result, DirectX::XMPlaneNormalize(DirectX::XMLoadFloat4(&xmf4Plane)));
 		return(xmf4Result);
 	}
 }
