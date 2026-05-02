@@ -38,6 +38,7 @@ XMFLOAT3 CGraphicsPipeline::Project(XMFLOAT3& xmf3Model)
 XMFLOAT3 CGraphicsPipeline::ScreenTransform(XMFLOAT3& xmf3Project)
 {
 	XMFLOAT3 f3Screen = xmf3Project;
+
 	if (m_pViewport)
 	{
 		float fHalfWidth = m_pViewport->m_nWidth * 0.5f;
@@ -47,7 +48,7 @@ XMFLOAT3 CGraphicsPipeline::ScreenTransform(XMFLOAT3& xmf3Project)
 	}
 	if (m_mscViewport)
 	{
-		std::cout << "Using msc_Viewport for ScreenTransform" << std::endl;
+		//std::cout << "Using msc_Viewport for ScreenTransform" << std::endl;
 		float fHalfWidth = m_mscViewport->m_nWidth * 0.5f;
 		float fHalfHeight = m_mscViewport->m_nHeight * 0.5f;
 		f3Screen.x = m_mscViewport->m_nLeft + (xmf3Project.x * fHalfWidth) + fHalfWidth;

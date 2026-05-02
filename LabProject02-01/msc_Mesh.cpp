@@ -71,7 +71,7 @@ void Draw2DLine_msc(HDC hDCFrameBuffer, XMFLOAT3& f3PreviousProject, XMFLOAT3& f
 	XMFLOAT3 f3Current = CGraphicsPipeline::ScreenTransform(f3CurrentProject);
 	::MoveToEx(hDCFrameBuffer, (long)f3Previous.x, (long)f3Previous.y, NULL);
 	::LineTo(hDCFrameBuffer, (long)f3Current.x, (long)f3Current.y);
-	std::cout << "Draw Line: " << f3Previous.x << ", " << f3Previous.y << " to " << f3Current.x << ", " << f3Current.y << std::endl;
+	//std::cout << "Draw Line: " << f3Previous.x << ", " << f3Previous.y << " to " << f3Current.x << ", " << f3Current.y << std::endl;
 }
 
 void FillPolygon2D_msc(HDC hDCFrameBuffer, XMFLOAT3* pProjectedVertices, int nVertices, DWORD dwColor)
@@ -113,7 +113,7 @@ void msc_Mesh::Render(HDC hDCFrameBuffer, msc_Camera* pCamera)
 {
 	if (!pCamera) return;
 
-	std::cout << "Rendering Mesh: " << m_pParentObject->m_strName << std::endl;
+	//std::cout << "Rendering Mesh: " << m_pParentObject->m_strName << std::endl;
 
 	XMFLOAT4X4 xmf4x4World = m_pTransform->GetWorldMatrix();
 	CGraphicsPipeline::SetWorldTransform(&xmf4x4World);
@@ -165,11 +165,11 @@ void msc_Mesh::Render(HDC hDCFrameBuffer)
 		
 		for (int i = 1; i < nVertices; i++)
 		{
-			std::cout << "tetstest" << std::endl;
+			//std::cout << "tetstest" << std::endl;
 			XMFLOAT3 f3CurrentProject = CGraphicsPipeline::Project(pVertices[i].m_xmf3Position);
 			bCurrentInside = (-1.0f <= f3CurrentProject.x) && (f3CurrentProject.x <= 1.0f) && (-1.0f <= f3CurrentProject.y) && (f3CurrentProject.y <= 1.0f);
 			
-			if (((0.0f <= f3CurrentProject.z) && (f3CurrentProject.z <= 1.0f)) && ((bCurrentInside || bPreviousInside))) {
+			if (((0.0f <= f3CurrentProject.z) && (f3CurrentProject.z <= 1000.0f)) && ((bCurrentInside || bPreviousInside))) {
 				::Draw2DLine_msc(hDCFrameBuffer, f3PreviousProject, f3CurrentProject);
 			}
 			
@@ -177,7 +177,7 @@ void msc_Mesh::Render(HDC hDCFrameBuffer)
 			bPreviousInside = bCurrentInside;
 		}
 		
-		if (((0.0f <= f3InitialProject.z) && (f3InitialProject.z <= 1.0f)) && ((bInitialInside || bPreviousInside))) 
+		if (((0.0f <= f3InitialProject.z) && (f3InitialProject.z <= 1000.0f)) && ((bInitialInside || bPreviousInside))) 
 			::Draw2DLine_msc(hDCFrameBuffer, f3PreviousProject, f3InitialProject);
 	}
 }

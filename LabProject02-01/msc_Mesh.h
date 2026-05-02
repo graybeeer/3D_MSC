@@ -59,7 +59,7 @@ protected:
 class msc_CubeMesh_simple : public msc_Mesh
 {
 public:
-	msc_CubeMesh_simple(msc_GameObject* pParentObject, float fWidth = 2.0f, float fHeight = 4.0f, float fDepth = 4.0f);
+	msc_CubeMesh_simple(msc_GameObject* pParentObject, float fWidth = 1.0f, float fHeight = 1.0f, float fDepth = 1.0f);
 	virtual ~msc_CubeMesh_simple() { }
 	void SetSize(float fWidth, float fHeight, float fDepth);
 	void MakeMesh(msc_GameObject* pParentObject,float fWidth, float fHeight, float fDepth);
