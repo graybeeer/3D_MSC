@@ -117,7 +117,7 @@
     <ClInclude Include="msc_Shader.h">
       <Filter>헤더 파일\msc\component</Filter>
     </ClInclude>
-    <ClInclude Include="D3D12RenderingEngine.h">
+    <ClInclude Include="msc_D3D12RenderingEngine.h">
       <Filter>헤더 파일\msc</Filter>
     </ClInclude>
   </ItemGroup>
@@ -176,7 +176,7 @@
     <ClCompile Include="msc_Collider.cpp">
       <Filter>소스 파일\msc\component</Filter>
     </ClCompile>
-    <ClCompile Include="D3D12RenderingEngine.cpp">
+    <ClCompile Include="msc_D3D12RenderingEngine.cpp">
       <Filter>소스 파일\msc</Filter>
     </ClCompile>
   </ItemGroup>

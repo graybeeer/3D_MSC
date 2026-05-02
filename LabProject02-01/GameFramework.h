@@ -27,6 +27,9 @@ private:
 
 	RECT						m_rcClient;
 
+	//unique_ptr<CD3D12RenderingEngine> m_pRenderingEngine;
+
+
     HDC							m_hDCFrameBuffer = NULL;
     HBITMAP						m_hBitmapFrameBuffer = NULL;
     HBITMAP						m_hBitmapSelect = NULL;
