@@ -218,11 +218,8 @@ void msc_Transform::RotateAroundAxis(const XMFLOAT3& axis, float angleDegrees)
     XMStoreFloat4(&m_xmf4LocalRotation, quatResult);
     m_bDirty = true;
 }
-void msc_Transform::LookAt(const msc_Transform* target, const XMFLOAT3& upDirection)
+void msc_Transform::LookAt(const XMFLOAT3& targetPosition, const XMFLOAT3& upDirection)
 {
-    if (!target) return;
-    
-    XMFLOAT3 targetPosition = target->GetWorldPosition();
     XMFLOAT3 currentPosition = GetWorldPosition();
     
     // LookAt º¤ÅÍ °è»ê
@@ -251,6 +248,12 @@ void msc_Transform::LookAt(const msc_Transform* target, const XMFLOAT3& upDirect
     XMStoreFloat4(&m_xmf4LocalRotation, quat);
     
     m_bDirty = true;
+}
+void msc_Transform::LookAt(const msc_Transform* target, const XMFLOAT3& upDirection)
+{
+    if (!target) return;
+    
+	LookAt(target->GetWorldPosition(), upDirection);
 }
 XMFLOAT3 msc_Transform::GetForward() const
 {

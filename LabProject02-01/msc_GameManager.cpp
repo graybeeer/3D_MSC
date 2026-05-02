@@ -20,14 +20,14 @@ void msc_GameManager::Start()
 
 	pCubeObject = new msc_GameObject(std::string("TestCube"));
 	std::cout << "Å¥ºê °´Ã¼ »ý¼ºµÊ" << std::endl;
-	pCubeObject->GetTransform()->SetLocalPosition(XMFLOAT3(0.0f, 0.0f, 10.0f));
+	pCubeObject->GetTransform()->SetLocalPosition(XMFLOAT3(0.0f, 0.0f, 15.0f));
 	pCubeObject->GetTransform()->SetLocalScale(XMFLOAT3(1.0f, 1.0f, 1.0f));
 	pCubeObject->AddComponent<msc_CubeMesh_simple>();
 	std::cout << "Å¥ºê ¸Þ½Ã Ãß°¡µÊ" << std::endl;
 
  	msc_GameObject* pCubeObject2 = new msc_GameObject(std::string("TestCube2"));
 	std::cout << "Å¥ºê °´Ã¼ »ý¼ºµÊ" << std::endl;
-	pCubeObject2->GetTransform()->SetLocalPosition(XMFLOAT3(5.0f, 0.0f, 5.0f));
+	pCubeObject2->GetTransform()->SetLocalPosition(XMFLOAT3(5.0f, 5.0f, 5.0f));
 	pCubeObject2->GetTransform()->SetLocalScale(XMFLOAT3(4.0f, 4.0f, 4.0f));
 	pCubeObject2->AddComponent<msc_CubeMesh_simple>();
 	std::cout << "Å¥ºê ¸Þ½Ã Ãß°¡µÊ" << std::endl;
@@ -44,7 +44,7 @@ void msc_GameManager::Update()
 			<< CGameFramework::GetInstance().m_pScene->msc_MainCamera->GetTransform()->GetLocalPosition().z << std::endl;
 		std::cout << CGameFramework::GetInstance().m_pScene->m_mscGameObjects.size() << "°³ÀÇ °ÔÀÓ ¿ÀºêÁ§Æ® Á¸Àç" << std::endl;
 	}
-	pCubeObject->GetTransform()->RotateLocal(XMFLOAT3(0.0f, 1.0f, 0.0f));
+	pCubeObject->GetTransform()->RotateLocal(XMFLOAT3(0.0f, 0.0f, 1.0f));
 }
 void msc_GameManager::onDestroy()
 {

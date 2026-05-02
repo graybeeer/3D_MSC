@@ -69,6 +69,7 @@ public:
     void RotateWorld(const XMFLOAT3& eulerDelta);
     void RotateAroundAxis(const XMFLOAT3& axis, float angleDegrees);
     void LookAt(const msc_Transform* target, const XMFLOAT3& upDirection = XMFLOAT3(0.0f, 1.0f, 0.0f));
+	void LookAt(const XMFLOAT3& targetPosition, const XMFLOAT3& upDirection = XMFLOAT3(0.0f, 1.0f, 0.0f));
 
     XMFLOAT3 GetForward() const;
     XMFLOAT3 GetRight() const;
