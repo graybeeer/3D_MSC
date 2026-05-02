@@ -400,7 +400,7 @@ void CScene::msc_Render(HDC hDCFrameBuffer, msc_Camera* pCamera) //추가- msc 게�
 
 	for (auto& mscGameObject : m_mscGameObjects) {
 		if (mscGameObject->GetComponent<msc_Mesh>()) {
-			mscGameObject->GetComponent<msc_Mesh>()->Render(hDCFrameBuffer);
+			mscGameObject->GetComponent<msc_Mesh>()->Render(hDCFrameBuffer, pCamera);
 			//bool bInViewport = pCamera->IsTransformInViewport(mscGameObject->GetTransform());
 			//cout << "Rendering " << mscGameObject->m_strName << " - In Viewport: " << (bInViewport ? "Yes" : "No") << endl;
 		}

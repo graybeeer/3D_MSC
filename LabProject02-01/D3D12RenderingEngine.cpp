@@ -1,6 +1,5 @@
 #include "stdafx.h"
 /*
-#include "stdafx.h"
 #include "D3D12RenderingEngine.h"
 
 CD3D12RenderingEngine::CD3D12RenderingEngine()

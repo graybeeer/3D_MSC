@@ -1,4 +1,3 @@
-/*
 #pragma once
 #include "d3d12.h"
 #include "dxgi1_4.h"
@@ -6,6 +5,7 @@
 #include "DXGIDebug.h"
 #include <wrl.h>
 using namespace Microsoft::WRL;
+#define D3D12_FRAME_BUFFER_COUNT 2
 
 
 class CD3D12RenderingEngine
@@ -59,4 +59,3 @@ private:
     UINT m_nScreenWidth;
     UINT m_nScreenHeight;
 };
-*/

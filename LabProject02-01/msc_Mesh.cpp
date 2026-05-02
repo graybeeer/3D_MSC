@@ -71,6 +71,7 @@ void Draw2DLine_msc(HDC hDCFrameBuffer, XMFLOAT3& f3PreviousProject, XMFLOAT3& f
 	XMFLOAT3 f3Current = CGraphicsPipeline::ScreenTransform(f3CurrentProject);
 	::MoveToEx(hDCFrameBuffer, (long)f3Previous.x, (long)f3Previous.y, NULL);
 	::LineTo(hDCFrameBuffer, (long)f3Current.x, (long)f3Current.y);
+	std::cout << "Draw Line: " << f3Previous.x << ", " << f3Previous.y << " to " << f3Current.x << ", " << f3Current.y << std::endl;
 }
 
 void FillPolygon2D_msc(HDC hDCFrameBuffer, XMFLOAT3* pProjectedVertices, int nVertices, DWORD dwColor)
@@ -99,21 +100,35 @@ void FillPolygon2D_msc(HDC hDCFrameBuffer, XMFLOAT3* pProjectedVertices, int nVe
 	DeleteObject(hPen);
 	delete[] pPoints;
 }
+void msc_Mesh::Render(HDC hDCFrameBuffer, XMFLOAT4X4* pxmf4x4World) {
+	XMFLOAT4X4 xmf4x4World = *pxmf4x4World;
+	CGraphicsPipeline::SetWorldTransform(&xmf4x4World);
+	HPEN hPen = ::CreatePen(PS_SOLID, 0, RGB(125,125,125));
+	HPEN hOldPen = (HPEN)::SelectObject(hDCFrameBuffer, hPen);
+	this->Render(hDCFrameBuffer);
+	::SelectObject(hDCFrameBuffer, hOldPen);
+	::DeleteObject(hPen);
+}
+void msc_Mesh::Render(HDC hDCFrameBuffer, msc_Camera* pCamera)
+{
+	if (!pCamera) return;
 
+	std::cout << "Rendering Mesh: " << m_pParentObject->m_strName << std::endl;
+
+	XMFLOAT4X4 xmf4x4World = m_pTransform->GetWorldMatrix();
+	CGraphicsPipeline::SetWorldTransform(&xmf4x4World);
+	HPEN hPen = ::CreatePen(PS_SOLID, 0, RGB(125,125,125));
+	HPEN hOldPen = (HPEN)::SelectObject(hDCFrameBuffer, hPen);
+	this->Render(hDCFrameBuffer);
+	::SelectObject(hDCFrameBuffer, hOldPen);
+	::DeleteObject(hPen);
+}
 void msc_Mesh::Render(HDC hDCFrameBuffer)
 {
 	if (!m_ppPolygons_simple || !m_pTransform) return;
-
-
-	//Transform의 월드 매트릭스 얻기
-	XMFLOAT4X4 xmf4x4World = m_pTransform->GetWorldMatrix();
-	
-	// GraphicsPipeline에 이 메시의 월드 변환 설정
-	CGraphicsPipeline::SetWorldTransform(&xmf4x4World);
-
 	XMFLOAT3 f3InitialProject, f3PreviousProject;
 	bool bPreviousInside = false, bInitialInside = false, bCurrentInside = false;
-
+	/*
 	for (int j = 0; j < m_nPolygons_simple; j++)
 	{
 		int nVertices = m_ppPolygons_simple[j]->m_nVertices;
@@ -133,12 +148,13 @@ void msc_Mesh::Render(HDC hDCFrameBuffer)
 		// 프러스텀 안에 있는 면만 채우기
 		if (bAllInFrustum)
 		{
+			
 			FillPolygon2D_msc(hDCFrameBuffer, pProjectedVertices, nVertices, RGB(192, 192, 192));
 		}
 
 		delete[] pProjectedVertices;
 	}
-
+	*/
 	for (int j = 0; j < m_nPolygons_simple; j++)
 	{
 		int nVertices = m_ppPolygons_simple[j]->m_nVertices;
@@ -149,11 +165,13 @@ void msc_Mesh::Render(HDC hDCFrameBuffer)
 		
 		for (int i = 1; i < nVertices; i++)
 		{
+			std::cout << "tetstest" << std::endl;
 			XMFLOAT3 f3CurrentProject = CGraphicsPipeline::Project(pVertices[i].m_xmf3Position);
 			bCurrentInside = (-1.0f <= f3CurrentProject.x) && (f3CurrentProject.x <= 1.0f) && (-1.0f <= f3CurrentProject.y) && (f3CurrentProject.y <= 1.0f);
 			
-			if (((0.0f <= f3CurrentProject.z) && (f3CurrentProject.z <= 1.0f)) && ((bCurrentInside || bPreviousInside))) 
+			if (((0.0f <= f3CurrentProject.z) && (f3CurrentProject.z <= 1.0f)) && ((bCurrentInside || bPreviousInside))) {
 				::Draw2DLine_msc(hDCFrameBuffer, f3PreviousProject, f3CurrentProject);
+			}
 			
 			f3PreviousProject = f3CurrentProject;
 			bPreviousInside = bCurrentInside;

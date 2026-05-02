@@ -20,10 +20,16 @@ void msc_GameManager::Start()
 
 	pCubeObject = new msc_GameObject(std::string("TestCube"));
 	std::cout << "Å¥ºê °´Ã¼ »ý¼ºµÊ" << std::endl;
-	pCubeObject->GetTransform()->SetLocalPosition(XMFLOAT3(0.0f, 10.0f, 10.0f));
-	pCubeObject->GetTransform()->SetLocalScale(XMFLOAT3(1.0f, 1.0f, 1.0f));
-	// Mesh Ãß°¡
+	pCubeObject->GetTransform()->SetLocalPosition(XMFLOAT3(0.0f, 5.0f, 10.0f));
+	pCubeObject->GetTransform()->SetLocalScale(XMFLOAT3(0.1f, 0.1f, 0.1f));
 	pCubeObject->AddComponent<msc_CubeMesh_simple>();
+	std::cout << "Å¥ºê ¸Þ½Ã Ãß°¡µÊ" << std::endl;
+
+ 	msc_GameObject* pCubeObject2 = new msc_GameObject(std::string("TestCube2"));
+	std::cout << "Å¥ºê °´Ã¼ »ý¼ºµÊ" << std::endl;
+	pCubeObject2->GetTransform()->SetLocalPosition(XMFLOAT3(0.0f, 5.0f, 5.0f));
+	pCubeObject2->GetTransform()->SetLocalScale(XMFLOAT3(2.0f, 2.0f, 2.0f));
+	pCubeObject2->AddComponent<msc_CubeMesh_simple>();
 	std::cout << "Å¥ºê ¸Þ½Ã Ãß°¡µÊ" << std::endl;
 	
 }
