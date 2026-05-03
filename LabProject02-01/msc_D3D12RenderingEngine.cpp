@@ -1,8 +1,7 @@
 #include "stdafx.h"
-/*
-#include "D3D12RenderingEngine.h"
+#include "msc_D3D12RenderingEngine.h"
 
-CD3D12RenderingEngine::CD3D12RenderingEngine()
+msc_D3D12RenderingEngine::msc_D3D12RenderingEngine()
     : m_nCurrentFrameIndex(0)
     , m_nRtvDescriptorSize(0)
     , m_nFenceValue(1)
@@ -13,12 +12,12 @@ CD3D12RenderingEngine::CD3D12RenderingEngine()
     ZeroMemory(m_nFenceValues, sizeof(m_nFenceValues));
 }
 
-CD3D12RenderingEngine::~CD3D12RenderingEngine()
+msc_D3D12RenderingEngine::~msc_D3D12RenderingEngine()
 {
     Shutdown();
 }
 
-bool CD3D12RenderingEngine::Initialize(HWND hWnd, UINT nWidth, UINT nHeight)
+bool msc_D3D12RenderingEngine::Initialize(HWND hWnd, UINT nWidth, UINT nHeight)
 {
     m_nScreenWidth = nWidth;
     m_nScreenHeight = nHeight;
@@ -26,14 +25,14 @@ bool CD3D12RenderingEngine::Initialize(HWND hWnd, UINT nWidth, UINT nHeight)
     // 1. DXGI 팩토리 생성
     if (FAILED(CreateDXGIFactory1(IID_PPV_ARGS(&m_pFactory))))
     {
-        cout << " CreateDXGIFactory1 실패" << endl;
+        std::cout << " CreateDXGIFactory1 실패" << std::endl;
         return false;
     }
 
     // 2. D3D12 디바이스 생성
     if (FAILED(D3D12CreateDevice(NULL, D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS(&m_pDevice))))
     {
-        cout << " D3D12CreateDevice 실패" << endl;
+        std::cout << " D3D12CreateDevice 실패" << std::endl;
         return false;
     }
 
@@ -44,7 +43,7 @@ bool CD3D12RenderingEngine::Initialize(HWND hWnd, UINT nWidth, UINT nHeight)
 
     if (FAILED(m_pDevice->CreateCommandQueue(&queueDesc, IID_PPV_ARGS(&m_pCommandQueue))))
     {
-        cout << " CreateCommandQueue 실패" << endl;
+        std::cout << " CreateCommandQueue 실패" << std::endl;
         return false;
     }
 
@@ -61,13 +60,13 @@ bool CD3D12RenderingEngine::Initialize(HWND hWnd, UINT nWidth, UINT nHeight)
     ComPtr<IDXGISwapChain1> pSwapChain1;
     if (FAILED(m_pFactory->CreateSwapChainForHwnd(m_pCommandQueue.Get(), hWnd, &swapChainDesc, NULL, NULL, &pSwapChain1)))
     {
-        cout << " CreateSwapChainForHwnd 실패" << endl;
+        std::cout << " CreateSwapChainForHwnd 실패" << std::endl;
         return false;
     }
 
     if (FAILED(pSwapChain1.As(&m_pSwapChain)))
     {
-        cout << " SwapChain1 to SwapChain3 변환 실패" << endl;
+        std::cout << " SwapChain1 to SwapChain3 변환 실패" << std::endl;
         return false;
     }
 
@@ -81,7 +80,7 @@ bool CD3D12RenderingEngine::Initialize(HWND hWnd, UINT nWidth, UINT nHeight)
 
     if (FAILED(m_pDevice->CreateDescriptorHeap(&rtvHeapDesc, IID_PPV_ARGS(&m_pRtvHeap))))
     {
-        cout << " CreateDescriptorHeap (RTV) 실패" << endl;
+        std::cout << " CreateDescriptorHeap (RTV) 실패" << std::endl;
         return false;
     }
 
@@ -94,7 +93,7 @@ bool CD3D12RenderingEngine::Initialize(HWND hWnd, UINT nWidth, UINT nHeight)
     {
         if (FAILED(m_pSwapChain->GetBuffer(i, IID_PPV_ARGS(&m_pRenderTargets[i]))))
         {
-            cout << " SwapChain GetBuffer 실패" << endl;
+            std::cout << " SwapChain GetBuffer 실패" << std::endl;
             return false;
         }
 
@@ -107,7 +106,7 @@ bool CD3D12RenderingEngine::Initialize(HWND hWnd, UINT nWidth, UINT nHeight)
     {
         if (FAILED(m_pDevice->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(&m_pCommandAllocator[i]))))
         {
-            cout << " CreateCommandAllocator 실패" << endl;
+            std::cout << " CreateCommandAllocator 실패" << std::endl;
             return false;
         }
     }
@@ -115,7 +114,7 @@ bool CD3D12RenderingEngine::Initialize(HWND hWnd, UINT nWidth, UINT nHeight)
     // 8. 명령 리스트 생성
     if (FAILED(m_pDevice->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, m_pCommandAllocator[0].Get(), NULL, IID_PPV_ARGS(&m_pCommandList))))
     {
-        cout << " CreateCommandList 실패" << endl;
+        std::cout << " CreateCommandList 실패" << std::endl;
         return false;
     }
 
@@ -125,7 +124,7 @@ bool CD3D12RenderingEngine::Initialize(HWND hWnd, UINT nWidth, UINT nHeight)
     // 9. 펜스 생성
     if (FAILED(m_pDevice->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&m_pFence))))
     {
-        cout << " CreateFence 실패" << endl;
+        std::cout << " CreateFence 실패" << std::endl;
         return false;
     }
 
@@ -135,15 +134,15 @@ bool CD3D12RenderingEngine::Initialize(HWND hWnd, UINT nWidth, UINT nHeight)
     m_hFenceEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
     if (m_hFenceEvent == NULL)
     {
-        cout << " CreateEvent (Fence) 실패" << endl;
+        std::cout << " CreateEvent (Fence) 실패" << std::endl;
         return false;
     }
 
-    cout << " D3D12 초기화 성공" << endl;
+    std::cout << " D3D12 초기화 성공" << std::endl;
     return true;
 }
 
-void CD3D12RenderingEngine::Shutdown()
+void msc_D3D12RenderingEngine::Shutdown()
 {
     // GPU 완료 대기
     if (m_pCommandQueue)
@@ -182,7 +181,7 @@ void CD3D12RenderingEngine::Shutdown()
     m_pFence.Reset();
 }
 
-void CD3D12RenderingEngine::BeginRender()
+void msc_D3D12RenderingEngine::BeginRender()
 {
     auto pCommandAllocator = m_pCommandAllocator[m_nCurrentFrameIndex].Get();
     pCommandAllocator->Reset();
@@ -213,7 +212,7 @@ void CD3D12RenderingEngine::BeginRender()
     m_pCommandList->RSSetScissorRects(1, &scissorRect);
 }
 
-void CD3D12RenderingEngine::ClearScreen(const FLOAT* pClearColor)
+void msc_D3D12RenderingEngine::ClearScreen(const FLOAT* pClearColor)
 {
     D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle(m_pRtvHeap->GetCPUDescriptorHandleForHeapStart());
     rtvHandle.ptr += m_nCurrentFrameIndex * m_nRtvDescriptorSize;
@@ -221,7 +220,7 @@ void CD3D12RenderingEngine::ClearScreen(const FLOAT* pClearColor)
     m_pCommandList->ClearRenderTargetView(rtvHandle, pClearColor, 0, NULL);
 }
 
-void CD3D12RenderingEngine::EndRender()
+void msc_D3D12RenderingEngine::EndRender()
 {
     // 렌더 타겟에서 프리젠트 상태로 전환
     D3D12_RESOURCE_BARRIER barrier = {};
@@ -242,7 +241,7 @@ void CD3D12RenderingEngine::EndRender()
     // 신호 발생
     if (FAILED(m_pCommandQueue->Signal(m_pFence.Get(), m_nFenceValue)))
     {
-        cout << " CommandQueue Signal 실패" << endl;
+        std::cout << " CommandQueue Signal 실패" << std::endl;
         return;
     }
 
@@ -250,11 +249,11 @@ void CD3D12RenderingEngine::EndRender()
     m_nFenceValue++;
 }
 
-void CD3D12RenderingEngine::Present()
+void msc_D3D12RenderingEngine::Present()
 {
     if (FAILED(m_pSwapChain->Present(1, 0)))
     {
-        cout << " SwapChain Present 실패" << endl;
+        std::cout << " SwapChain Present 실패" << std::endl;
         return;
     }
 
@@ -262,7 +261,7 @@ void CD3D12RenderingEngine::Present()
     const UINT64 fence = m_nFenceValues[m_nCurrentFrameIndex];
     if (FAILED(m_pCommandQueue->Signal(m_pFence.Get(), fence)))
     {
-        cout << " Signal 실패" << endl;
+        std::cout << " Signal 실패" << std::endl;
         return;
     }
 
@@ -273,10 +272,9 @@ void CD3D12RenderingEngine::Present()
     {
         if (FAILED(m_pFence->SetEventOnCompletion(m_nFenceValues[m_nCurrentFrameIndex], m_hFenceEvent)))
         {
-            cout << " SetEventOnCompletion 실패" << endl;
+            std::cout << " SetEventOnCompletion 실패" << std::endl;
             return;
         }
         WaitForSingleObject(m_hFenceEvent, INFINITE);
     }
 }
-*/

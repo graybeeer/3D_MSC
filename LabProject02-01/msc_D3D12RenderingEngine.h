@@ -8,11 +8,11 @@ using namespace Microsoft::WRL;
 #define D3D12_FRAME_BUFFER_COUNT 2
 
 
-class CD3D12RenderingEngine
+class msc_D3D12RenderingEngine
 {
 public:
-    CD3D12RenderingEngine();
-    virtual ~CD3D12RenderingEngine();
+    msc_D3D12RenderingEngine();
+    virtual ~msc_D3D12RenderingEngine();
 
     // 초기화 및 정리
     bool Initialize(HWND hWnd, UINT nWidth, UINT nHeight);
