@@ -233,7 +233,7 @@ void CGameFramework::AnimateObjects()
 void CGameFramework::FrameAdvance() //1프레임 진행
 {    
 	m_GameTimer.Tick(60.0f);
-
+	float deltaTime = m_GameTimer.GetTimeElapsed();
 #if LegacyMode
 	// 기존 충돌 처리
 	ProcessInput();

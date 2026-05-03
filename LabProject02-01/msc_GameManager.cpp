@@ -44,7 +44,8 @@ void msc_GameManager::Update()
 			<< CGameFramework::GetInstance().m_pScene->msc_MainCamera->GetTransform()->GetLocalPosition().z << std::endl;
 		std::cout << CGameFramework::GetInstance().m_pScene->m_mscGameObjects.size() << "개의 게임 오브젝트 존재" << std::endl;
 	}
-	pCubeObject->GetTransform()->RotateLocal(XMFLOAT3(0.0f, 0.0f, 1.0f));
+	std::cout << CGameFramework::GetInstance().m_GameTimer.GetTimeElapsed() << std::endl; //델타 타임 출력
+	pCubeObject->GetTransform()->RotateLocal(XMFLOAT3(0.0f, CGameFramework::GetInstance().m_GameTimer.GetTimeElapsed()*60, 0.0f));
 }
 void msc_GameManager::onDestroy()
 {
