@@ -9,6 +9,7 @@
 #include "msc_GameObject.h"
 #include "msc_Mesh.h"
 #include "msc_Transform.h"
+#include "msc_D3D12RenderingEngine.h"
 
 void CGameFramework::OnCreate(HINSTANCE hInstance, HWND hMainWnd)
 {
@@ -16,6 +17,17 @@ void CGameFramework::OnCreate(HINSTANCE hInstance, HWND hMainWnd)
 
 	m_hInstance = hInstance;
 	m_hWnd = hMainWnd;
+
+	// Direct3D 12 렌더링 엔진 초기화
+	m_pRenderingEngine = std::make_unique<msc_D3D12RenderingEngine>();
+	::GetClientRect(m_hWnd, &m_rcClient);
+
+	if (!m_pRenderingEngine->Initialize(m_hWnd, m_rcClient.right - m_rcClient.left, m_rcClient.bottom - m_rcClient.top))
+	{
+		std::cout << "렌더링 엔진 초기화 실패" << std::endl;
+		return;
+	}
+	//
 
 	BuildFrameBuffer(); 
 
@@ -86,6 +98,8 @@ void CGameFramework::BuildObjects()
 
 	m_pScene = new CScene(m_pPlayer);
 #if LegacyMode
+	
+
 	m_pScene->BuildObjects();
 #else
 	m_pScene->msc_BuildObjects(); 

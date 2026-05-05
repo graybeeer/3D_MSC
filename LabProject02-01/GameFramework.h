@@ -28,7 +28,7 @@ private:
 
 	RECT						m_rcClient;
 
-	std::unique_ptr<msc_D3D12RenderingEngine> m_pRenderingEngine; // Direct3D 12 렌더링 엔진
+	std::unique_ptr<msc_D3D12RenderingEngine> m_pRenderingEngine = NULL; // Direct3D 12 렌더링 엔진
 	//unique_ptr 스마트포인터 자주쓰기- 소멸자에서 자동으로 해제되므로 메모리 누수 방지에 도움
 
 

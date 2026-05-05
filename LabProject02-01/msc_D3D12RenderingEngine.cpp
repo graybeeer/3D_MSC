@@ -19,6 +19,7 @@ msc_D3D12RenderingEngine::~msc_D3D12RenderingEngine()
 
 bool msc_D3D12RenderingEngine::Initialize(HWND hWnd, UINT nWidth, UINT nHeight)
 {
+	std::cout << "Initializing D3D12 Rendering Engine..." << std::endl;
     m_nScreenWidth = nWidth;
     m_nScreenHeight = nHeight;
 

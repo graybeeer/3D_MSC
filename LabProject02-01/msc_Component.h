@@ -35,4 +35,5 @@ public:
 
 	msc_GameObject* m_pParentObject = nullptr;
 	msc_Transform* m_pTransform = nullptr; //부모 오브젝트의 Transform
+	
 };

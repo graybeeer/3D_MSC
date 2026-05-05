@@ -15,6 +15,7 @@ void msc_GameManager::Start()
 {
 	//테스트용 로그
 	std::cout << "게임 매니저 시작" << endl;
+	//메인 카메라 생성
 	msc_GameObject* pCameraObject = new msc_GameObject(std::string("TestCamera"));
 	pCameraObject->AddComponent<msc_Camera>();
 

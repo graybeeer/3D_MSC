@@ -10,7 +10,3 @@ XMVECTOR tool_Quaternion::Euler(float pitch, float yaw, float roll)
 		XMConvertToRadians(roll)
 	);
 }	
-XMVECTOR tool_Quaternion::Euler(const XMFLOAT3& eulerAngles)
-{
-	return Euler(eulerAngles.x, eulerAngles.y, eulerAngles.z);
-}
