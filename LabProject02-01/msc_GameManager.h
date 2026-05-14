@@ -3,6 +3,7 @@
 // 게임의 시작, 종료, 레벨 관리, 점수 관리 등을 담당할 수 있습니다.
 #include "stdafx.h"
 #include "msc_Component.h"
+#include "msc_Camera.h"
 using namespace std;
 
 class msc_GameManager : public msc_Component
@@ -16,6 +17,6 @@ public:
 	void Start() override;
 	void Update() override;
 	void onDestroy() override;
-	msc_GameObject* pCubeObject;
-	msc_GameObject* pCamera;
+	msc_GameObject* pCubeObject = NULL;
+	msc_Camera* pCamera = NULL;
 };

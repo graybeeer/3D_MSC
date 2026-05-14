@@ -3,7 +3,7 @@
 #include "msc_Transform.h"
 #include "msc_Component.h"
 #include "msc_Mesh.h"
-
+#include "msc_D3D12RenderingEngine.h"
 
 msc_Polygon_simple::msc_Polygon_simple(int nVertices)
 {
@@ -27,6 +27,7 @@ void msc_Polygon_simple::SetVertex(int nIndex, msc_Vertex& vertex)
 
 msc_Mesh::msc_Mesh(msc_GameObject* pParentObject) : msc_Component(pParentObject)
 {
+	
 }
 
 msc_Mesh::~msc_Mesh()
@@ -41,6 +42,8 @@ msc_Mesh::~msc_Mesh()
 
 void msc_Mesh::Start()
 {
+	// 시작할 때 한 번만 열어둠
+	//constantBuffer->Map(0, nullptr, reinterpret_cast<void**>(&mappedDataBegin)); //
 }
 
 void msc_Mesh::Update()
@@ -49,6 +52,12 @@ void msc_Mesh::Update()
 
 void msc_Mesh::onDestroy()
 {
+	// 죽을 때 닫아줌
+	/*
+	if (m_constantBuffer != nullptr) {
+		m_constantBuffer->Unmap(0, nullptr);
+	}
+	*/
 }
 
 void msc_Mesh::fixedUpdate()
@@ -181,7 +190,36 @@ void msc_Mesh::Render(HDC hDCFrameBuffer)
 			::Draw2DLine_msc(hDCFrameBuffer, f3PreviousProject, f3InitialProject);
 	}
 }
+void msc_Mesh::UpdateConstantBuffer(const XMMATRIX& worldMatrix) {
+	// 프레임마다 Map/Unmap 없이 초고속으로 복사만 수행!
+	//memcpy(mappedDataBegin, &worldMatrix, sizeof(XMMATRIX));
+}
+void msc_Mesh::RenderD3D12(const RenderContext& context)
+{
+	// D3D12 렌더링 구현은 추후에 추가될 예정입니다.
+	// 이 함수는 Direct3D 12를 사용하여 메쉬를 렌더링하는 데 필요한 로직을 포함할 것입니다.
+	// 예를 들어, 버텍스 버퍼와 인덱스 버퍼를 설정하고, 셰이더를 바인딩하고, 드로우 콜을 실행하는 등의 작업이 포함될 수 있습니다.
+	XMMATRIX xmf4x4World = XMLoadFloat4x4(&(m_pTransform->GetWorldMatrix()));
+	//UpdateConstantBuffer(context.cmdList, m_pd3dConstantBuffer.Get(), &xmf4x4World, sizeof(XMMATRIX));
+	//context.cmdList->SetGraphicsRootSignature(m_pd3dRootSignature.Get());
+	/*
+	// 1. 자신의 정점/인덱스 버퍼 뷰를 파이프라인에 바인딩
+	// (GPU에게 "이 정점들과 인덱스들을 사용해라"라고 지시)
+	context.cmdList->IASetVertexBuffers(0, 1, &m_vertexBufferView);
+	context.cmdList->IASetIndexBuffer(&m_indexBufferView);
 
+	// 2. 프리미티브 토폴로지 설정 (삼각형 리스트 형태로 해석)
+	context.cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	// 3. 상수 버퍼(월드 행렬) 바인딩
+	// Root Signature의 0번 슬롯이 CBV를 기다리고 있다고 가정합니다.
+	context.cmdList->SetGraphicsRootConstantBufferView(0, m_constantBuffer->GetGPUVirtualAddress());
+
+	// 4. 그리기 명령 기록 (실제로 그리지는 않고 장부에 적기만 함)
+	// 인덱스 개수, 인스턴스 개수, 시작 인덱스, 시작 정점 위치 등을 전달
+	context.cmdList->DrawIndexedInstanced(m_indexCount, 1, 0, 0, 0);
+	*/
+}
 BOOL msc_Mesh::RayIntersectionByTriangle(XMVECTOR& xmRayOrigin, XMVECTOR& xmRayDirection, XMVECTOR v0, XMVECTOR v1, XMVECTOR v2, float* pfNearHitDistance)
 {
 	float fHitDistance;
@@ -190,7 +228,7 @@ BOOL msc_Mesh::RayIntersectionByTriangle(XMVECTOR& xmRayOrigin, XMVECTOR& xmRayD
 
 	return(bIntersected);
 }
-
+/*
 int msc_Mesh::CheckRayIntersection(XMVECTOR& xmvPickRayOrigin, XMVECTOR& xmvPickRayDirection, float* pfNearHitDistance)
 {
 	int nIntersections = 0;
@@ -231,7 +269,7 @@ int msc_Mesh::CheckRayIntersection(XMVECTOR& xmvPickRayOrigin, XMVECTOR& xmvPick
 	}
 	return(nIntersections);
 }
-
+*/
 
 msc_CubeMesh_simple::msc_CubeMesh_simple(msc_GameObject* pParentObject, float fWidth, float fHeight, float fDepth) 
 	: msc_Mesh(pParentObject)

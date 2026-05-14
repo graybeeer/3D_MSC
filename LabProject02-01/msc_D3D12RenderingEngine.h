@@ -59,3 +59,26 @@ private:
     UINT m_nScreenWidth;
     UINT m_nScreenHeight;
 };
+
+struct RenderContext {
+    // 1. 필수 도구
+    ID3D12GraphicsCommandList* cmdList; // 명령을 적을 장부 (가장 중요!)
+
+    // 3. 시간 정보 (애니메이션, 흔들리는 풀잎 등을 그릴 때 필요함)
+    float deltaTime;                    // 이전 프레임부터 흐른 시간
+    float totalTime;                    // 게임 시작 후 총 흐른 시간
+
+    // 4. 시스템/렌더 패스 정보
+    UINT currentFrameIndex;             // 현재 더블/트리플 버퍼링 중 몇 번째 프레임인가?
+    
+    enum RenderPass
+    {
+		MSC_OPAQUE,// 불투명한 오브젝트를 그리는 패스
+		MSC_TRANSPARENT, // 투명한 오브젝트를 그리는 패스
+		MSC_SHADOW_MAP // 그림자 맵을 그리는 패스
+    };
+    RenderPass currentPass; // 지금 뭘 그리고 있는가?
+
+	RenderContext() : cmdList(nullptr), deltaTime(0.0f), totalTime(0.0f), currentFrameIndex(0), currentPass(MSC_OPAQUE) {}
+	RenderContext(ID3D12GraphicsCommandList* cmdlist) : cmdList(cmdlist), deltaTime(0.0f), totalTime(0.0f), currentFrameIndex(0), currentPass(MSC_OPAQUE) {}
+};

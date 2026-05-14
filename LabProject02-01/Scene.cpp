@@ -8,6 +8,8 @@
 #include "msc_Transform.h"
 #include "msc_Camera.h"
 #include "msc_Mesh.h"
+#include "msc_D3D12RenderingEngine.h"
+#include "GameFramework.h"
 
 CScene::CScene(CPlayer* pPlayer)
 {
@@ -401,11 +403,27 @@ void CScene::msc_Render(HDC hDCFrameBuffer, msc_Camera* pCamera) //추가- msc 게�
 	for (auto& mscGameObject : m_mscGameObjects) {
 		if (mscGameObject->GetComponent<msc_Mesh>()) {
 			mscGameObject->GetComponent<msc_Mesh>()->Render(hDCFrameBuffer, pCamera);
-			//bool bInViewport = pCamera->IsTransformInViewport(mscGameObject->GetTransform());
-			//cout << "Rendering " << mscGameObject->m_strName << " - In Viewport: " << (bInViewport ? "Yes" : "No") << endl;
 		}
 	}
-	
+	//새로 추가하는 d3d12
+	//RenderContext context=new RenderContext()
+
+	// --- [공통 파이프라인 세팅] ---
+	// 모든 메쉬가 공통으로 쓰는 Root Signature와 기본 PSO 세팅
+	// context.cmdList->SetGraphicsRootSignature(pMainRootSig);
+	// context.cmdList->SetPipelineState(pDefaultPSO);
+	// context.cmdList->RSSetViewports(...);
+	// context.cmdList->RSSetScissorRects(...);
+
+	// --- [1단계: 전역 상수 버퍼 업데이트 및 세팅] ---
+	// 1. CPU에서 GPU로 카메라/시간 데이터를 한 번만 복사합니다.
+	//engine.UpdatePassConstantBuffer(mainCamera, t, dt);
+
+	// 2. 루트 시그니처 바인딩 (모든 오브젝트가 이 데이터를 공유함)
+	//cmdList->SetGraphicsRootSignature(pMainRootSig);
+
+	// b1 (1번 슬롯)에 전역 데이터 장착!
+	//cmdList->SetGraphicsRootConstantBufferView(1, engine.GetPassCBVAddress());
 }
 void CScene::msc_Update()
 {

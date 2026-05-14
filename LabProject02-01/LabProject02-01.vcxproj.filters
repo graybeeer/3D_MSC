@@ -120,6 +120,15 @@
     <ClInclude Include="msc_D3D12RenderingEngine.h">
       <Filter>헤더 파일\msc</Filter>
     </ClInclude>
+    <ClInclude Include="msc_SceneManager.h">
+      <Filter>헤더 파일\msc</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometryHelper.h">
+      <Filter>헤더 파일\msc\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="msc_Scene.h">
+      <Filter>헤더 파일\msc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LabProject02-01.cpp">
@@ -178,6 +187,15 @@
     </ClCompile>
     <ClCompile Include="msc_D3D12RenderingEngine.cpp">
       <Filter>소스 파일\msc</Filter>
+    </ClCompile>
+    <ClCompile Include="msc_Scene.cpp">
+      <Filter>소스 파일\msc</Filter>
+    </ClCompile>
+    <ClCompile Include="msc_SceneManager.cpp">
+      <Filter>소스 파일\msc</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryHelper.cpp">
+      <Filter>소스 파일\msc\Tool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

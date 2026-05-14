@@ -9,7 +9,7 @@ msc_D3D12RenderingEngine::msc_D3D12RenderingEngine()
     , m_nScreenWidth(FRAMEBUFFER_WIDTH)
     , m_nScreenHeight(FRAMEBUFFER_HEIGHT)
 {
-    ZeroMemory(m_nFenceValues, sizeof(m_nFenceValues));
+	ZeroMemory(m_nFenceValues, sizeof(m_nFenceValues)); // 펜스 값 초기화
 }
 
 msc_D3D12RenderingEngine::~msc_D3D12RenderingEngine()
@@ -17,7 +17,7 @@ msc_D3D12RenderingEngine::~msc_D3D12RenderingEngine()
     Shutdown();
 }
 
-bool msc_D3D12RenderingEngine::Initialize(HWND hWnd, UINT nWidth, UINT nHeight)
+bool msc_D3D12RenderingEngine::Initialize(HWND hWnd, UINT nWidth, UINT nHeight) // D3D12 초기화 및 리소스 생성
 {
 	std::cout << "Initializing D3D12 Rendering Engine..." << std::endl;
     m_nScreenWidth = nWidth;
@@ -143,7 +143,7 @@ bool msc_D3D12RenderingEngine::Initialize(HWND hWnd, UINT nWidth, UINT nHeight)
     return true;
 }
 
-void msc_D3D12RenderingEngine::Shutdown()
+void msc_D3D12RenderingEngine::Shutdown() // 리소스 해제 및 정리
 {
     // GPU 완료 대기
     if (m_pCommandQueue)
@@ -182,7 +182,7 @@ void msc_D3D12RenderingEngine::Shutdown()
     m_pFence.Reset();
 }
 
-void msc_D3D12RenderingEngine::BeginRender()
+void msc_D3D12RenderingEngine::BeginRender() // 렌더링 시작 준비
 {
     auto pCommandAllocator = m_pCommandAllocator[m_nCurrentFrameIndex].Get();
     pCommandAllocator->Reset();
@@ -221,7 +221,7 @@ void msc_D3D12RenderingEngine::ClearScreen(const FLOAT* pClearColor)
     m_pCommandList->ClearRenderTargetView(rtvHandle, pClearColor, 0, NULL);
 }
 
-void msc_D3D12RenderingEngine::EndRender()
+void msc_D3D12RenderingEngine::EndRender() // 렌더링 명령 종료 및 프레젠트 준비
 {
     // 렌더 타겟에서 프리젠트 상태로 전환
     D3D12_RESOURCE_BARRIER barrier = {};
@@ -250,7 +250,7 @@ void msc_D3D12RenderingEngine::EndRender()
     m_nFenceValue++;
 }
 
-void msc_D3D12RenderingEngine::Present()
+void msc_D3D12RenderingEngine::Present() // 프레임을 화면에 표시
 {
     if (FAILED(m_pSwapChain->Present(1, 0)))
     {

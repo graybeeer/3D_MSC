@@ -10,6 +10,8 @@
 #include "msc_Mesh.h"
 #include "msc_Transform.h"
 #include "msc_D3D12RenderingEngine.h"
+#include "msc_SceneManager.h"
+#include "msc_Scene.h"
 
 void CGameFramework::OnCreate(HINSTANCE hInstance, HWND hMainWnd)
 {
@@ -97,12 +99,16 @@ void CGameFramework::BuildObjects()
 	m_pPlayer->SetCameraOffset(XMFLOAT3(0.0f, 5.0f, -15.0f));
 
 	m_pScene = new CScene(m_pPlayer);
+	//m_pSceneManager = std::make_unique<msc_SceneManager>();
+	//m_pSceneManager->main_scene = std::make_unique<CScene>();
+	gf_SceneManager = new msc_SceneManager();
 #if LegacyMode
 	
 
 	m_pScene->BuildObjects();
 #else
-	m_pScene->msc_BuildObjects(); 
+	//m_pScene->msc_BuildObjects(); 
+	gf_SceneManager->BuildObjects();
 #endif
 }
 
@@ -113,9 +119,11 @@ void CGameFramework::ReleaseObjects()
 #if LegacyMode
 		m_pScene->ReleaseObjects();
 #else
-		m_pScene->msc_ReleaseObjects(); 
+		//m_pScene->msc_ReleaseObjects(); 
+		gf_SceneManager->ReleaseObjects();
 #endif
 		delete m_pScene;
+		delete gf_SceneManager;
 	}
 
 	if (m_pPlayer) delete m_pPlayer;
@@ -124,6 +132,7 @@ void CGameFramework::ReleaseObjects()
 void CGameFramework::OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam)
 {
 	if (m_pScene) m_pScene->OnProcessingMouseMessage(hWnd, nMessageID, wParam, lParam);
+	if (gf_SceneManager) gf_SceneManager->OnProcessingMouseMessage(hWnd, nMessageID, wParam, lParam);
 
 	switch (nMessageID)
 	{
@@ -147,6 +156,7 @@ void CGameFramework::OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM
 void CGameFramework::OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam)
 {
 	if (m_pScene) m_pScene->OnProcessingKeyboardMessage(hWnd, nMessageID, wParam, lParam);
+	if (gf_SceneManager) gf_SceneManager->OnProcessingKeyboardMessage(hWnd, nMessageID, wParam, lParam);
 
 	switch (nMessageID)
 	{
@@ -262,10 +272,9 @@ void CGameFramework::FrameAdvance() //1프레임 진행
 #else
 	ClearFrameBuffer(RGB(255, 255, 255));
 	// msc 시스템 업데이트 및 렌더링
-	if (m_pScene&&m_pScene->msc_MainCamera)
-	{
-		m_pScene->msc_Update();
-		m_pScene->msc_Render(m_hDCFrameBuffer, m_pScene->msc_MainCamera);
+	if (gf_SceneManager->main_scene && gf_SceneManager->main_scene->mainCamera) {
+		gf_SceneManager->Update();
+		gf_SceneManager->Render(m_hDCFrameBuffer, gf_SceneManager->main_scene->mainCamera);
 	}
 #endif
 	PresentFrameBuffer();

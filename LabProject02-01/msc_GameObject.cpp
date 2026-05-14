@@ -12,8 +12,7 @@ msc_GameObject::msc_GameObject(std::string& strName)
 	AddComponent(m_pTransform);
 	//AddComponent<msc_Transform>(); // 템플릿 버전(일단은 여기선 사용 안함)
 
-	CGameFramework::GetInstance().m_pScene->m_mscGameObjects.push_back(this); //씬의 게임 오브젝트 리스트에 자신 추가
-
+	CGameFramework::GetInstance().gf_SceneManager->main_scene->gameObjects.push_back(this);
 	Start();
 }
 

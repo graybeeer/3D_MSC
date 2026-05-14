@@ -28,6 +28,8 @@
 #include <string>
 #include <typeinfo>
 #include <iostream>
+#include <memory>
+#include <vector>
 
 #define LegacyMode false // LegacyMode가 true이면 기존 방식, false이면 새로 추가한 것들로 구동
 

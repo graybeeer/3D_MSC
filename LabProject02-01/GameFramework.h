@@ -2,8 +2,10 @@
 
 #include "Player.h"
 #include "Scene.h"
+#include "msc_SceneManager.h"
 #include "Timer.h"
 #include "msc_D3D12RenderingEngine.h"
+#include <memory.h>
 
 class CGameFramework
 {
@@ -39,6 +41,7 @@ private:
 	CPlayer*					m_pPlayer = NULL;
 public:
 	CScene*						m_pScene = NULL;
+	msc_SceneManager* gf_SceneManager = NULL; 
 private:
 	CGameObject*				m_pLockedObject = NULL;
 public:

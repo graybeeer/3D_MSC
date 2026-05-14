@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="GeometryHelper.h" />
     <ClInclude Include="msc_D3D12RenderingEngine.h" />
     <ClInclude Include="GameFramework.h" />
     <ClInclude Include="GameObject.h" />
@@ -169,6 +170,8 @@
     <ClInclude Include="msc_Mesh.h" />
     <ClInclude Include="msc_Player.h" />
     <ClInclude Include="msc_RigidBody.h" />
+    <ClInclude Include="msc_Scene.h" />
+    <ClInclude Include="msc_SceneManager.h" />
     <ClInclude Include="msc_Shader.h" />
     <ClInclude Include="msc_Transform.h" />
     <ClInclude Include="Player.h" />
@@ -182,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="GeometryHelper.cpp" />
     <ClCompile Include="msc_D3D12RenderingEngine.cpp" />
     <ClCompile Include="GameFramework.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -195,6 +199,8 @@
     <ClCompile Include="msc_GameObject.cpp" />
     <ClCompile Include="msc_Mesh.cpp" />
     <ClCompile Include="msc_Player.cpp" />
+    <ClCompile Include="msc_Scene.cpp" />
+    <ClCompile Include="msc_SceneManager.cpp" />
     <ClCompile Include="msc_Transform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />

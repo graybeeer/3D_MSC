@@ -23,10 +23,11 @@ msc_Camera::~msc_Camera()
 void msc_Camera::Start()
 {
 	std::cout << "Camera Start" << std::endl;
-	if(CGameFramework::GetInstance().m_pScene->msc_MainCamera == nullptr)
+	if(CGameFramework::GetInstance().gf_SceneManager->main_scene->mainCamera == nullptr)
 	{
-		CGameFramework::GetInstance().m_pScene->msc_MainCamera = this;
+		CGameFramework::GetInstance().gf_SceneManager->main_scene->mainCamera = this;
 	}
+
 	//기본 설정
 	GetTransform()->SetLocalPosition(XMFLOAT3(0.0f, 5.0f, -15.0f));
 
@@ -37,8 +38,6 @@ void msc_Camera::Start()
 	// 기본 뷰포트 설정
 	m_Viewport.SetViewport(0, 0, FRAMEBUFFER_WIDTH, FRAMEBUFFER_HEIGHT);
 	m_fAspectRatio = float(FRAMEBUFFER_WIDTH) / float(FRAMEBUFFER_HEIGHT);
-	
-
 	
 }
 

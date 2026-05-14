@@ -4,6 +4,7 @@
 #include "msc_Transform.h"
 #include "msc_Mesh.h"
 #include "GameFramework.h"
+
 msc_GameManager::msc_GameManager(msc_GameObject* pParentObject) : msc_Component(pParentObject)
 {
 }
@@ -17,7 +18,8 @@ void msc_GameManager::Start()
 	std::cout << "게임 매니저 시작" << endl;
 	//메인 카메라 생성
 	msc_GameObject* pCameraObject = new msc_GameObject(std::string("TestCamera"));
-	pCameraObject->AddComponent<msc_Camera>();
+	pCamera = pCameraObject->AddComponent<msc_Camera>();
+
 
 	pCubeObject = new msc_GameObject(std::string("TestCube"));
 	std::cout << "큐브 객체 생성됨" << std::endl;
@@ -37,13 +39,13 @@ void msc_GameManager::Start()
 void msc_GameManager::Update()
 {
 	//std::cout << "게임 매니저 업데이트" << std::endl;
-	if(CGameFramework::GetInstance().m_pScene->msc_MainCamera)
+	if(pCamera != nullptr)
 	{
-		CGameFramework::GetInstance().m_pScene->msc_MainCamera->GetTransform()->LookAt(pCubeObject->GetTransform());
-		std::cout << "카메라 위치: " << CGameFramework::GetInstance().m_pScene->msc_MainCamera->GetTransform()->GetLocalPosition().x << ", "
-			 << CGameFramework::GetInstance().m_pScene->msc_MainCamera->GetTransform()->GetLocalPosition().y << ", "
-			<< CGameFramework::GetInstance().m_pScene->msc_MainCamera->GetTransform()->GetLocalPosition().z << std::endl;
-		std::cout << CGameFramework::GetInstance().m_pScene->m_mscGameObjects.size() << "개의 게임 오브젝트 존재" << std::endl;
+		pCamera->GetTransform()->LookAt(pCubeObject->GetTransform());
+		std::cout << "카메라 위치: " << pCamera->GetTransform()->GetLocalPosition().x << ", "
+			 << pCamera->GetTransform()->GetLocalPosition().y << ", "
+			<< pCamera->GetTransform()->GetLocalPosition().z << std::endl;
+		std::cout << CGameFramework::GetInstance().gf_SceneManager->main_scene->gameObjects.size() << "개의 게임 오브젝트 존재" << std::endl;
 	}
 	std::cout << CGameFramework::GetInstance().m_GameTimer.GetTimeElapsed() << std::endl; //델타 타임 출력
 	pCubeObject->GetTransform()->RotateLocal(XMFLOAT3(0.0f, CGameFramework::GetInstance().m_GameTimer.GetTimeElapsed()*60, 0.0f));
