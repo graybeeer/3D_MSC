@@ -58,6 +58,9 @@ void msc_Scene::Render(HDC hDCFrameBuffer, msc_Camera* pCamera) {
 }
 void msc_Scene::Render(ID3D12GraphicsCommandList* pd3dCommandList, msc_Camera* pCamera)
 {
+	pCamera->SetViewportsAndScissorRects(pd3dCommandList);
+	pd3dCommandList->SetGraphicsRootSignature(m_pd3dGraphicsRootSignature.Get());
+	pCamera->UpdateShaderVariables(pd3dCommandList);
 }
 void msc_Scene::OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam)
 {

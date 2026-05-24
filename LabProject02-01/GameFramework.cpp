@@ -272,6 +272,7 @@ void CGameFramework::FrameAdvance() //1프레임 진행
 
 	// Direct3D 12 명령 리스트 종료
 	m_pRenderingEngine->EndRender();
+	//m_pRenderingEngine->Present();
 
 	m_GameTimer.GetFrameRate(m_pszFrameRate + 12, 37);
 	::SetWindowText(m_hWnd, m_pszFrameRate);

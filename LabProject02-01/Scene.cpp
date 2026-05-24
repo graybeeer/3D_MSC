@@ -425,6 +425,7 @@ void CScene::msc_Render(HDC hDCFrameBuffer, msc_Camera* pCamera) //추가- msc 게�
 	// b1 (1번 슬롯)에 전역 데이터 장착!
 	//cmdList->SetGraphicsRootConstantBufferView(1, engine.GetPassCBVAddress());
 }
+
 void CScene::msc_Update()
 {
 	for (auto& mscGameObject : m_mscGameObjects) mscGameObject->Update();

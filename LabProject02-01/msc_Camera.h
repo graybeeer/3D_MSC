@@ -31,6 +31,8 @@ public:
 	void SetScissorRect(LONG xLeft, LONG yTop, LONG xRight, LONG yBottom);
 	void SetFOVAngle(float fFOVAngle);
 	void SetOrthographic(bool bOrthographic) { m_bOrthographic = bOrthographic; }
+
+	void UpdateShaderVariables(ID3D12GraphicsCommandList* pd3dCommandList); // UpdateShaderVariables()는 카메라의 뷰 매트릭스와 투영 매트릭스를 GPU에 전달하는 메서드입니다. 이 메서드는 D3D12 그래픽 명령 리스트를 사용하여 셰이더에 필요한 상수 버퍼를 업데이트하고, 이를 그래픽 파이프라인에 바인딩합니다. 일반적으로, 이 메서드는 렌더링 루프에서 호출되어 카메라의 현재 상태를 GPU에 반영하도록 합니다. 이를 통해 셰이더가 올바른 뷰와 투영 변환을 사용하여 3D 장면을 렌더링할 수 있도록 합니다.
 	
 	XMFLOAT4X4 GetViewMatrix() const { return m_xmf4x4View; } // GetViewMatrix()는 카메라의 위치와 방향을 나타내는 뷰 매트릭스를 반환합니다. 이 매트릭스는 월드 공간에서 카메라가 어떻게 배치되어 있는지를 나타냅니다. 일반적으로, 뷰 매트릭스는 카메라의 위치, 타겟(카메라가 바라보는 지점), 그리고 업 벡터(카메라의 위쪽 방향)를 기반으로 생성됩니다. 이 매트릭스는 3D 그래픽스에서 객체를 카메라 시점으로 변환하는 데 사용됩니다.
 	XMFLOAT4X4 GetPerspectiveProjectionMatrix() const { return m_xmf4x4PerspectiveProject; } // GetPerspectiveProjectionMatrix()는 원근 투영 매트릭스를 반환합니다. 이 매트릭스는 3D 장면을 2D 화면에 투영하는 방식을 정의합니다. 원근 투영은 멀리 있는 객체가 더 작게 보이는 효과를 만들어냅니다. 이 매트릭스는 카메라의 시야각(FOV), 애스펙트 비율, 그리고 근평면과 원평면의 거리를 기반으로 생성됩니다.
@@ -58,9 +60,9 @@ public:
 	bool IsWorldPositionInFrustum(const XMFLOAT3& worldPosition) const;
 
 private:
-	XMFLOAT4X4					m_xmf4x4View = Matrix4x4::Identity();
-	XMFLOAT4X4					m_xmf4x4PerspectiveProject = Matrix4x4::Identity();
-	XMFLOAT4X4					m_xmf4x4OrthographicProject = Matrix4x4::Identity();
+	XMFLOAT4X4					m_xmf4x4View = Matrix4x4::Identity(); // 뷰 매트릭스
+	XMFLOAT4X4					m_xmf4x4PerspectiveProject = Matrix4x4::Identity(); // 원근 투영 매트릭스
+	XMFLOAT4X4					m_xmf4x4OrthographicProject = Matrix4x4::Identity();// 직교 투영 매트릭스
 	
 	XMFLOAT4X4					m_xmf4x4ViewPerspectiveProject = Matrix4x4::Identity();
 	XMFLOAT4X4					m_xmf4x4ViewOrthographicProject = Matrix4x4::Identity();

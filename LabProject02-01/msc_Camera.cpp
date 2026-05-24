@@ -127,6 +127,19 @@ void msc_Camera::GenerateViewMatrix()
 	// 프러스텀 변환
 	m_xmFrustumView.Transform(m_xmFrustumWorld, XMLoadFloat4x4(&m_xmf4x4InverseView));
 }
+void msc_Camera::UpdateShaderVariables(ID3D12GraphicsCommandList* pd3dCommandList)
+{
+	// 셰이더에 뷰, 투영 매트릭스와 카메라 위치 전달
+	XMFLOAT4X4 xmf4x4View;
+	XMStoreFloat4x4(&xmf4x4View, XMMatrixTranspose(XMLoadFloat4x4(&m_xmf4x4View)));
+	pd3dCommandList->SetGraphicsRoot32BitConstants(2, 16, &xmf4x4View, 0);
+
+	XMFLOAT4X4 xmf4x4Projection;
+	XMStoreFloat4x4(&xmf4x4Projection, XMMatrixTranspose(XMLoadFloat4x4(&m_xmf4x4PerspectiveProject)));
+	pd3dCommandList->SetGraphicsRoot32BitConstants(2, 16, &xmf4x4Projection, 16);
+
+	pd3dCommandList->SetGraphicsRoot32BitConstants(2, 3, &m_pTransform->GetWorldPosition(), 32);
+}
 void msc_Camera::SetViewportsAndScissorRects(ID3D12GraphicsCommandList* pd3dCommandList)
 {
 	pd3dCommandList->RSSetViewports(1, &m_d3dViewport);

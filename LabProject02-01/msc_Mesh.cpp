@@ -132,6 +132,9 @@ void msc_Mesh::Render(HDC hDCFrameBuffer, msc_Camera* pCamera)
 	::SelectObject(hDCFrameBuffer, hOldPen);
 	::DeleteObject(hPen);
 }
+void msc_Mesh::Render(ID3D12GraphicsCommandList* pd3dCommandList, msc_Camera* pCamera) {
+
+}
 void msc_Mesh::Render(HDC hDCFrameBuffer)
 {
 	if (!m_ppPolygons_simple || !m_pTransform) return;

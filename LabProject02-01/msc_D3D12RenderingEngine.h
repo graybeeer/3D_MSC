@@ -45,6 +45,7 @@ private:
     ComPtr<ID3D12DescriptorHeap> m_pRtvHeap;
     ComPtr<ID3D12Resource> m_pRenderTargets[D3D12_FRAME_BUFFER_COUNT];
 
+
     // 펜스 및 동기화
     ComPtr<ID3D12Fence> m_pFence;
     HANDLE m_hFenceEvent;

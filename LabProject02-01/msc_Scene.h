@@ -2,6 +2,13 @@
 #include "msc_GameObject.h"
 #include "msc_Camera.h"
 
+#include "d3d12.h"
+#include "dxgi1_4.h"
+#include "D3Dcompiler.h"
+#include "DXGIDebug.h"
+#include <wrl.h>
+using namespace Microsoft::WRL;
+
 class msc_Scene {
 public:
 	msc_Scene(std::string& name);
@@ -24,5 +31,7 @@ public:
 
 	virtual void OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam);
 	virtual void OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam);
-
+	
+	// 루트 시그니처
+	ComPtr<ID3D12RootSignature> m_pd3dGraphicsRootSignature;
 };

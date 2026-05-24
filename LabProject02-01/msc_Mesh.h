@@ -46,6 +46,7 @@ public:
 	virtual void Render(HDC hDCFrameBuffer);
 	virtual void Render(HDC hDCFrameBuffer, msc_Camera* pCamera);
 	virtual void Render(HDC hDCFrameBuffer, XMFLOAT4X4* pxmf4x4World);
+	virtual void Render(ID3D12GraphicsCommandList* pd3dCommandList, msc_Camera* pCamera);
 	virtual void RenderD3D12(const RenderContext& context); 
 public:
 	// --- D3D12 리소스 (소유권자: ComPtr) ---
