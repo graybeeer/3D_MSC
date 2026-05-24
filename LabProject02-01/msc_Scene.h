@@ -20,6 +20,7 @@ public:
 
 	virtual void Update();
 	virtual void Render(HDC hDCFrameBuffer, msc_Camera* pCamera);
+	virtual void Render(ID3D12GraphicsCommandList* pd3dCommandList, msc_Camera* pCamera);
 
 	virtual void OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam);
 	virtual void OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam);

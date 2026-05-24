@@ -204,13 +204,15 @@ void msc_D3D12RenderingEngine::BeginRender() // 렌더링 시작 준비
     rtvHandle.ptr += m_nCurrentFrameIndex * m_nRtvDescriptorSize;
 
     m_pCommandList->OMSetRenderTargets(1, &rtvHandle, FALSE, NULL);
-
+	//뷰포트 및 시저 설정은 씬 렌더링 단계에서 필요에 따라 설정할 수 있도록 주석 처리
+    /*
     // 뷰포트 및 시저 설정
     D3D12_VIEWPORT viewport = { 0.0f, 0.0f, static_cast<float>(m_nScreenWidth), static_cast<float>(m_nScreenHeight), 0.0f, 1.0f };
     D3D12_RECT scissorRect = { 0, 0, static_cast<LONG>(m_nScreenWidth), static_cast<LONG>(m_nScreenHeight) };
 
     m_pCommandList->RSSetViewports(1, &viewport);
     m_pCommandList->RSSetScissorRects(1, &scissorRect);
+    */
 }
 
 void msc_D3D12RenderingEngine::ClearScreen(const FLOAT* pClearColor)

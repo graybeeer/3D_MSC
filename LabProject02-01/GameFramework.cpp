@@ -258,26 +258,20 @@ void CGameFramework::FrameAdvance() //1프레임 진행
 {    
 	m_GameTimer.Tick(60.0f);
 	float deltaTime = m_GameTimer.GetTimeElapsed();
-#if LegacyMode
-	// 기존 충돌 처리
-	ProcessInput();
 
-	AnimateObjects();
+	// Direct3D 12 명령 리스트 초기화
+	m_pRenderingEngine->BeginRender();
 
-    ClearFrameBuffer(RGB(255, 255, 255));
-
-	// 기존 카메라
-	CCamera* pCamera = m_pPlayer->GetCamera();
-	if (m_pScene) m_pScene->Render(m_hDCFrameBuffer, pCamera);
-#else
 	ClearFrameBuffer(RGB(255, 255, 255));
 	// msc 시스템 업데이트 및 렌더링
 	if (gf_SceneManager->main_scene && gf_SceneManager->main_scene->mainCamera) {
 		gf_SceneManager->Update();
 		gf_SceneManager->Render(m_hDCFrameBuffer, gf_SceneManager->main_scene->mainCamera);
 	}
-#endif
 	PresentFrameBuffer();
+
+	// Direct3D 12 명령 리스트 종료
+	m_pRenderingEngine->EndRender();
 
 	m_GameTimer.GetFrameRate(m_pszFrameRate + 12, 37);
 	::SetWindowText(m_hWnd, m_pszFrameRate);

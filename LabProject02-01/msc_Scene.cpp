@@ -56,6 +56,9 @@ void msc_Scene::Render(HDC hDCFrameBuffer, msc_Camera* pCamera) {
 	// b1 (1번 슬롯)에 전역 데이터 장착!
 	//cmdList->SetGraphicsRootConstantBufferView(1, engine.GetPassCBVAddress());
 }
+void msc_Scene::Render(ID3D12GraphicsCommandList* pd3dCommandList, msc_Camera* pCamera)
+{
+}
 void msc_Scene::OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam)
 {
 }

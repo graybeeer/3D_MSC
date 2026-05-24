@@ -59,7 +59,23 @@ void msc_Camera::SetViewport(int nLeft, int nTop, int nWidth, int nHeight)
 	// 애스펙트 비율 변경 시 프로젝션 재설정
 	GeneratePerspectiveProjectionMatrix(m_fNearPlaneDistance, m_fFarPlaneDistance);
 }
+void msc_Camera::SetViewport(int xTopLeft, int yTopLeft, int nWidth, int nHeight, float fMinZ, float fMaxZ)
+{
+	m_d3dViewport.TopLeftX = float(xTopLeft);
+	m_d3dViewport.TopLeftY = float(yTopLeft);
+	m_d3dViewport.Width = float(nWidth);
+	m_d3dViewport.Height = float(nHeight);
+	m_d3dViewport.MinDepth = fMinZ;
+	m_d3dViewport.MaxDepth = fMaxZ;
+}
 
+void msc_Camera::SetScissorRect(LONG xLeft, LONG yTop, LONG xRight, LONG yBottom)
+{
+	m_d3dScissorRect.left = xLeft;
+	m_d3dScissorRect.top = yTop;
+	m_d3dScissorRect.right = xRight;
+	m_d3dScissorRect.bottom = yBottom;
+}
 void msc_Camera::SetFOVAngle(float fFOVAngle)
 {
 	m_fFOVAngle = fFOVAngle;
@@ -111,7 +127,11 @@ void msc_Camera::GenerateViewMatrix()
 	// 프러스텀 변환
 	m_xmFrustumView.Transform(m_xmFrustumWorld, XMLoadFloat4x4(&m_xmf4x4InverseView));
 }
-
+void msc_Camera::SetViewportsAndScissorRects(ID3D12GraphicsCommandList* pd3dCommandList)
+{
+	pd3dCommandList->RSSetViewports(1, &m_d3dViewport);
+	pd3dCommandList->RSSetScissorRects(1, &m_d3dScissorRect);
+}
 void msc_Camera::GeneratePerspectiveProjectionMatrix(float fNearPlaneDistance, float fFarPlaneDistance)
 {
 	// FOV와 Aspect Ratio만으로 프러스텀 정의
@@ -138,8 +158,10 @@ bool msc_Camera::IsInFrustum(BoundingOrientedBox& xmBoundingBox) const
 {
 	return m_xmFrustumWorld.Intersects(xmBoundingBox);
 }
-
-#include "msc_Transform.h"
+bool msc_Camera::IsInFrustum(BoundingBox& xmBoundingBox) const
+{
+	return m_xmFrustumWorld.Intersects(xmBoundingBox);
+}
 
 // 뷰포트 안에 Transform이 있는지 확인
 bool msc_Camera::IsTransformInViewport(const msc_Transform* pTransform) const

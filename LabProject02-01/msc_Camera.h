@@ -27,6 +27,8 @@ public:
 	
 
 	void SetViewport(int nLeft, int nTop, int nWidth, int nHeight);
+	void SetViewport(int xTopLeft, int yTopLeft, int nWidth, int nHeight, float fMinZ, float fMaxZ);
+	void SetScissorRect(LONG xLeft, LONG yTop, LONG xRight, LONG yBottom);
 	void SetFOVAngle(float fFOVAngle);
 	void SetOrthographic(bool bOrthographic) { m_bOrthographic = bOrthographic; }
 	
@@ -38,7 +40,9 @@ public:
 	XMFLOAT4X4 GetViewOrthographicProjectionMatrix() const { return m_xmf4x4ViewOrthographicProject; } // GetViewOrthographicProjectionMatrix()는 뷰 매트릭스와 직교 투영 매트릭스를 곱한 결과를 반환합니다. 이 매트릭스는 월드 공간에서 객체를 카메라 시점으로 변환한 후, 직교 투영을 적용하여 최종적으로 클립 공간으로 변환하는 데 사용됩니다. 이 매트릭스를 사용하면 월드 공간의 좌표를 한 번에 클립 공간으로 변환할 수 있어 렌더링 과정에서 효율적입니다.
 	
 	bool IsInFrustum(BoundingOrientedBox& xmBoundingBox) const; // IsInFrustum()는 주어진 방향성 경계 상자(BoundingOrientedBox)가 카메라의 뷰 프러스텀 안에 있는지를 검사하는 메서드입니다. 이 메서드는 주로 시야 절두체 컬링(Frustum Culling)에서 사용됩니다. 시야 절두체 컬링은 렌더링 성능을 향상시키기 위해 카메라의 시야에 보이지 않는 객체를 렌더링하지 않는 기술입니다. 이 메서드는 객체가 프러스텀 안에 완전히 포함되어 있는지, 부분적으로 포함되어 있는지, 또는 완전히 포함되어 있지 않은지를 판단하여 반환합니다.
+	bool IsInFrustum(BoundingBox& xmBoundingBox) const;
 	msc_Viewport& GetViewport() { return m_Viewport; }
+	
 
 	void InitializePerspectiveProjection(float fNearPlaneDistance, float fFarPlaneDistance);
 	void InitializeOrthographicProjection(float fNearPlaneDistance, float fFarPlaneDistance, float fWidth, float fHeight);
@@ -66,6 +70,11 @@ private:
 	XMFLOAT4X4					m_xmf4x4InverseView = Matrix4x4::Identity();
 
 	msc_Viewport				m_Viewport;
+public:
+	void SetViewportsAndScissorRects(ID3D12GraphicsCommandList* pd3dCommandList);
+	D3D12_VIEWPORT				m_d3dViewport;
+	D3D12_RECT					m_d3dScissorRect;
+private:
 	float						m_fFOVAngle = 90.0f; 
 	float						m_fProjectRectDistance = 1.0f; // 카메라에서 투영 평면까지의 거리로, FOV에 따라 계산됩니다.
 	float 						m_fNearPlaneDistance = 0.1f; // 근평면과 원평면의 거리는 투영 매트릭스 생성 시 사용됩니다.
